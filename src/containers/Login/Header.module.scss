@@ -1,0 +1,25 @@
+
+@import '@/styles/utils.scss';
+
+.header {
+  width: 100%;
+  .header__content {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: px2rem(30);
+  
+    .header__logo {
+      height: px2rem(60);
+    }
+
+    .header__feedback {
+      position: absolute;
+      right: px2rem(20);
+      bottom: px2rem(10);
+    }
+  }
+}

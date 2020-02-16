@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  color: black;
+  
+  &:hover {
+    color: red;
+    text-decoration: underline;
+  }
+}
+.icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0 0.3125rem;
+  img {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
