@@ -1,0 +1,12 @@
+@import '@/styles/utils';
+
+.item {
+  width: px2rem(245);
+  height: px2rem(401);
+  background-color: white;
+
+  img {
+    width: px2rem(245);
+    height: px2rem(245);
+  }
+}

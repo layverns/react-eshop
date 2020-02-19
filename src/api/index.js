@@ -11,6 +11,11 @@ const api = {
   }
 }
 
+const homeApi = {
+  fetchAllCategories: () => axios.get('/categories/all'),
+  fetchCarousels: () => axios.get('/home/carousels'),
+}
+
 const authApi = {
   currentUser: () => axios.get('/user'),
   login: (email, password) => axios.post('/users/login', { email, password })
@@ -18,5 +23,6 @@ const authApi = {
 
 export {
   api,
-  authApi
+  authApi,
+  homeApi
 }

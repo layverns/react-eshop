@@ -1,0 +1,67 @@
+@import "@/styles/utils.scss";
+@import "@/styles/colors.scss";
+
+:global(.categorybar__overlay) {
+  left: px2rem(15) !important;
+  top: px2rem(29) !important;
+
+  & > div {
+    display: flex;
+    flex-wrap: wrap;
+    width: px2rem(1090 - 2 * 15);
+    max-width: px2rem(1090 - 2 * 15);
+    background-color: white;
+    border: 1px solid $borderColorGrey;
+    padding: px2rem(22);
+  }
+
+}
+
+.categorybar {
+  background-color: white;
+  border-bottom: 1px solid $borderColorGrey;
+
+  .categorybar__content {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    ul {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        color: black;
+        font-size: px2rem(14);
+        position: relative;
+        margin: 0 px2rem(10);
+        padding-bottom: px2rem(6);
+
+        &.active::after {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          content: "";
+          width: 100%;
+          height: 4px;
+          border-bottom: 4px solid $mainRed;
+        }
+
+        &:hover::after {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          content: "";
+          width: 100%;
+          height: 4px;
+          border-bottom: 4px solid $mainRed;
+        }
+      }
+    }
+  }
+}

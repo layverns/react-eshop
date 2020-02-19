@@ -22,7 +22,7 @@ export function* loadApp() {
     }
   } catch (err) {
     console.error('app load fail: ', err.response);
-    if (err.response.status == 401) {
+    if (_.get(err, 'response.status', 0) == 401) {
       tokenStorage.save(null);
       api.setToken(null);
       yield put(setCurrentUser(null));
