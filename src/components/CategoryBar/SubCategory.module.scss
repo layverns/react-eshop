@@ -1,37 +1,28 @@
-@import "@/styles/utils.scss";
-@import "@/styles/colors.scss";
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
 
 $itemWidth: px2rem(124);
 
 .subcategory {
-  width: $itemWidth;
-  max-width: $itemWidth;
-  margin-right: px2rem(20);
+  margin-right: px2rem(24);
 
   .subcategory__title {
+    width: 100%;
     color: $fontColorBlack;
-    font-size: px2rem(16);
-    line-height: px2rem(36);
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 36px;
+    margin-bottom: px2rem(10);
+    border-bottom: 1px solid #ddd;
     position: relative;
-    width: $itemWidth;
-    max-width: $itemWidth;
-
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      border-bottom: 1px solid $borderColorGrey;
-    }
   }
 
   .subcategory__items {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    flex-wrap: wrap;
+    max-height: px2rem(428);
   }
 }
 
@@ -42,7 +33,7 @@ $itemWidth: px2rem(124);
   align-items: center;
 
   &:hover {
-    color: $mainRed;
+    color: $mainGold;
   }
 
   img {

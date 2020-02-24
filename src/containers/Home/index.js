@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -20,8 +19,8 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      carouselIndex: 0
-    }
+      carouselIndex: 0,
+    };
   }
 
   componentWillMount() {
@@ -29,33 +28,32 @@ class Home extends React.Component {
     this.props.getCarousels();
   }
 
-  afterChangeCarousel = (current) => {
+  afterChangeCarousel = current => {
     this.setState({
       carouselIndex: current,
     });
-  }
+  };
 
   render() {
     const { categories } = this.props;
     const { carousels } = this.props;
 
     let styles = {
-      'background-color': 'white'
-    }
+      'background-color': 'white',
+    };
     let carouselNodes = null;
     if (!_.isEmpty(carousels)) {
-      carouselNodes = carousels.map(c => (<img key={c.item_id} src={c.carousel} />));
+      carouselNodes = carousels.map(c => (
+        <img key={c.item_id} src={c.carousel} />
+      ));
 
       styles['background-color'] = carousels[this.state.carouselIndex].color;
     }
 
-    
     return (
-      <div >
+      <div>
         <EHeader></EHeader>
-        <ToolBar></ToolBar>
-        <CategoryBar categories={categories}></CategoryBar>
-        <div className={$style.carousel}  style={styles}>
+        <div className={$style.carousel} style={styles}>
           <div className="container">
             <Carousel autoplay afterChange={this.afterChangeCarousel}>
               {carouselNodes}
@@ -63,14 +61,13 @@ class Home extends React.Component {
           </div>
         </div>
 
-
         <div className={classnames($style.panel, 'py60')}>
           <div className={classnames($style.panel__content, 'container')}>
             <div className={$style.panel__header}>
               <h2 className={$style.panel__title}>人气推荐</h2>
             </div>
 
-            <Carousel >
+            <Carousel>
               <Item>item1</Item>
             </Carousel>
           </div>
@@ -80,12 +77,12 @@ class Home extends React.Component {
         </div>
       </div>
     );
-  };
+  }
 }
 
 const mapStateToProps = createStructuredSelector({
   categories: makeSelectCategories(),
-  carousels: makeSelectCarousels()
+  carousels: makeSelectCarousels(),
 });
 
 export function mapDispatchToProps(dispatch) {

@@ -1,1 +1,23 @@
-@import '@/styles/global.scss';
+@import '@/styles/sizes.scss';
+
+html {
+  font-size: #{$rootFontSize}px !important;
+}
+
+body {
+  font-family: 'Heiti SC', 'Lucida Grande', 'Hiragino Sans GB',
+    'Hiragino Sans GB W3', verdana !important;
+}
+
+.container {
+  max-width: #{$contentMaxWidth}px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+ul,
+ol,
+dl {
+  margin: 0 !important;
+  padding: 0 !important;
+}

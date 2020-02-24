@@ -1,47 +1,149 @@
 @import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
 
+:global(.Header_hotWord__text-enter) {
+  transform: translateY(30px);
+}
+:global(.Header_hotWord__text-enter-active) {
+  transform: translateY(0);
+  transition: transform 500ms ease-in;
+}
+:global(.Header_hotWord__text-exit) {
+  transform: translateY(0);
+}
+:global(.Header_hotWord__text-exit-active) {
+  transform: translateY(-30px);
+  transition: transform 500ms ease-in;
+}
 
 .header {
-  background-image: linear-gradient(90deg,#222325,#3b3c3f,#222325);
-  color: #ccc;
-  font-size: px2rem(12);
-
+  background-color: white;
+  border-bottom: 1px solid $borderColorGrey;
   .header__content {
-    display: flex;
-    align-items: center;
-  }
+    position: relative;
+    height: px2rem(140);
+    .header__logo {
+      position: absolute;
+      top: 24px;
+      left: 0;
 
-  .header__logo {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-  
-    .header__title {
-      margin: 0;
-      color: #ccc;
+      .header__logoImg {
+        display: inline-block;
+        background-image: url('~@/assets/home/icon_x1.png');
+        background-position: 0 -298px;
+        width: 212px;
+        height: 60px;
+        transform: scale($scale);
+        margin-right: px2rem(6);
+      }
     }
-  }
 
-  .header__nav {
-
-    ul {
+    .cart {
+      border: 1px solid $mainGold;
+      border-radius: px2rem(40);
+      color: $mainGold;
+      float: right;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      list-style: none;
-      margin: 0;
+      justify-content: center;
+      width: 134px;
+      height: 38px;
+      margin-left: px2rem(49);
+      margin-top: px2rem(26);
 
-      li {
+      .cart__icon {
+        margin-right: px2rem(5);
+        color: $mainGold;
+        font-size: px2rem(20);
+      }
+
+      .cart__title {
+        font-size: px2rem(14);
         margin-right: px2rem(10);
+      }
 
-        &::after {
-          content: '';
-          height: px2rem(16);
-          border-right: 1px solid #5c5c5c;
-          margin-left: px2rem(10);
+      .cart__num {
+        font-size: px2rem(12);
+        border-radius: 15px;
+        background-color: #d4282d;
+        padding: 0 5px;
+        color: white;
+      }
+    }
+
+    .search {
+      position: relative;
+      margin-top: px2rem(26);
+      float: right;
+      width: px2rem(532);
+      display: flex;
+      flex-direction: column;
+
+      .search__input {
+        input {
+          font-size: px2rem(14);
+          border: 1px solid $mainGold;
+          border-radius: px2rem(40);
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          width: px2rem(442);
+          height: px2rem(38);
+          padding: 0;
+          padding-left: px2rem(38);
+        }
+
+        button {
+          font-size: px2rem(16);
+          width: px2rem(90);
+          height: px2rem(38);
+          border: 1px solid $mainGold;
+          background-color: $mainGold;
+          border-top-right-radius: px2rem(40);
+          border-bottom-right-radius: px2rem(40);
+        }
+      }
+
+      .search__hotWord {
+        margin-top: px2rem(8);
+        margin-left: px2rem(12);
+        width: px2rem(444);
+        overflow: hidden;
+        .search__list {
+          list-style: none;
+          display: flex;
+          align-items: center;
+          li {
+            line-height: px2rem(12);
+            margin-left: px2rem(10);
+
+            &::after {
+              content: '';
+              display: inline-block;
+              height: px2rem(12);
+              border-right: 1px solid #999;
+              vertical-align: middle;
+              margin-left: px2rem(10);
+            }
+
+            &:last-child::after {
+              display: none;
+            }
+
+            a {
+              color: #999;
+              font-size: px2rem(12);
+            }
+          }
         }
       }
     }
+
+    .categoryBar {
+      line-height: 1;
+      font-weight: 700;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
   }
 }
-

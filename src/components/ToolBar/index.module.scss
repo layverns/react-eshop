@@ -23,7 +23,7 @@
     align-items: center;
     .search__input {
       input {
-        border: 1px solid $mainRed;
+        border: 1px solid $mainGold;
         border-radius: px2rem(40);
         width: px2rem(442);
         height: px2rem(38);
@@ -32,8 +32,8 @@
       button {
         width: px2rem(90);
         height: px2rem(38);
-        border: 1px solid $mainRed;
-        background-color: $mainRed;
+        border: 1px solid $mainGold;
+        background-color: $mainGold;
         border-top-right-radius: px2rem(40);
         border-bottom-right-radius: px2rem(40);
       }
@@ -41,9 +41,9 @@
   }
 
   .cart {
-    border: 1px solid $mainRed;
+    border: 1px solid $mainGold;
     border-radius: px2rem(40);
-    color: $mainRed;
+    color: $mainGold;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,7 +51,7 @@
     height: 38px;
 
     .cart__icon {
-      color: $mainRed;
+      color: $mainGold;
       font-size: px2rem(20);
     }
   
