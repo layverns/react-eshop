@@ -1,0 +1,38 @@
+@import '@/styles/utils.scss';
+
+.promoItem {
+  position: relative;
+  background-image: url('~@/assets/home/promotion_item.png');
+  background-position: 0 0;
+  background-size: 100% 100%;
+  width: px2rem(265);
+  height: px2rem(190);
+  margin-right: px2rem(10);
+
+  .promoItem__header {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: px2rem(24);
+    top: px2rem(23);
+    font-size: px2em(18);
+    line-height: px2em(34);
+    color: white;
+
+    .promoItem__title {
+      margin-bottom: px2rem(8);
+    }
+
+    .promoItem__subtitle {
+      font-size: px2em(12);
+    }
+  }
+
+  .promoItem__image {
+    position: absolute;
+    width: px2em(140);
+    height: px2em(140);
+    left: px2em(125);
+    top: px2em(50);
+  }
+}

@@ -1,0 +1,45 @@
+@import '@/styles/utils.scss';
+
+.newProduct {
+  padding: px2rem(30) 0;
+
+  .newProduct__header {
+    margin-bottom: px2rem(20);
+    display: flex;
+    align-items: flex-end;
+    color: #333;
+
+    .newProduct__title {
+      display: inline-block;
+      font-size: px2em(28);
+      font-weight: 700;
+      line-height: 1;
+      margin-right: px2rem(20);
+    }
+
+    .newProduct__subtitle {
+      display: inline-block;
+      line-height: 1;
+      font-size: px2em(14);
+      margin-right: auto;
+    }
+
+    .newProduct__more {
+      color: #333;
+      font-size: px2em(14);
+      text-decoration: none;
+      display: inline-block;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .newProduct__items {
+      display: flex;
+      align-items: center;
+
+      .newProduct__item {
+        width: 265px !important;
+      }
+    }
+  }
+}

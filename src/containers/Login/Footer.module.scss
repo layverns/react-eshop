@@ -17,7 +17,7 @@
 
     li {
       list-style: none;
-      font-size: px2rem(12);
+      font-size: px2em(12);
       padding: 0 px2rem(10);
       a {
         color: gray;
@@ -26,7 +26,7 @@
   }
 
   .footer__copyright {
-    font-size: px2rem(12);
+    font-size: px2em(12);
     color: gray;
   }
 }

@@ -1,0 +1,20 @@
+@import '@/styles/utils.scss';
+
+.promotion {
+  background-color: #eef5dc;
+  width: 100%;
+  padding: px2rem(20) 0;
+
+  .promotion_title {
+    background-image: url('~@/assets/home/promotion_title.png');
+    background-size: 100% 100%;
+    width: px2rem(1090);
+    height: px2rem(60);
+    margin-bottom: px2rem(10);
+  }
+
+  .promotion_items {
+    display: flex;
+    align-items: center;
+  }
+}

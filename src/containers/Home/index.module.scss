@@ -1,6 +1,5 @@
 @import '@/styles/utils.scss';
 
-
 .logo {
   width: px2rem(28);
   height: px2rem(28);
@@ -14,16 +13,7 @@
   }
 
   .panel__title {
-    font-size: px2rem(28);
+    font-size: px2em(28);
     font-weight: 700;
   }
 }
-
-
-.carousel {
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
-

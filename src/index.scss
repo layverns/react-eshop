@@ -5,6 +5,7 @@ html {
 }
 
 body {
+  font-size: #{$rootFontSize}px !important;
   font-family: 'Heiti SC', 'Lucida Grande', 'Hiragino Sans GB',
     'Hiragino Sans GB W3', verdana !important;
 }
@@ -17,7 +18,12 @@ body {
 
 ul,
 ol,
-dl {
+dl,
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin: 0 !important;
   padding: 0 !important;
 }

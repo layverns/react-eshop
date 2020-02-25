@@ -9,11 +9,10 @@
     display: flex;
     align-items: center;
   }
-  
+
   .logo {
     margin-right: px2rem(150);
     img {
-      
     }
   }
 
@@ -52,13 +51,10 @@
 
     .cart__icon {
       color: $mainGold;
-      font-size: px2rem(20);
+      font-size: px2em(20);
     }
-  
+
     .cart__num {
-  
     }
   }
 }
-
-

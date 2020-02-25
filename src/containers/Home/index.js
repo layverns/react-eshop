@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import _ from 'lodash';
-import { Carousel } from 'antd';
+
 import classnames from 'classnames';
 
 import { fetchCategories, fetchCarousels } from './actions';
@@ -10,16 +10,16 @@ import { makeSelectCategories, makeSelectCarousels } from './selectors';
 import $style from './index.module.scss';
 
 import EHeader from '@/components/EHeader';
-import ToolBar from '@/components/ToolBar';
-import CategoryBar from '@/components/CategoryBar';
-import Item from '@/components/Item';
+import ECarousel from '@/components/ECarousel';
+import Promotion from '@/components/Promotion';
+import NewProduct from '@/components/NewProduct';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      carouselIndex: 0,
+      carouseIndex: 0,
     };
   }
 
@@ -28,48 +28,21 @@ class Home extends React.Component {
     this.props.getCarousels();
   }
 
-  afterChangeCarousel = current => {
-    this.setState({
-      carouselIndex: current,
-    });
-  };
-
   render() {
     const { categories } = this.props;
-    const { carousels } = this.props;
-
-    let styles = {
-      'background-color': 'white',
-    };
-    let carouselNodes = null;
-    if (!_.isEmpty(carousels)) {
-      carouselNodes = carousels.map(c => (
-        <img key={c.item_id} src={c.carousel} />
-      ));
-
-      styles['background-color'] = carousels[this.state.carouselIndex].color;
-    }
+    // const { carousels } = this.props;
 
     return (
       <div>
         <EHeader></EHeader>
-        <div className={$style.carousel} style={styles}>
-          <div className="container">
-            <Carousel autoplay afterChange={this.afterChangeCarousel}>
-              {carouselNodes}
-            </Carousel>
-          </div>
-        </div>
-
+        <ECarousel></ECarousel>
+        <Promotion></Promotion>
+        <NewProduct></NewProduct>
         <div className={classnames($style.panel, 'py60')}>
           <div className={classnames($style.panel__content, 'container')}>
             <div className={$style.panel__header}>
               <h2 className={$style.panel__title}>人气推荐</h2>
             </div>
-
-            <Carousel>
-              <Item>item1</Item>
-            </Carousel>
           </div>
         </div>
         <div>

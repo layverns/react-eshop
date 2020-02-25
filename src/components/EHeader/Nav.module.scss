@@ -23,7 +23,7 @@
   .nav__content {
     display: flex;
     align-items: center;
-    font-size: px2rem(12);
+    font-size: px2em(12);
   }
 }
 
@@ -88,7 +88,6 @@
         background-position: 0 0;
         width: 7px;
         height: 11px;
-        transform: scale($scale);
         margin-right: px2rem(6);
       }
     }

@@ -1,0 +1,25 @@
+@import '@/styles/utils.scss';
+
+.carousel {
+  height: px2rem(420);
+
+  div {
+    position: relative;
+    height: px2rem(420);
+  }
+
+  .carousel__link {
+    width: auto !important;
+    position: absolute;
+    left: 50%;
+    height: px2rem(420);
+    display: inline-block;
+
+    .carousel__img {
+      position: relative;
+      left: -50%;
+      width: px2rem(1920);
+      height: px2rem(420);
+    }
+  }
+}

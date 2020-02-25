@@ -8,7 +8,7 @@ import { Icon, Input } from 'antd';
 import $style from './index.module.scss';
 
 import Nav from './Nav';
-import CategoryBar from '../CategoryBar';
+import CategoryBar from './CategoryBar';
 
 function EHeader({
   hotWords = [

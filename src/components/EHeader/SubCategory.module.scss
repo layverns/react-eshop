@@ -9,7 +9,7 @@ $itemWidth: px2rem(124);
   .subcategory__title {
     width: 100%;
     color: $fontColorBlack;
-    font-size: 16px;
+    font-size: px2em(16);
     font-weight: 700;
     line-height: 36px;
     margin-bottom: px2rem(10);

@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { Dropdown } from 'antd';
 import SubCategory from './SubCategory';
 
-import $style from './index.module.scss';
+import $style from './CategoryBar.module.scss';
 
 function CategoryBar({
   className,

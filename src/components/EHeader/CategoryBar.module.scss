@@ -34,14 +34,9 @@
       margin: 0;
       padding: 0;
 
-      .active {
-        color: $mainGold;
-        font-size: 20px;
-      }
-
       li {
         color: black;
-        font-size: px2rem(14);
+        font-size: px2em(14);
         position: relative;
         margin: 0 px2rem(10);
         padding-bottom: px2rem(7);

@@ -1,11 +1,9 @@
-
 @import '@/styles/utils.scss';
-
 
 .banner {
   width: 100%;
   background-color: #200100;
- 
+
   .banner__content {
     padding: px2rem(40);
 
@@ -22,10 +20,8 @@
   padding: 0 px2rem(40);
   padding-bottom: px2rem(40);
   background-image: linear-gradient(white, #fafafa);
-  box-shadow: 
-    0 9px 30px -6px rgba(0, 0, 0, 0.2),
-    0 18px 20px -10px rgba(0, 0, 0, 0.04),
-    0 18px 20px -10px rgba(0, 0, 0, 0.04),
+  box-shadow: 0 9px 30px -6px rgba(0, 0, 0, 0.2),
+    0 18px 20px -10px rgba(0, 0, 0, 0.04), 0 18px 20px -10px rgba(0, 0, 0, 0.04),
     0 10px 20px -10px rgba(0, 0, 0, 0.04);
   border-radius: px2rem(10);
 
@@ -42,14 +38,13 @@
       margin-bottom: px2rem(20);
     }
     .title {
-      font-size: px2rem(20);
+      font-size: px2em(20);
     }
   }
-
 }
 
 .others {
-  font-size: px2rem(12);
+  font-size: px2em(12);
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

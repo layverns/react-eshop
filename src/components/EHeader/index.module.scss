@@ -33,7 +33,6 @@
         background-position: 0 -298px;
         width: 212px;
         height: 60px;
-        transform: scale($scale);
         margin-right: px2rem(6);
       }
     }
@@ -54,16 +53,16 @@
       .cart__icon {
         margin-right: px2rem(5);
         color: $mainGold;
-        font-size: px2rem(20);
+        font-size: px2em(20);
       }
 
       .cart__title {
-        font-size: px2rem(14);
+        font-size: px2em(14);
         margin-right: px2rem(10);
       }
 
       .cart__num {
-        font-size: px2rem(12);
+        font-size: px2em(12);
         border-radius: 15px;
         background-color: #d4282d;
         padding: 0 5px;
@@ -81,7 +80,7 @@
 
       .search__input {
         input {
-          font-size: px2rem(14);
+          font-size: px2em(14);
           border: 1px solid $mainGold;
           border-radius: px2rem(40);
           border-top-right-radius: 0;
@@ -93,7 +92,7 @@
         }
 
         button {
-          font-size: px2rem(16);
+          font-size: px2em(16);
           width: px2rem(90);
           height: px2rem(38);
           border: 1px solid $mainGold;
@@ -131,7 +130,7 @@
 
             a {
               color: #999;
-              font-size: px2rem(12);
+              font-size: px2em(12);
             }
           }
         }

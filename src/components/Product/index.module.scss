@@ -1,0 +1,28 @@
+@import '@/styles/utils';
+
+.product {
+  font-size: px2em(13);
+  width: px2rem(245);
+  height: px2rem(381);
+  .product__header {
+    width: 100%;
+    height: 100%;
+    margin-bottom: px2em(8);
+    .product__img {
+      width: px2rem(265);
+      height: px2rem(265);
+    }
+  }
+
+  .product__content {
+    line-height: 1;
+    text-align: center;
+    font-size: px2em(13);
+    width: px2rem(245);
+    height: px2rem(381);
+    position: relative;
+
+    .product__title {
+    }
+  }
+}
