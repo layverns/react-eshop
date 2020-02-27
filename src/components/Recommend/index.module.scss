@@ -1,0 +1,33 @@
+@import '@/styles/utils.scss';
+@import '@/styles/sizes.scss';
+
+.body {
+  width: 100%;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+
+  .left {
+    .first {
+      width: px2rem(390);
+      height: px2rem(570);
+      margin-right: px2rem(7);
+      margin-bottom: px2rem(10);
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+
+    .right__row {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .product {
+    margin-right: px2rem(7);
+    margin-bottom: px2rem(10);
+  }
+}

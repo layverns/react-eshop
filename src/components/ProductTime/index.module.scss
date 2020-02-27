@@ -1,0 +1,114 @@
+@import '@/styles/utils';
+@import '@/styles/colors';
+
+.product {
+  width: 433px;
+  height: 214px;
+  border: 1px solid #f0ece4;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+
+  .header {
+    .image {
+      display: block;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto;
+    }
+  }
+
+  .content {
+    padding-top: px2rem(14);
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      color: $fontBlack;
+      text-decoration: none;
+      line-height: 26px;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .subtitle {
+      color: #999;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .progress {
+      display: flex;
+      align-items: center;
+
+      .progress__bar {
+        position: relative;
+        width: 152px;
+        height: 10px;
+        margin: 2px 0;
+        border: 1px solid #f2cecd;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-right: 14px;
+
+        .progress__inner {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 120.5px;
+          background-color: #ffe5e5;
+          height: 10px;
+        }
+      }
+
+      .progress__title {
+        font-size: 14px;
+        color: #999;
+        line-height: 14px;
+      }
+    }
+
+    .price {
+      display: flex;
+      align-items: center;
+      color: #be4141;
+
+      .price__title {
+        font-size: 14px;
+        line-height: 14px;
+      }
+
+      .price__now {
+        margin-right: 12px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 24px;
+      }
+      .price__origin {
+        color: #999;
+        font-size: 14px;
+        line-height: 14px;
+      }
+    }
+
+    .buy {
+      display: block;
+      width: 118px;
+      height: 31px;
+      margin-top: 18px;
+      line-height: 31px;
+      text-align: center;
+      font-size: 16px;
+      border-radius: 2px;
+      cursor: pointer;
+      background-color: #be4141;
+      color: #fff;
+      border: none;
+    }
+  }
+}

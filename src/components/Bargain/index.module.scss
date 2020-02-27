@@ -1,0 +1,128 @@
+@import '@/styles/utils';
+@import '@/styles/colors';
+
+.flashSale {
+  width: 100%;
+  background-color: white;
+
+  .content {
+    padding: px2rem(58) 0;
+
+    .header {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      .title {
+        font-size: 28px;
+        line-height: 28px;
+        font-weight: 700;
+        margin-right: auto;
+        color: $fontBlack;
+        text-decoration: none;
+
+        &:hover {
+          color: $mainGold;
+        }
+      }
+
+      .more {
+        text-decoration: none;
+        color: $fontBlack;
+        font-size: 14px;
+        line-height: 14px;
+        cursor: pointer;
+
+        &:hover {
+          color: $mainGold;
+        }
+      }
+    }
+
+    .body {
+      display: flex;
+      align-items: center;
+
+      .left {
+        position: relative;
+        background-image: url('~@/assets/home/flashSale.png');
+        height: 429px;
+        width: 224px;
+        padding-top: 60px;
+        .left__link {
+          z-index: 100;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+
+        .left__title {
+          font-size: 28px;
+          line-height: 36px;
+          margin-bottom: 11px;
+          color: #615548;
+          text-align: center;
+        }
+
+        .left__line {
+          width: 20px;
+          height: 2px;
+          margin: 0 auto 18px;
+          background: #61594b;
+        }
+
+        .left__subtitle {
+          margin-bottom: 18px;
+          font-size: 18px;
+          color: #615548;
+          line-height: 22px;
+          height: 22px;
+          text-align: center;
+        }
+        .timer {
+          margin-bottom: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .timer__time {
+            width: 40px;
+            color: #fff;
+            font-size: 18px;
+            line-height: 40px;
+            background-color: #615548;
+            border-radius: 2px;
+            text-align: center;
+          }
+          .timer__colon {
+            font-weight: 700;
+            margin: 0 2px;
+          }
+        }
+        .left__all {
+          display: block;
+          width: 110px;
+          height: 30px;
+          margin: 0 auto;
+          line-height: 30px;
+          color: #fff;
+          font-size: 14px;
+          background-color: #a7936e;
+          cursor: pointer;
+          border-radius: 15px;
+        }
+      }
+
+      .right {
+        display: flex;
+        flex-direction: column;
+        .right__row {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@
     max-width: px2rem($contentMaxWidth);
     overflow: auto;
     background-color: white;
-    border: 1px solid $borderColorGrey;
+    border: 1px solid $borderGrey;
     padding: px2rem(22);
   }
 }
@@ -36,7 +36,7 @@
 
       li {
         color: black;
-        font-size: px2em(14);
+        font-size: px2rem(14);
         position: relative;
         margin: 0 px2rem(10);
         padding-bottom: px2rem(7);

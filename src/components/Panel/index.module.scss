@@ -1,0 +1,89 @@
+@import '@/styles/utils';
+@import '@/styles/colors';
+
+.panel_white {
+  background-color: white;
+}
+
+.panel_gold {
+  background-color: #f4f0ea;
+}
+
+.panel {
+  width: 100%;
+
+  .content {
+    padding: px2rem(58) 0;
+
+    .header {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      .header__left {
+        display: flex;
+        align-items: flex-end;
+
+        .title {
+          font-size: 28px;
+          line-height: 28px;
+          font-weight: 700;
+          margin-right: auto;
+          color: $fontBlack;
+          text-decoration: none;
+          margin-right: 20px;
+          &:hover {
+            color: $mainGold;
+          }
+        }
+        .subtitle {
+          display: inline-block;
+          line-height: 1;
+          font-size: px2rem(14);
+          margin-right: auto;
+        }
+        .tabs {
+          padding-left: px2rem(13);
+          font-size: px2rem(14);
+          line-height: px2rem(28);
+          .tab {
+            color: #333;
+            text-align: center;
+            font-size: px2rem(14);
+            width: px2rem(70);
+            line-height: px2rem(28);
+            margin-right: px2rem(55);
+            cursor: pointer;
+
+            &:hover {
+              color: #b4a078;
+              border-bottom: 2px solid #b4a078;
+            }
+          }
+          .tab_active {
+            color: #b4a078;
+            border-bottom: 2px solid #b4a078;
+          }
+        }
+      }
+      .header__right {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+
+        .more {
+          text-decoration: none;
+          color: $fontBlack;
+          font-size: 14px;
+          line-height: 14px;
+          cursor: pointer;
+
+          &:hover {
+            color: $mainGold;
+          }
+        }
+      }
+    }
+  }
+}

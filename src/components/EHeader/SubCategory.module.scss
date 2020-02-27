@@ -8,8 +8,8 @@ $itemWidth: px2rem(124);
 
   .subcategory__title {
     width: 100%;
-    color: $fontColorBlack;
-    font-size: px2em(16);
+    color: $fontBlack;
+    font-size: px2rem(16);
     font-weight: 700;
     line-height: 36px;
     margin-bottom: px2rem(10);
@@ -27,7 +27,7 @@ $itemWidth: px2rem(124);
 }
 
 .categoryItem {
-  color: $fontColorBlack;
+  color: $fontBlack;
   width: 100%;
   display: flex;
   align-items: center;

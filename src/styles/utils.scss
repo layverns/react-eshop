@@ -3,7 +3,3 @@
 @function px2rem($px) {
   @return ($px/$rootFontSize) * 1rem;
 }
-
-@function px2em($px) {
-  @return ($px/$rootFontSize) * 1em;
-}

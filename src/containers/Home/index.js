@@ -13,6 +13,8 @@ import EHeader from '@/components/EHeader';
 import ECarousel from '@/components/ECarousel';
 import Promotion from '@/components/Promotion';
 import NewProduct from '@/components/NewProduct';
+import Recommend from '@/components/Recommend';
+import FlashSale from '@/components/FlashSale';
 
 class Home extends React.Component {
   constructor(props) {
@@ -31,13 +33,28 @@ class Home extends React.Component {
   render() {
     const { categories } = this.props;
     // const { carousels } = this.props;
-
+    let carousels = [
+      {
+        productId: 1,
+        image: 'https://yanxuan.nosdn.127.net/619dae0493f6cd078a0d7180edc5acef.jpg',
+      },
+      {
+        productId: 2,
+        image: 'https://yanxuan.nosdn.127.net/9ff3f2e986220f4eaef23a846e02bac0.png',
+      },
+      {
+        productId: 3,
+        image: 'https://yanxuan.nosdn.127.net/ec0eb292a835db49ddf433e83b23e5eb.jpg',
+      },
+    ];
     return (
       <div>
         <EHeader></EHeader>
-        <ECarousel></ECarousel>
+        <ECarousel carousels={carousels}></ECarousel>
         <Promotion></Promotion>
         <NewProduct></NewProduct>
+        <Recommend></Recommend>
+        <FlashSale></FlashSale>
         <div className={classnames($style.panel, 'py60')}>
           <div className={classnames($style.panel__content, 'container')}>
             <div className={$style.panel__header}>
