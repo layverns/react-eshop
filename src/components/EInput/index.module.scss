@@ -1,0 +1,41 @@
+@import '@/styles/utils.scss';
+
+.eInput_error {
+  border: 1px solid #d4282d !important;
+}
+
+.eInput {
+  width: px2rem(298);
+  height: px2rem(36);
+  border: 1px solid #e8e8e8;
+  line-height: px2rem(36);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+
+  .prefix {
+    text-align: center;
+    padding: 0 px2rem(7);
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #c5cddb;
+  }
+
+  .input {
+    height: px2rem(34);
+    padding: 0;
+    line-height: px2rem(34);
+    padding-left: px2rem(8);
+    width: px2rem(222);
+    box-sizing: border-box;
+    font-size: px2rem(14);
+    font-weight: normal;
+    border: 0;
+  }
+
+  .postfix {
+    display: flex;
+    align-items: center;
+    padding: 0 px2rem(10);
+  }
+}

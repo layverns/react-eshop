@@ -1,0 +1,145 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.login {
+  color: black;
+
+  :global(.ant-modal-content) {
+    :global(svg) {
+      width: px2rem(24);
+      height: px2rem(24);
+    }
+  }
+
+  :global(.ant-modal-body) {
+    padding: 0;
+  }
+
+  .login__content {
+    .login__header {
+      padding-top: px2rem(32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .login__type {
+        cursor: pointer;
+        color: #999;
+        font-size: px2rem(18);
+        line-height: px2rem(18);
+        font-weight: 400;
+
+        &:hover {
+          color: $mainGold;
+        }
+      }
+
+      .login__type_active {
+        color: #333;
+      }
+
+      .login__split {
+        width: px2rem(1);
+        height: px2rem(20);
+        background: #ddd;
+        margin: 0 px2rem(55);
+      }
+    }
+
+    .login__bodyEmail {
+      width: px2rem(300);
+      margin: px2rem(32) auto;
+      padding: 0;
+      padding-top: px2rem(10);
+
+      .login__password {
+        margin-top: px2rem(15);
+      }
+
+      .login__submit {
+        margin-top: px2rem(40);
+        width: 100%;
+        height: px2rem(48);
+        cursor: pointer;
+        text-align: center;
+        color: #fff;
+        background: #b4a078;
+        font-size: px2rem(18);
+        line-height: px2rem(48);
+        border-radius: 2px;
+      }
+    }
+
+    .login__footer {
+      height: px2rem(60);
+      background: #f5f3ef;
+      overflow: hidden;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .social {
+        margin-left: px2rem(32);
+
+        .social__icon {
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          cursor: pointer;
+          margin: 0 4px;
+        }
+
+        .social__weixin {
+          background-image: url('~@/assets/login/social.png');
+          background-position: -7px -4px;
+
+          &:hover {
+            background-position: -7px -43px;
+          }
+        }
+
+        .social__qq {
+          background-image: url('~@/assets/login/social.png');
+          background-position: -4px -245px;
+
+          &:hover {
+            background-position: -4px -289px;
+          }
+        }
+
+        .social__weibo {
+          background-image: url('~@/assets/login/social.png');
+          background-position: -7px -123px;
+
+          &:hover {
+            background-position: -7px -203px;
+          }
+        }
+
+        .social__wangyi {
+          background-image: url('~@/assets/login/social.png');
+          background-position: -5px -83px;
+
+          &:hover {
+            background-position: -5px -163px;
+          }
+        }
+      }
+
+      .help {
+        display: flex;
+        align-items: center;
+        font-size: px2rem(12);
+        line-height: px2rem(16);
+        cursor: pointer;
+        color: #999;
+        margin-right: px2rem(32);
+
+        .forget {
+          margin-left: px2rem(6);
+        }
+      }
+    }
+  }
+}

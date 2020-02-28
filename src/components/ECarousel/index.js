@@ -61,47 +61,27 @@ class ECarousel extends Component {
 
     return (
       <div className={$style.carousel}>
+        
         <SwitchTransition>
-          <CSSTransition
-            key={this.state.curIndex}
-            timeout={100}
-            classNames="ECarousel__img"
-          >
+          <CSSTransition key={this.state.curIndex} timeout={100} classNames="ECarousel__img">
             <a className={$style.carousel__link}>
-              <img
-                className={$style.carousel__img}
-                src={carousels[this.state.curIndex].image}
-              />
+              <img className={$style.carousel__img} src={carousels[this.state.curIndex].image} />
             </a>
           </CSSTransition>
         </SwitchTransition>
 
         <div className={$style.carousel__overlay}>
-          <div
-            className={classnames($style.carousel__overlayContent, 'container')}
-          >
-            <button
-              onClick={() => this.prev()}
-              className={$style.carousel__prev}
-            >
+          <div className={classnames($style.carousel__overlayContent, 'container')}>
+            <button onClick={() => this.prev()} className={$style.carousel__prev}>
               &lt;
             </button>
-            <button
-              onClick={() => this.next()}
-              className={$style.carousel__next}
-            >
+            <button onClick={() => this.next()} className={$style.carousel__next}>
               &gt;
             </button>
             <ul className={$style.carousel__dots}>
               {carousels.map((c, index) => (
                 <li key={c.productId} className={$style.carousel__dot}>
-                  <button
-                    className={
-                      this.state.curIndex == index ? $style.active : ''
-                    }
-                    onMouseOver={() => this.stopTimer(index)}
-                    onMouseLeave={() => this.startTimer()}
-                  ></button>
+                  <button className={this.state.curIndex == index ? $style.active : ''} onMouseOver={() => this.stopTimer(index)} onMouseLeave={() => this.startTimer()}></button>
                 </li>
               ))}
             </ul>

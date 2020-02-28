@@ -9,7 +9,7 @@ import { fetchCategories, fetchCarousels } from './actions';
 import { makeSelectCategories, makeSelectCarousels } from './selectors';
 import $style from './index.module.scss';
 
-import EHeader from '@/components/EHeader';
+import EHeader from '@/containers/EHeader';
 import ECarousel from '@/components/ECarousel';
 import Promotion from '@/components/Promotion';
 import NewProduct from '@/components/NewProduct';
