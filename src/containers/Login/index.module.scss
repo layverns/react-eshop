@@ -1,58 +1,163 @@
 @import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
 
-.banner {
-  width: 100%;
-  background-color: #200100;
+.login {
+  color: black;
 
-  .banner__content {
-    padding: px2rem(40);
-
-    .banner__img {
-      height: auto;
-      width: auto;
-      max-width: 100%;
-      max-height: 100%;
+  :global(.ant-modal-content) {
+    :global(svg) {
+      width: px2rem(24);
+      height: px2rem(24);
     }
   }
-}
 
-.panel {
-  padding: 0 px2rem(40);
-  padding-bottom: px2rem(40);
-  background-image: linear-gradient(white, #fafafa);
-  box-shadow: 0 9px 30px -6px rgba(0, 0, 0, 0.2),
-    0 18px 20px -10px rgba(0, 0, 0, 0.04), 0 18px 20px -10px rgba(0, 0, 0, 0.04),
-    0 10px 20px -10px rgba(0, 0, 0, 0.04);
-  border-radius: px2rem(10);
-
-  .panel__header {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: px2rem(36) 0;
-
-    .logo {
-      width: px2rem(60);
-      margin-bottom: px2rem(20);
-    }
-    .title {
-      font-size: px2rem(20);
-    }
+  :global(.ant-modal-body) {
+    padding: 0;
   }
-}
 
-.others {
-  font-size: px2rem(12);
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
+  .login__content {
+    .login__header {
+      padding-top: px2rem(32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  .others__icon {
-    padding: px2rem(2);
-    margin: px2rem(4);
+      .login__type {
+        cursor: pointer;
+        color: #999;
+        font-size: px2rem(18);
+        line-height: px2rem(18);
+        font-weight: 400;
+
+        &:hover {
+          color: $mainGold;
+        }
+      }
+
+      .login__type_active {
+        color: #333;
+      }
+
+      .login__split {
+        width: px2rem(1);
+        height: px2rem(20);
+        background: #ddd;
+        margin: 0 px2rem(55);
+      }
+    }
+
+    .login__error {
+      display: flex;
+      align-items: center;
+      margin-top: px2rem(12);
+
+      img {
+        width: px2rem(16);
+        height: px2rem(16);
+      }
+      span {
+        margin-left: px2rem(6);
+        color: #d4282d;
+        font-size: px2rem(12);
+        font-weight: 400;
+        line-height: px2rem(20);
+      }
+    }
+
+    .login__bodyEmail {
+      width: px2rem(300);
+      margin: px2rem(32) auto;
+      padding: 0;
+      padding-top: px2rem(10);
+
+      .login__password {
+        margin-top: px2rem(15);
+      }
+
+      .login__submit {
+        margin-top: px2rem(40);
+        width: 100%;
+        height: px2rem(48);
+        cursor: pointer;
+        text-align: center;
+        color: #fff;
+        background: #b4a078;
+        font-size: px2rem(18);
+        line-height: px2rem(48);
+        border-radius: 2px;
+      }
+    }
+
+    .login__footer {
+      height: px2rem(60);
+      background: #f5f3ef;
+      overflow: hidden;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .social {
+        margin-left: px2rem(32);
+
+        .social__icon {
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          cursor: pointer;
+          margin: 0 4px;
+        }
+
+        .social__weixin {
+          background-image: url('~@/assets/login/social.png');
+          background-position: -7px -4px;
+
+          &:hover {
+            background-position: -7px -43px;
+          }
+        }
+
+        .social__qq {
+          background-image: url('~@/assets/login/social.png');
+          background-position: -4px -245px;
+
+          &:hover {
+            background-position: -4px -289px;
+          }
+        }
+
+        .social__weibo {
+          background-image: url('~@/assets/login/social.png');
+          background-position: -7px -123px;
+
+          &:hover {
+            background-position: -7px -203px;
+          }
+        }
+
+        .social__wangyi {
+          background-image: url('~@/assets/login/social.png');
+          background-position: -5px -83px;
+
+          &:hover {
+            background-position: -5px -163px;
+          }
+        }
+      }
+
+      .help {
+        display: flex;
+        align-items: center;
+        font-size: px2rem(12);
+        line-height: px2rem(16);
+        cursor: pointer;
+        color: #999;
+        margin-right: px2rem(32);
+
+        .forget {
+          margin-left: px2rem(6);
+        }
+      }
+    }
   }
 }

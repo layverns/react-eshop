@@ -1,32 +1,56 @@
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, SET_CURRENT_USER } from './constants';
+import { LOGIN, SHOW_LOGIN, HIDE_LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, SET_USER, VALIDATE_TOKEN } from './constants';
+
+export function showLogin() {
+  return {
+    type: SHOW_LOGIN,
+  };
+}
+
+export function hideLogin() {
+  return {
+    type: HIDE_LOGIN,
+  };
+}
 
 export function login(email, password) {
   return {
     type: LOGIN,
     payload: {
       email,
-      password
-    }
+      password,
+    },
   };
 }
 
 export function loginSuccess(user) {
   return {
     type: LOGIN_SUCCESS,
-    payload: user
+    payload: {
+      user,
+    },
   };
 }
 
-export function loginFail(err) {
+export function loginFail(error) {
   return {
     type: LOGIN_FAIL,
-    payload: err
+    payload: {
+      error,
+    },
   };
 }
 
-export function setCurrentUser(user) {
+export function setUser(user) {
   return {
-    type: SET_CURRENT_USER,
-    payload: user
+    type: SET_USER,
+    payload: {
+      user,
+    },
+  };
+}
+
+export function validateToken() {
+  return {
+    type: VALIDATE_TOKEN,
   };
 }

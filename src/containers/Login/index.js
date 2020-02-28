@@ -1,132 +1,129 @@
-import React, { useState } from 'react';
-import { Alert, Form, Input, Divider, Row, Button, Icon, Col } from 'antd';
+import React from 'react';
+import classnames from 'classnames';
+import _ from 'lodash';
+import { Modal } from 'antd';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import _ from 'lodash';
-import classnames from 'classnames';
+import validator from 'validator';
 
-import { makeSelectError, makeSelectIsLogining } from './selectors';
-import { login } from './actions';
-
-import Header from './Header';
-import Footer from './Footer';
-import LoginMethod from './LoginMethod';
+import { makeSelectError, makeSelectIsLogining, makeSelectIsShowLogin } from './selectors';
+import { login, hideLogin } from './actions';
+import EInput from '@/components/EInput';
 import $style from './index.module.scss';
 
-import qqIcon from '@/assets/login/qq.png';
-import weixinIcon from '@/assets/login/weixin.png';
-import weiboIcon from '@/assets/login/weibo.png';
-import zhifubaoIcon from '@/assets/login/zhifubao.png';
-
 class Login extends React.Component {
-  render() {
-    const { 
-      error,
-      submitForm,
-      isLogining,
-      form 
-    } = this.props;
-
-    const { getFieldDecorator, setFieldsValue, validateFields } = form;
-
-    let errorMessage = null;
-    if (error) {
-      errorMessage = <Alert className={classnames('mb4')} message={error} type="error" closable />
-    }
-
-    const onSubmitForm = (evt) => {
-      if (isLogining) return;
-
-      evt && evt.preventDefault();
-
-      validateFields((err, values) => {
-        if (!err) {
-          submitForm(values.email, values.password);
-        }
-      });
+  constructor(props) {
+    super(props);
+    this.containerRef = React.createRef();
+    this.state = {
+      email: '',
+      password: '',
+      emailError: false,
+      passwordError: false,
+      error: '',
     };
+  }
 
+  onChangeEmail = e => {
+    this.setState({
+      email: e.target.value,
+    });
+  };
+  onClearEmail = e => {
+    this.setState({
+      email: '',
+    });
+  };
+  onChangePassword = e => {
+    this.setState({
+      password: e.target.value,
+    });
+  };
+  onClearPassword = e => {
+    this.setState({
+      email: '',
+    });
+  };
+
+  onSubmit = e => {
+    e && e.preventDefault();
+    if (!validator.isEmail(this.state.email)) {
+      return this.setState({
+        emailError: true,
+        error: '请输入正确的邮箱！',
+      });
+    }
+    if (!validator.isLength(this.state.password, { min: 6 })) {
+      return this.setState({
+        passwordError: true,
+        error: '密码必须大于6位！',
+      });
+    }
+    this.setState({
+      emailError: false,
+      passwordError: false,
+      error: '',
+    });
+
+    this.props.onSubmit(this.state.email, this.state.password);
+  };
+
+  render() {
+    const { isShowLogin, error, isLogining } = this.props;
     return (
-      <div >
-        <Header></Header>
-        <div className={$style.banner}>
-          <div className={classnames('container', $style.banner__content)}>
-            <Row>
-              <Col lg={16} md={12}><img className={$style.banner__img} src={require('@/assets/login/banner.png')} /></Col>
-              <Col lg={8} md={12}>
-                <div className={$style.panel}>
-                  <div className={$style.panel__header}>
-                    <img className={$style.logo} src={require('@/assets/logo.png')} />
-                    <div className={$style.title}>欢迎登陆eshop</div>
+      <div className={$style.login} ref={this.containerRef}>
+        <Modal visible={isShowLogin} footer={null} width="386px" getContainer={() => this.containerRef.current} onCancel={this.props.onHideLogin}>
+          <div className={$style.login__content}>
+            <div className={$style.login__header}>
+              <div className={$style.login__type}>手机号登陆</div>
+              <div className={$style.login__split}>&nbsp;</div>
+              <div className={classnames($style.login__type, $style.login__type_active)}>邮箱登陆</div>
+            </div>
+            <div className={$style.login__bodyEmail}>
+              <form onSubmit={this.onSubmit}>
+                <EInput
+                  className={$style.login__email}
+                  value={this.state.email}
+                  onChange={this.onChangeEmail}
+                  onClear={this.onClearEmail}
+                  error={this.state.emailError}
+                  prefix={<img src={require('@/assets/login/user.png')} />}
+                  placeholder="邮箱账号"
+                />
+                <EInput
+                  className={$style.login__password}
+                  value={this.state.password}
+                  onChange={this.onChangePassword}
+                  onClear={this.onClearPassword}
+                  error={this.state.passwordError}
+                  prefix={<img src={require('@/assets/login/lock.png')} />}
+                  placeholder="密码"
+                />
+                {(this.state.error || error) && (
+                  <div className={$style.login__error}>
+                    <img src={require('@/assets/login/error.png')} />
+                    <span>{this.state.error || error}</span>
                   </div>
-                  {errorMessage}
-                  <div className={$style.panel__body}>
-                    <Form onSubmit={onSubmitForm}>
-                      <Form.Item>
-                        {getFieldDecorator('email', {
-                          rules: [
-                            {
-                              required: true,
-                              message: '请输入邮箱!',
-                            },
-                          ],
-                        })(<Input
-                          prefix={<Icon type="mail" />}
-                          placeholder="邮箱"
-                          allowClear
-                          onChange={(evt) => setFieldsValue({ email: evt.target.value })}
-                        />)}
-                      </Form.Item>
-
-                      <Form.Item>
-                        {getFieldDecorator('password', {
-                          rules: [
-                            {
-                              required: true,
-                              message: '请输入密码!',
-                            },
-                          ],
-                        })(<Input.Password
-                          prefix={<Icon type="lock" />}
-                          visibilityToggle
-                          placeholder="密码"
-                          allowClear
-                          onChange={(evt) => setFieldsValue({ password: evt.target.value })}
-                        />)}
-                      </Form.Item>
-
-                      <Row className={classnames('mb4')} type="flex" justify="end">
-                        <Button className={$style.header__feedback} type="link">忘记密码?</Button>
-                        <Button className={$style.header__feedback} type="link">注册</Button>
-                      </Row>
-                      <Button htmlType="submit" type="danger" loading={isLogining} block>
-                        登陆
-                    </Button>
-                    </Form>
-                    <Divider></Divider>
-                    <div className={$style.others}>
-                      <span className={$style.others__title}>其他登录方式:</span>
-                      <LoginMethod className={$style.others__icon} title="QQ">
-                        <img src={qqIcon} />
-                      </LoginMethod>
-                      <LoginMethod className={$style.others__icon} title="微信">
-                        <img src={weixinIcon} />
-                      </LoginMethod>
-                      <LoginMethod className={$style.others__icon} title="微博">
-                        <img src={weiboIcon} />
-                      </LoginMethod>
-                      <LoginMethod className={$style.others__icon} title="支付宝">
-                        <img src={zhifubaoIcon} />
-                      </LoginMethod>
-                      <LoginMethod className={$style.others__icon} title="手机号登录">
-                      </LoginMethod>
-                    </div>
-                  </div>
-                </div></Col>
-            </Row>
+                )}
+                <button disabled={isLogining} className={$style.login__submit} type="submit">
+                  登陆
+                </button>
+              </form>
+            </div>
+            <div className={$style.login__footer}>
+              <div className={$style.social}>
+                <a className={classnames($style.social__icon, $style.social__weixin)}></a>
+                <a className={classnames($style.social__icon, $style.social__qq)}></a>
+                <a className={classnames($style.social__icon, $style.social__weibo)}></a>
+                <a className={classnames($style.social__icon, $style.social__wangyi)}></a>
+              </div>
+              <div className={$style.help}>
+                <span className={$style.register}>邮箱注册</span>
+                <span className={$style.forget}>忘记密码</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <Footer></Footer>
+        </Modal>
       </div>
     );
   }
@@ -135,13 +132,14 @@ class Login extends React.Component {
 const mapStateToProps = createStructuredSelector({
   error: makeSelectError(),
   isLogining: makeSelectIsLogining(),
+  isShowLogin: makeSelectIsShowLogin(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
-    submitForm: (email, password) => dispatch(login(email, password))
+    onHideLogin: () => dispatch(hideLogin()),
+    onSubmit: (email, password) => dispatch(login(email, password)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form.create({ name: 'login' })(Login));
-
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,0 +1,58 @@
+@import '@/styles/utils.scss';
+
+.banner {
+  width: 100%;
+  background-color: #200100;
+
+  .banner__content {
+    padding: px2rem(40);
+
+    .banner__img {
+      height: auto;
+      width: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
+.panel {
+  padding: 0 px2rem(40);
+  padding-bottom: px2rem(40);
+  background-image: linear-gradient(white, #fafafa);
+  box-shadow: 0 9px 30px -6px rgba(0, 0, 0, 0.2),
+    0 18px 20px -10px rgba(0, 0, 0, 0.04), 0 18px 20px -10px rgba(0, 0, 0, 0.04),
+    0 10px 20px -10px rgba(0, 0, 0, 0.04);
+  border-radius: px2rem(10);
+
+  .panel__header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: px2rem(36) 0;
+
+    .logo {
+      width: px2rem(60);
+      margin-bottom: px2rem(20);
+    }
+    .title {
+      font-size: px2rem(20);
+    }
+  }
+}
+
+.others {
+  font-size: px2rem(12);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .others__icon {
+    padding: px2rem(2);
+    margin: px2rem(4);
+  }
+}

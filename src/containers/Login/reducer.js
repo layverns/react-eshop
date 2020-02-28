@@ -1,31 +1,39 @@
 import produce from 'immer';
 
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, SET_CURRENT_USER } from './constants';
+import { SHOW_LOGIN, HIDE_LOGIN, LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, SET_USER } from './constants';
 
 export const initialState = {
   error: null,
   isLogining: false,
-  currentUser: null
+  user: null,
+  isShowLogin: false,
 };
 
 const AuthReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
+      case SHOW_LOGIN:
+        draft.isShowLogin = true;
+        break;
+      case HIDE_LOGIN:
+        draft.isShowLogin = false;
+        break;
       case LOGIN:
         draft.isLogining = true;
         draft.error = null;
-        draft.currentUser = null;
+        draft.user = null;
         break;
-      case LOGIN_SUCCESS: 
-        draft.currentUser = action.payload;
+      case LOGIN_SUCCESS:
+        draft.user = action.payload.user;
         draft.isLogining = false;
+        draft.isShowLogin = false;
         break;
       case LOGIN_FAIL:
-        draft.error = action.payload;
+        draft.error = action.payload.error;
         draft.isLogining = false;
         break;
-      case SET_CURRENT_USER:
-        draft.currentUser = action.payload;
+      case SET_USER:
+        draft.user = action.payload.user;
         break;
       default:
         break;

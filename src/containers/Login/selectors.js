@@ -3,16 +3,12 @@ import { initialState } from './reducer';
 
 const selectAuth = state => state.auth || initialState;
 
-const makeSelectError = () =>
-  createSelector(
-    selectAuth,
-    auth => auth.error
-  );
+const makeSelectError = () => createSelector(selectAuth, auth => auth.error);
 
-const makeSelectIsLogining = () =>
-  createSelector(
-    selectAuth,
-    auth => auth.isLogining
-  );
+const makeSelectIsLogining = () => createSelector(selectAuth, auth => auth.isLogining);
 
-export { makeSelectError, makeSelectIsLogining };
+const makeSelectUser = () => createSelector(selectAuth, auth => auth.user);
+
+const makeSelectIsShowLogin = () => createSelector(selectAuth, auth => auth.isShowLogin);
+
+export { makeSelectError, makeSelectIsLogining, makeSelectUser, makeSelectIsShowLogin };
