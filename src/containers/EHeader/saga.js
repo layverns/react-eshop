@@ -1,17 +1,42 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import _ from 'lodash';
 
-import { LOAD } from './constants';
+import { setHotWords, setCategories } from './actions';
+import { FETCH_HOT_WORDS, FETCH_CATEGORIES } from './constants';
+import { searchApi, categoryApi } from '@/api';
 
-export function* load() {
+export function* fetchHotWords() {
   try {
-  } catch (err) {
-    console.error('load fail: ', err.response);
-    if (_.get(err, 'response.status', 0) == 401) {
+    const res = yield call(searchApi.getHotWords);
+
+    const hotWords = _.get(res, 'data.hotWords', []);
+    if (_.isEmpty(hotWords)) {
+      return;
     }
+
+    yield put(setHotWords(hotWords));
+  } catch (err) {
+    console.error('get hotWords fail: ', err.response || err);
+  }
+}
+
+export function* fetchCategories() {
+  try {
+    const res = yield call(categoryApi.getCategories);
+    console.log('res: ', res);
+    const categories = _.get(res, 'data.categories', []);
+    console.log('categories: ', categories);
+    if (_.isEmpty(categories)) {
+      return;
+    }
+
+    yield put(setCategories(categories));
+  } catch (err) {
+    console.error('get categories fail: ', err.response || err);
   }
 }
 
 export default function* saga() {
-  yield takeLatest(LOAD, load);
+  yield takeLatest(FETCH_HOT_WORDS, fetchHotWords);
+  yield takeLatest(FETCH_CATEGORIES, fetchCategories);
 }

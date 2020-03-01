@@ -1,3 +1,9 @@
 const PREFIX = 'EHEADER/';
 
-export const LOAD = PREFIX + 'LOAD';
+export const FETCH_HOT_WORDS = PREFIX + 'FETCH_HOT_WORDS';
+
+export const SET_HOT_WORDS = PREFIX + 'SET_HOT_WORDS';
+
+export const FETCH_CATEGORIES = PREFIX + 'FETCH_CATEGORIES';
+
+export const SET_CATEGORIES = PREFIX + 'SET_CATEGORIES';

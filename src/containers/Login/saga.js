@@ -41,6 +41,7 @@ export function* validateToken() {
     const user = _.get(res, 'data.user', null);
     if (!user) throw new Error('登陆信息失效！');
 
+    console.log('validateToken: ', user);
     token = user.token;
 
     api.setToken(token);

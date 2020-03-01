@@ -22,7 +22,20 @@ const authApi = {
   login: (email, password) => axios.post('/users/login', { email, password }),
 };
 
+const noticeApi = {
+  getNotices: () => axios.get('/notices'),
+  getNotice: id => axios.get(`/notices/${id}`),
+};
+
+const searchApi = {
+  getHotWords: () => axios.get('/search/hot_words'),
+};
+
+const categoryApi = {
+  getCategories: () => axios.get('/categories'),
+};
+
 api.init();
 api.setToken(tokenStorage.load());
 
-export { api, authApi, homeApi };
+export { api, authApi, homeApi, noticeApi, searchApi, categoryApi };

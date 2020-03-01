@@ -1,0 +1,51 @@
+@import '@/styles/utils';
+@import '@/styles/colors';
+
+.notice {
+  width: 100%;
+
+  .content {
+    .breadcrumb {
+      padding: px2rem(20);
+      font-size: px2rem(12);
+      line-height: px2rem(12);
+      color: #333;
+
+      .breadcrumb__link {
+        &:hover {
+          color: $mainGold;
+        }
+      }
+    }
+
+    .header {
+      text-align: center;
+
+      .title {
+        color: #333;
+        font-size: px2rem(22);
+        width: 800px;
+        margin: 0 auto;
+      }
+
+      .subtitle {
+        color: #999;
+        font-size: px2rem(14);
+        margin: 0 auto;
+        margin-top: px2rem(20);
+      }
+
+      .split {
+        border-bottom: 1px solid #eaeaea;
+        margin-top: px2rem(20);
+      }
+    }
+    .body {
+      color: #333;
+      padding: px2rem(36);
+      font-size: px2rem(16);
+      line-height: px2rem(28);
+      overflow-wrap: break-word;
+    }
+  }
+}

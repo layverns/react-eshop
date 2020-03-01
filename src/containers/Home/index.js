@@ -5,10 +5,11 @@ import _ from 'lodash';
 
 import classnames from 'classnames';
 
-import { fetchCategories, fetchCarousels } from './actions';
-import { makeSelectCategories, makeSelectCarousels } from './selectors';
+import { fetchCarousels } from './actions';
+import { makeSelectCarousels } from './selectors';
 import $style from './index.module.scss';
 
+import Nav from '@/containers/Nav';
 import EHeader from '@/containers/EHeader';
 import ECarousel from '@/components/ECarousel';
 import Promotion from '@/components/Promotion';
@@ -26,12 +27,10 @@ class Home extends React.Component {
   }
 
   componentWillMount() {
-    this.props.getCategories();
     this.props.getCarousels();
   }
 
   render() {
-    const { categories } = this.props;
     // const { carousels } = this.props;
     let carousels = [
       {
@@ -49,6 +48,7 @@ class Home extends React.Component {
     ];
     return (
       <div>
+        <Nav />
         <EHeader></EHeader>
         <ECarousel carousels={carousels}></ECarousel>
         <Promotion></Promotion>
@@ -71,13 +71,11 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  categories: makeSelectCategories(),
   carousels: makeSelectCarousels(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
-    getCategories: () => dispatch(fetchCategories()),
     getCarousels: () => dispatch(fetchCarousels()),
   };
 }

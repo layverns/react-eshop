@@ -1,5 +1,10 @@
+import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectEHeader = state => state.eheader || initialState;
+const selectEHeader = state => state.eHeader || initialState;
 
-export {};
+const makeSelectHotWords = () => createSelector(selectEHeader, eHeader => eHeader.hotWords);
+
+const makeSelectCategories = () => createSelector(selectEHeader, eHeader => eHeader.categories);
+
+export { makeSelectHotWords, makeSelectCategories };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import classnames from 'classnames';
 
 import { Dropdown } from 'antd';
@@ -6,31 +6,10 @@ import SubCategory from './SubCategory';
 
 import $style from './CategoryBar.module.scss';
 
-function CategoryBar({
-  className,
-  categories = [
-    {
-      id: 1,
-      title: '11111',
-      subcategories: [
-        {
-          id: 1,
-          title: 's111111',
-          thirdCategories: [
-            {
-              id: 1,
-              icon:
-                'https://yanxuan.nosdn.127.net/be2bb1f481165edf97d46ba6f7ea9c11.png',
-              title: 't111111',
-            },
-          ],
-        },
-      ],
-    },
-  ],
-}) {
+function CategoryBar({ className, categories, isFixedStyle }) {
   const [categoryIndex, setCategoryIndex] = useState(0);
 
+  let categoryRef = useRef();
   let catNodes = categories.map((cat, i) => {
     let overlay = (
       <div>
@@ -41,18 +20,8 @@ function CategoryBar({
     );
 
     return (
-      <li
-        key={cat.id}
-        onClick={() => setCategoryIndex(i)}
-        className={categoryIndex == i ? 'active' : ''}
-      >
-        <Dropdown
-          key={cat.id}
-          overlay={overlay}
-          overlayClassName="categorybar__overlay"
-          getPopupContainer={trigger => trigger.parentNode.parentNode}
-          trigger={['click', 'hover']}
-        >
+      <li key={cat.id} onClick={() => setCategoryIndex(i)} className={classnames(categoryIndex == i ? 'active' : '', $style.categorybar__item)}>
+        <Dropdown key={cat.id} overlay={overlay} overlayClassName="categorybar__overlay" getPopupContainer={() => categoryRef.current} trigger={['click', 'hover']}>
           <span>{cat.title}</span>
         </Dropdown>
       </li>
@@ -60,10 +29,10 @@ function CategoryBar({
   });
 
   return (
-    <div className={classnames($style.categorybar, className)}>
+    <div className={classnames($style.categorybar, className, isFixedStyle ? $style.categorybar_fixed : '')} ref={categoryRef}>
       <div className={classnames($style.categorybar__content)}>
-        <ul>
-          <li className="active">首页</li>
+        <ul className={$style.categorybar__list}>
+          <li className={classnames($style.categorybar__item, 'active')}>首页</li>
           {catNodes}
         </ul>
       </div>

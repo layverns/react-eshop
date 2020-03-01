@@ -2,30 +2,30 @@
 @import '@/styles/colors.scss';
 @import '@/styles/sizes.scss';
 
-:global(.categorybar__overlay) {
-  left: px2rem(0) !important;
-  top: px2rem(21) !important;
-
-  & > div {
-    display: flex;
-    width: px2rem($contentMaxWidth);
-    max-width: px2rem($contentMaxWidth);
-    overflow: auto;
-    background-color: white;
-    border: 1px solid $borderGrey;
-    padding: px2rem(22);
-  }
-}
-
 .categorybar {
   background-color: white;
+
+  :global(.categorybar__overlay) {
+    left: px2rem(0) !important;
+    top: px2rem(21) !important;
+
+    & > div {
+      display: flex;
+      width: px2rem($contentMaxWidth);
+      max-width: px2rem($contentMaxWidth);
+      overflow: auto;
+      background-color: white;
+      border: 1px solid $borderGrey;
+      padding: px2rem(22);
+    }
+  }
 
   .categorybar__content {
     position: relative;
     display: flex;
     align-items: center;
 
-    ul {
+    .categorybar__list {
       width: 100%;
       display: flex;
       align-items: center;
@@ -34,7 +34,7 @@
       margin: 0;
       padding: 0;
 
-      li {
+      .categorybar__item {
         color: black;
         font-size: px2rem(14);
         position: relative;
@@ -60,6 +60,21 @@
           height: 3px;
           border-bottom: 3px solid $mainGold;
         }
+      }
+    }
+  }
+}
+
+.categorybar_fixed {
+  :global(.categorybar__overlay) {
+    top: px2rem(41) !important;
+  }
+
+  .categorybar__content {
+    .categorybar__list {
+      .categorybar__item {
+        margin-top: 7px;
+        padding-bottom: px2rem(18) !important;
       }
     }
   }
