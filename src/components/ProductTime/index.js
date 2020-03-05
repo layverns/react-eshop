@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import $style from './index.module.scss';
 
-const Product = ({ className, product, size = 'normal' }) => {
+const ProductTime = ({ className, product, size = 'normal' }) => {
   product = {
     title: '24h保温电水壶',
     subtitle: '长时间保温，不喝滚水',
@@ -37,4 +37,4 @@ const Product = ({ className, product, size = 'normal' }) => {
   );
 };
 
-export default Product;
+export default ProductTime;

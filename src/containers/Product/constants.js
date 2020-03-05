@@ -1,0 +1,5 @@
+const PREFIX = 'PRODUCT/';
+
+export const FETCH_PRODUCT = PREFIX + 'FETCH_PRODUCT';
+
+export const SET_PRODUCT = PREFIX + 'SET_PRODUCT';

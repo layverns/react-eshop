@@ -1,0 +1,45 @@
+@import '@/styles/utils';
+
+.count {
+  display: flex;
+  align-items: center;
+
+  .minus,
+  .plus {
+    width: px2rem(36);
+    height: px2rem(30);
+    line-height: px2rem(22);
+    font-size: px2rem(22);
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .input {
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    margin: 0;
+    width: 60px;
+    height: 30px;
+    font-size: 12px;
+    line-height: 28px;
+    text-align: center;
+    color: #333;
+
+    background: #fff;
+  }
+
+  .minus {
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .plus {
+    border-right: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+}

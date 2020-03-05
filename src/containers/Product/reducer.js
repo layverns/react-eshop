@@ -1,16 +1,16 @@
 import produce from 'immer';
 
-import { SET_NOTICES } from './constants';
+import { SET_PRODUCT } from './constants';
 
 export const initialState = {
-  notices: [],
+  product: null,
 };
 
 const reducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case SET_NOTICES:
-        draft.notices = action.payload.notices;
+      case SET_PRODUCT:
+        draft.product = action.payload.product;
         break;
     }
   });

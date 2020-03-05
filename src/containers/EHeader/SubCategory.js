@@ -1,14 +1,13 @@
 import React from 'react';
-import classnames from 'classnames';
 import _ from 'lodash';
 
 import $style from './SubCategory.module.scss';
 
-function CategoryItem({ icon, title }) {
+function ThirdCategory({ icon, title }) {
   return (
-    <a className={classnames($style.categoryItem)}>
-      <img src={icon} />
-      <span>{title}</span>
+    <a className={$style.thirdCategory}>
+      <img className={$style.thirdCategory__image} src={icon} />
+      <span className={$style.thirdCategory__title}>{title}</span>
     </a>
   );
 }
@@ -18,13 +17,13 @@ function SubCategory({ subcategory }) {
 
   let thirdCategoryNodes = null;
   if (subcategory && !_.isEmpty(subcategory.thirdCategories)) {
-    thirdCategoryNodes = subcategory.thirdCategories.map(thirdCat => <CategoryItem key={thirdCat.id} icon={thirdCat.image || image} title={thirdCat.title} />);
+    thirdCategoryNodes = subcategory.thirdCategories.map(thirdCat => <ThirdCategory key={thirdCat.id} icon={thirdCat.image || image} title={thirdCat.title} />);
   }
 
   return (
     <div className={$style.subcategory}>
-      <div className={classnames($style.subcategory__title)}>{subcategory.title}</div>
-      <div className={$style.subcategory__items}>{thirdCategoryNodes}</div>
+      <div className={$style.title}>{subcategory.title}</div>
+      <div className={$style.body}>{thirdCategoryNodes}</div>
     </div>
   );
 }

@@ -67,7 +67,8 @@
 
 .categorybar_fixed {
   :global(.categorybar__overlay) {
-    top: px2rem(41) !important;
+    left: px2rem(-136) !important;
+    top: px2rem(39) !important;
   }
 
   .categorybar__content {
@@ -75,6 +76,10 @@
       .categorybar__item {
         margin-top: 7px;
         padding-bottom: px2rem(18) !important;
+
+        &:last-child {
+          margin-right: px2rem(50);
+        }
       }
     }
   }

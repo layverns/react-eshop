@@ -1,10 +1,16 @@
-import React, { useState, Component } from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
-import $style from './index.module.scss';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-class ECarousel extends Component {
+import { fetchCarousels } from './actions';
+import { makeSelectCarousels } from './selectors';
+
+import $style from './index.module.scss';
+
+class Carousel extends Component {
   constructor(props) {
     super(props);
 
@@ -15,22 +21,26 @@ class ECarousel extends Component {
   }
 
   next = () => {
-    let nextIndex = this.state.curIndex + 1;
-    if (nextIndex >= this.props.carousels.length) {
-      nextIndex = 0;
-    }
-    this.setState({
-      curIndex: nextIndex,
+    this.setState((prevState, props) => {
+      let nextIndex = prevState.curIndex + 1;
+      if (nextIndex >= props.carousels.length) {
+        nextIndex = 0;
+      }
+      return {
+        curIndex: nextIndex,
+      };
     });
   };
 
   prev = () => {
-    let nextIndex = this.state.curIndex - 1;
-    if (nextIndex < 0) {
-      nextIndex = this.props.carousels.length - 1;
-    }
-    this.setState({
-      curIndex: nextIndex,
+    this.setState((prevState, props) => {
+      let nextIndex = prevState.curIndex - 1;
+      if (nextIndex < 0) {
+        nextIndex = props.carousels.length - 1;
+      }
+      return {
+        curIndex: nextIndex,
+      };
     });
   };
 
@@ -54,14 +64,21 @@ class ECarousel extends Component {
 
   componentWillMount() {
     this.startTimer();
+    this.props.onLoad();
+  }
+
+  componentWillUnmount() {
+    this.stopTimer();
   }
 
   render() {
     let { carousels } = this.props;
 
+    if (_.isEmpty(carousels)) {
+      return null;
+    }
     return (
       <div className={$style.carousel}>
-        
         <SwitchTransition>
           <CSSTransition key={this.state.curIndex} timeout={100} classNames="ECarousel__img">
             <a className={$style.carousel__link}>
@@ -92,4 +109,14 @@ class ECarousel extends Component {
   }
 }
 
-export default ECarousel;
+const mapStateToProps = createStructuredSelector({
+  carousels: makeSelectCarousels(),
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLoad: () => {
+    dispatch(fetchCarousels());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Carousel);

@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
 
-import { SearchOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-
 import { fetchCategories, fetchHotWords } from './actions';
 import { makeSelectHotWords, makeSelectCategories } from './selectors';
 import $style from './index.module.scss';
@@ -34,12 +32,14 @@ class EHeader extends React.Component {
         return;
       }
 
-      let index = this.state.curHotWordIndex + 4;
-      if (index >= this.props.hotWords.length) {
-        index = 0;
-      }
-      this.setState({
-        curHotWordIndex: index,
+      this.setState((prevState, props) => {
+        let index = prevState.curHotWordIndex + 4;
+        if (index >= props.hotWords.length) {
+          index = 0;
+        }
+        return {
+          curHotWordIndex: index,
+        };
       });
     }, 5000);
 
@@ -94,10 +94,13 @@ class EHeader extends React.Component {
             <Link className={$style.header__smlogo} to="/">
               <span className={$style.header__smlogoImg}></span>
             </Link>
-            <a className={classnames($style.cart)}>
-              <ShoppingCartOutlined className={classnames($style.cart__icon)} />
-              <span className={classnames($style.cart__title)}>购物车</span>
+            <a className={$style.cart}>
+              <span className={$style.cart__icon} />
+              <span className={$style.cart__title}>购物车</span>
               <span className={$style.cart__num}>0</span>
+            </a>
+            <a className={$style.user}>
+              <span className={$style.user__icon} />
             </a>
             <div className={$style.search}>
               <div className={$style.search__main}>
@@ -128,48 +131,6 @@ class EHeader extends React.Component {
     );
   }
 }
-//   hotWords = [
-//     {
-//       id: 1,
-//       keyword: '抑菌免洗洗手液',
-//     },
-//     {
-//       id: 2,
-//       keyword: '酒精消毒液',
-//     },
-//     {
-//       id: 3,
-//       keyword: '日式拉面',
-//     },
-//     {
-//       id: 4,
-//       keyword: 'PVC食品级手套',
-//     },
-//     {
-//       id: 5,
-//       keyword: '5555555555',
-//     },
-//     {
-//       id: 6,
-//       keyword: '6666666666',
-//     },
-//     {
-//       id: 7,
-//       keyword: '7777777',
-//     },
-//   ],
-// }) {
-//   let [curHotWordIndex, setCurHotWordIndex] = useState(0);
-
-//   setTimeout(() => {
-//     let index = curHotWordIndex + 4;
-//     if (index >= hotWords.length) {
-//       index = 0;
-//     }
-//     setCurHotWordIndex(index);
-//   }, 5000);
-
-// }
 
 const mapStateToProps = createStructuredSelector({
   hotWords: makeSelectHotWords(),

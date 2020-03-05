@@ -32,12 +32,14 @@ class Nav extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-      let index = this.state.curNoticeIndex + 1;
-      if (index >= this.props.notices.length) {
-        index = 0;
-      }
-      this.setState({
-        curNoticeIndex: index,
+      this.setState((prevState, props) => {
+        let index = prevState.curNoticeIndex + 1;
+        if (index >= props.notices.length) {
+          index = 0;
+        }
+        return {
+          curNoticeIndex: index,
+        };
       });
     }, 10000);
   }

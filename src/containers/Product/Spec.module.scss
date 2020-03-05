@@ -1,0 +1,72 @@
+@import '@/styles/utils';
+
+.spec {
+  position: relative;
+  border: 1px solid #ddd;
+  display: inline-block;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &:hover {
+    color: #333;
+
+    .title {
+      display: block !important;
+    }
+  }
+
+  .tick {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-image: url('~@/assets/home/icon_normal.png');
+    background-position: 0 -5712px;
+    height: 12px;
+    width: 12px;
+  }
+
+  .spec__text {
+    padding: 0 px2rem(16);
+    font-size: 12px;
+    line-height: px2rem(26);
+    color: #333;
+  }
+
+  .spec__image {
+    display: flex;
+    .image {
+      width: px2rem(46);
+      height: px2rem(46);
+    }
+  }
+
+  .title {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    color: #000;
+    font-size: 12px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    height: 30px;
+    line-height: 18px;
+    z-index: 10;
+    top: 60px;
+    left: 15px;
+    white-space: nowrap;
+  }
+}
+
+.spec.spec_selected {
+  border: 2px solid #b4a078;
+  .spec__text {
+    padding: 0 px2rem(15);
+    line-height: px2rem(24);
+  }
+  .spec__image {
+    .image {
+      width: px2rem(44);
+      height: px2rem(44);
+    }
+  }
+}

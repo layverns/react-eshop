@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import $style from './index.module.scss';
 
-const Product = ({ className, product, size = 'normal' }) => {
+const ProductZoom = ({ className, product, size = 'normal' }) => {
   return (
     <div className={classnames(size == 'normal' ? $style.productNormal : $style.productLarge, className)}>
       <a className={size == 'normal' ? $style.productNormal__header : $style.productLarge__header}>
@@ -26,4 +26,4 @@ const Product = ({ className, product, size = 'normal' }) => {
   );
 };
 
-export default Product;
+export default ProductZoom;

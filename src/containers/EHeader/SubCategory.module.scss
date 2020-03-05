@@ -1,43 +1,42 @@
 @import '@/styles/utils.scss';
 @import '@/styles/colors.scss';
 
-$itemWidth: px2rem(124);
-
 .subcategory {
   margin-right: px2rem(24);
 
-  .subcategory__title {
+  .title {
     width: 100%;
     color: $fontBlack;
     font-size: px2rem(16);
     font-weight: 700;
-    line-height: 36px;
+    line-height: px2rem(36);
     margin-bottom: px2rem(10);
     border-bottom: 1px solid #ddd;
     position: relative;
   }
 
-  .subcategory__items {
+  .body {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     flex-wrap: wrap;
-    max-height: px2rem(428);
-  }
-}
+    height: px2rem(428);
+    writing-mode: vertical-lr;
 
-.categoryItem {
-  color: $fontBlack;
-  width: 100%;
-  display: flex;
-  align-items: center;
+    .thirdCategory {
+      writing-mode: horizontal-tb;
+      width: px2rem(124);
+      overflow: hidden;
+      color: $fontBlack;
+      display: flex;
+      align-items: center;
 
-  &:hover {
-    color: $mainGold;
-  }
+      &:hover {
+        color: $mainGold;
+      }
 
-  img {
-    width: px2rem(46);
-    height: px2rem(46);
+      .thirdCategory__image {
+        width: px2rem(46);
+        height: px2rem(46);
+      }
+    }
   }
 }

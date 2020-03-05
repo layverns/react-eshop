@@ -7,7 +7,7 @@ import $style from './index.module.scss';
 
 import { noticeApi } from '@/api';
 import EHeader from '@/containers/EHeader';
-
+import Nav from '@/containers/Nav';
 class Notice extends React.Component {
   constructor(props) {
     super(props);
@@ -40,6 +40,7 @@ class Notice extends React.Component {
 
     return (
       <div className={$style.notice}>
+        <Nav></Nav>
         <EHeader></EHeader>
         <div className={classnames('container', $style.content)}>
           <Breadcrumb className={$style.breadcrumb} separator=">">

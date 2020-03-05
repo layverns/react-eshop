@@ -1,16 +1,16 @@
 import produce from 'immer';
 
-import { SET_NOTICES } from './constants';
+import { SET_CAROUSELS } from './constants';
 
 export const initialState = {
-  notices: [],
+  carousels: [],
 };
 
 const reducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case SET_NOTICES:
-        draft.notices = action.payload.notices;
+      case SET_CAROUSELS:
+        draft.carousels = action.payload.carousels;
         break;
     }
   });

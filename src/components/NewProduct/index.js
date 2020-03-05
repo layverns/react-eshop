@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import { Carousel } from 'antd';
 import $style from './index.module.scss';
-import Product from '@/components/Product';
+import ProductFlip from '@/components/ProductFlip';
 import Panel from '@/components/Panel';
 
 function NewProduct({ products = [] }) {
@@ -66,7 +66,7 @@ function NewProduct({ products = [] }) {
         <div className={$style.slide}>
           <div className={$style.slideList} style={{ transform: `translateX(${offset}px)` }}>
             {products.map(p => (
-              <Product ref={productRef} key={p.id} product={p} className={$style.product}></Product>
+              <ProductFlip ref={productRef} key={p.id} product={p} className={$style.product}></ProductFlip>
             ))}
           </div>
         </div>

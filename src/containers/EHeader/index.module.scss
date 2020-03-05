@@ -59,8 +59,10 @@
 
       .cart__icon {
         margin-right: px2rem(5);
-        color: $mainGold;
-        font-size: px2rem(20);
+        background-image: url('~@/assets/home/icon_x1.png');
+        background-position: 0 -148px;
+        height: 18px;
+        width: 18px;
       }
 
       .cart__title {
@@ -75,6 +77,10 @@
         padding: 0 5px;
         color: white;
       }
+    }
+
+    .user {
+      display: none;
     }
 
     .search {
@@ -183,6 +189,7 @@
 }
 
 .header_fixed {
+  border-bottom: 1px solid #e1e1e1;
   position: fixed !important;
   background-color: #fff;
   z-index: 110;
@@ -192,6 +199,8 @@
   left: 0;
 
   .header__content {
+    border-bottom: 1px solid #e1e1e1;
+    box-sizing: border-box;
     height: 50px !important;
     .header__logo {
       display: none !important;
@@ -220,10 +229,17 @@
       width: 34px;
       height: 32px;
       border: 0;
-      margin-top: 5px;
+      margin-top: 10px;
       margin-right: 24px;
       margin-left: 27px;
 
+      .cart__icon {
+        display: inline-block;
+        background-image: url('~@/assets/home/icon_x1.png');
+        background-position: 0 -204px;
+        height: 24px;
+        width: 24px;
+      }
       .cart__title {
         display: none !important;
       }
@@ -234,12 +250,29 @@
         right: 0;
       }
     }
+
+    .user {
+      display: inline-block;
+      float: right;
+
+      .user__icon {
+        display: inline-block;
+        background-image: url('~@/assets/home/icon_x1.png');
+        background-position: 0 -786px;
+        height: 22px;
+        width: 20px;
+      }
+    }
+
     .search {
+      z-index: 100;
       margin-top: 16px;
       margin-right: 33px;
       width: 20px;
+      background-color: white;
       .search__main {
         .search__wrap {
+          border: none;
           .search__hide {
             display: none !important;
           }
@@ -247,10 +280,18 @@
             display: none !important;
           }
           .search__input {
+            display: none !important;
           }
         }
         .search__btn {
+          background-color: transparent;
+          border: none;
+          height: 20px;
           .search__icon {
+            background-image: url('~@/assets/home/icon_x1.png');
+            background-position: 0 -602px;
+            height: 20px;
+            width: 20px;
           }
           .search__text {
             display: none !important;

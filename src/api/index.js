@@ -35,7 +35,15 @@ const categoryApi = {
   getCategories: () => axios.get('/categories'),
 };
 
+const carouselApi = {
+  getCarousels: () => axios.get('/carousels'),
+};
+
+const productApi = {
+  getProduct: id => axios.get(`/products/${id}`),
+};
+
 api.init();
 api.setToken(tokenStorage.load());
 
-export { api, authApi, homeApi, noticeApi, searchApi, categoryApi };
+export { api, authApi, homeApi, noticeApi, searchApi, categoryApi, carouselApi, productApi };

@@ -1,0 +1,206 @@
+@import '@/styles/utils';
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  .breadcrumb {
+    font-size: 12px;
+    color: #333;
+    line-height: 1;
+    padding: 20px 0;
+
+    .breadcrumb__link {
+      color: #333;
+    }
+  }
+
+  .header {
+    display: flex;
+
+    .preview {
+      .preview__img {
+        display: block;
+        width: px2rem(428);
+        height: px2rem(428);
+        background-color: #f4f4f4;
+        border: 1px solid #e8e8e8;
+      }
+
+      .preview__list {
+        margin-top: px2rem(14);
+        display: flex;
+        align-items: center;
+        list-style: none;
+
+        .preview__item {
+          margin-left: px2rem(10);
+          box-sizing: border-box;
+          width: px2rem(78);
+          height: px2rem(78);
+          border: 1px solid #e8e8e8;
+          cursor: pointer;
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          &:hover {
+            border: 2px solid #b4a078;
+            .preview__icon {
+              box-sizing: border-box;
+              width: px2rem(74);
+              height: px2rem(74);
+            }
+          }
+
+          .preview__icon {
+            box-sizing: border-box;
+            width: px2rem(76);
+            height: px2rem(76);
+          }
+        }
+      }
+    }
+
+    .detail {
+      margin-left: px2rem(32);
+      width: px2rem(620);
+
+      .title {
+        margin-top: px2rem(10);
+        font-size: px2rem(20);
+        font-weight: 700;
+        line-height: px2rem(20);
+        color: #333;
+      }
+      .subtitle {
+        color: #999;
+        margin-top: px2rem(7);
+        font-size: px2rem(14);
+      }
+
+      .info {
+        background-color: #f5f3ef;
+        border-top: 1px dotted #dedede;
+        border-bottom: 1px dotted #dedede;
+        line-height: px2rem(24);
+        font-size: px2rem(13);
+        margin-top: px2rem(20);
+
+        .info__title {
+          color: #666;
+          width: px2rem(55);
+          margin-left: px2rem(10);
+        }
+
+        .info__row {
+          display: flex;
+        }
+        .price {
+          margin-top: px2rem(16);
+
+          .price__title {
+            line-height: px2rem(30);
+          }
+
+          .price__prefix {
+            color: #d7282d;
+            font-size: px2rem(18);
+            line-height: px2rem(30);
+          }
+          .price__num {
+            font-size: px2rem(28);
+            line-height: px2rem(30);
+            margin-left: px2rem(2);
+            color: #d7282d;
+          }
+        }
+
+        .score {
+          .score__text {
+          }
+          .score__num {
+            color: #c43c3b;
+            margin-left: px2rem(2);
+          }
+        }
+
+        .delivery {
+          .delivery__text {
+            display: flex;
+            flex-direction: column;
+
+            .delivery__row {
+              display: flex;
+              align-items: center;
+            }
+            .delivery__menu {
+              border: 1px solid #ccc;
+              background: #fff;
+              color: #666;
+              height: px2rem(24);
+              line-height: px2rem(22);
+              padding: 0 px2rem(14);
+              max-width: px2rem(380);
+              margin-left: px2rem(10);
+            }
+            .delivery__tips {
+              font-size: px2rem(12);
+            }
+          }
+        }
+
+        .split {
+          border-bottom: 1px dashed #d2d2d2;
+          margin: 10px 20px;
+        }
+
+        .service {
+          .service__list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+              margin: 0 px2rem(10);
+            }
+          }
+        }
+      }
+    }
+
+    .spec {
+      margin-top: px2rem(20);
+      display: flex;
+      align-items: center;
+
+      .spec__title {
+        font-size: px2rem(12);
+        color: #666;
+        margin-right: px2rem(30);
+      }
+
+      .spec__select {
+        margin-right: px2rem(15);
+      }
+    }
+
+    .quantity {
+      margin-top: px2rem(20);
+      display: flex;
+      align-items: center;
+      .quantity__title {
+        font-size: px2rem(12);
+        color: #666;
+        margin-right: px2rem(30);
+      }
+    }
+  }
+
+  .like {
+  }
+
+  .body {
+  }
+}

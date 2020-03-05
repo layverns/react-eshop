@@ -6,8 +6,7 @@ html {
 
 body {
   font-size: #{$rootFontSize}px !important;
-  font-family: 'Heiti SC', 'Lucida Grande', 'Hiragino Sans GB',
-    'Hiragino Sans GB W3', verdana !important;
+  font-family: 'Heiti SC', 'Lucida Grande', 'Hiragino Sans GB', 'Hiragino Sans GB W3', verdana !important;
 }
 
 .container {
@@ -24,6 +23,6 @@ h2,
 h3,
 h4,
 h5 {
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0;
+  padding: 0;
 }

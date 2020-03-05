@@ -6,13 +6,12 @@ import _ from 'lodash';
 import classnames from 'classnames';
 
 import { fetchCarousels } from './actions';
-import { makeSelectCarousels } from './selectors';
 import $style from './index.module.scss';
 
 import Nav from '@/containers/Nav';
 import EHeader from '@/containers/EHeader';
-import ECarousel from '@/components/ECarousel';
-import Promotion from '@/components/Promotion';
+import Carousel from '@/containers/Carousel';
+import Promotion from '@/containers/Promotion';
 import NewProduct from '@/components/NewProduct';
 import Recommend from '@/components/Recommend';
 import FlashSale from '@/components/FlashSale';
@@ -26,31 +25,14 @@ class Home extends React.Component {
     };
   }
 
-  componentWillMount() {
-    this.props.getCarousels();
-  }
+  componentWillMount() {}
 
   render() {
-    // const { carousels } = this.props;
-    let carousels = [
-      {
-        productId: 1,
-        image: 'https://yanxuan.nosdn.127.net/619dae0493f6cd078a0d7180edc5acef.jpg',
-      },
-      {
-        productId: 2,
-        image: 'https://yanxuan.nosdn.127.net/9ff3f2e986220f4eaef23a846e02bac0.png',
-      },
-      {
-        productId: 3,
-        image: 'https://yanxuan.nosdn.127.net/ec0eb292a835db49ddf433e83b23e5eb.jpg',
-      },
-    ];
     return (
       <div>
         <Nav />
         <EHeader></EHeader>
-        <ECarousel carousels={carousels}></ECarousel>
+        <Carousel></Carousel>
         <Promotion></Promotion>
         <NewProduct></NewProduct>
         <Recommend></Recommend>
@@ -70,14 +52,10 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  carousels: makeSelectCarousels(),
-});
+const mapStateToProps = createStructuredSelector({});
 
 export function mapDispatchToProps(dispatch) {
-  return {
-    getCarousels: () => dispatch(fetchCarousels()),
-  };
+  return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

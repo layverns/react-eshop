@@ -23,9 +23,7 @@ export function* fetchHotWords() {
 export function* fetchCategories() {
   try {
     const res = yield call(categoryApi.getCategories);
-    console.log('res: ', res);
     const categories = _.get(res, 'data.categories', []);
-    console.log('categories: ', categories);
     if (_.isEmpty(categories)) {
       return;
     }
