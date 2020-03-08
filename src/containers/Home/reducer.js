@@ -1,15 +1,34 @@
 import produce from 'immer';
 
+import { SET_CAROUSELS, SET_NEW_PRODUCTS, SET_RECOMMEND_PRODUCTS, SET_BEST_SELL_PRODUCTS, SET_TIME_PRODUCTS } from './constants';
+
 export const initialState = {
   carousels: [],
+  newProducts: [],
+  recommendProducts: [],
+  bestSellProducts: [],
+  timeProducts: [],
 };
 
-const appReducer = (state = initialState, action) =>
+const reducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      default:
+      case SET_CAROUSELS:
+        draft.carousels = action.payload.carousels;
+        break;
+      case SET_NEW_PRODUCTS:
+        draft.newProducts = action.payload.newProducts;
+        break;
+      case SET_RECOMMEND_PRODUCTS:
+        draft.recommendProducts = action.payload.recommendProducts;
+        break;
+      case SET_BEST_SELL_PRODUCTS:
+        draft.bestSellProducts = action.payload.bestSellProducts;
+        break;
+      case SET_TIME_PRODUCTS:
+        draft.timeProducts = action.payload.timeProducts;
         break;
     }
   });
 
-export default appReducer;
+export default reducer;

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
-import $style from './Spec.module.scss';
+import $style from './index.module.scss';
 
-function Spec({ image, title, isSelected, className, onSelect, order, index }) {
+function Spec({ image, title, isSelected, className, onSelect, order, index, id }) {
   let innerNode = null;
   let titleNode = null;
   if (_.isEmpty(image)) {
@@ -22,7 +22,7 @@ function Spec({ image, title, isSelected, className, onSelect, order, index }) {
   }
 
   return (
-    <a className={classnames(className, $style.spec, isSelected ? $style.spec_selected : '')} onClick={() => onSelect(order, index)}>
+    <a className={classnames(className, $style.spec, isSelected ? $style.spec_selected : '')} onClick={() => onSelect(order, index, id, image)}>
       {innerNode}
       {isSelected && <span className={$style.tick}></span>}
       {titleNode}

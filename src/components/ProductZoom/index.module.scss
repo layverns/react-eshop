@@ -18,10 +18,8 @@
 @mixin product__title {
   margin: 0 auto;
   font-weight: bold;
-  a {
-    color: #333;
-    text-decoration: none;
-  }
+  color: #333;
+  text-decoration: none;
 }
 
 @mixin product__img {
@@ -50,16 +48,16 @@
 @mixin product__price {
   color: #d4282d;
 }
-.productNormal {
+.normal {
   @include product;
   width: px2rem(223);
   height: px2rem(280);
 
-  .productNormal__header {
+  .normal__header {
     @include product__header;
     margin-bottom: px2rem(8);
 
-    .productNormal__img {
+    .normal__image {
       @include product__img;
       width: px2rem(180);
       height: px2rem(180);
@@ -67,12 +65,12 @@
     }
   }
 
-  .productNormal__content {
+  .normal__content {
     text-align: center;
     font-size: px2rem(13);
     position: relative;
 
-    .productNormal__title {
+    .normal__title {
       @include product__title;
       width: px2rem(166);
       max-height: px2rem(40);
@@ -80,31 +78,38 @@
       margin-bottom: px2rem(4);
     }
 
-    .productNormal__tags {
+    .normal__tags {
       @include product__tags;
       margin-bottom: px2rem(4);
 
-      .productNormal__tag {
+      .normal__tag {
         @include product__tag;
       }
     }
 
-    .productNormal__price {
+    .normal__price {
       @include product__price;
       margin-bottom: px2rem(9);
+
+      .normal__old {
+        margin-left: px2rem(6);
+        color: #999;
+        font-size: px2rem(12);
+        text-decoration: line-through;
+      }
     }
   }
 }
-.productLarge {
+.large {
   @include product;
   width: px2rem(390);
   height: px2rem(570);
 
-  .productLarge__header {
+  .large__header {
     @include product__header;
     margin-bottom: px2rem(18);
 
-    .productLarge__img {
+    .large__image {
       @include product__img;
       width: px2rem(320);
       height: px2rem(320);
@@ -112,12 +117,12 @@
     }
   }
 
-  .productLarge__content {
+  .large__content {
     text-align: center;
     font-size: px2rem(18);
     position: relative;
 
-    .productLarge__title {
+    .large__title {
       @include product__title;
       width: px2rem(248);
       max-height: px2rem(52);
@@ -125,18 +130,25 @@
       margin-bottom: px2rem(13);
     }
 
-    .productLarge__tags {
+    .large__tags {
       @include product__tags;
       margin-bottom: px2rem(10);
 
-      .productLarge__tag {
+      .large__tag {
         @include product__tag;
       }
     }
 
-    .productLarge__price {
+    .large__price {
       @include product__price;
       margin-bottom: px2rem(9);
+
+      .large__old {
+        margin-left: px2rem(8);
+        color: #999;
+        font-size: px2rem(16);
+        text-decoration: line-through;
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-import $style from './SubCategory.module.scss';
+import $style from './index.module.scss';
 
 function ThirdCategory({ icon, title }) {
   return (

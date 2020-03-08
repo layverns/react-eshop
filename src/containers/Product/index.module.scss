@@ -81,119 +81,79 @@
       }
 
       .info {
-        background-color: #f5f3ef;
-        border-top: 1px dotted #dedede;
-        border-bottom: 1px dotted #dedede;
-        line-height: px2rem(24);
-        font-size: px2rem(13);
         margin-top: px2rem(20);
+      }
 
-        .info__title {
+      .spec {
+        margin-top: px2rem(20);
+        margin-left: px2rem(10);
+        display: flex;
+        align-items: center;
+
+        .spec__title {
+          font-size: px2rem(12);
           color: #666;
-          width: px2rem(55);
-          margin-left: px2rem(10);
+          margin-right: px2rem(30);
         }
 
-        .info__row {
+        .spec__select {
+          margin-right: px2rem(15);
+        }
+      }
+
+      .quantity {
+        margin-top: px2rem(20);
+        margin-left: px2rem(10);
+        display: flex;
+        align-items: center;
+        .quantity__title {
+          font-size: px2rem(12);
+          color: #666;
+          margin-right: px2rem(30);
+        }
+      }
+
+      .action {
+        display: flex;
+        align-items: center;
+        margin-left: px2rem(12);
+        margin-top: px2rem(30);
+
+        .action__buy {
+          margin-right: px2rem(10);
+          width: px2rem(168);
+          height: px2rem(50);
+          line-height: px2rem(50);
+          font-size: px2rem(18);
+          color: #b4a078;
+          border: 1px solid #b4a078;
+          background-color: #f5f3ef;
+          cursor: pointer;
+        }
+        .action__cart {
+          border: 1px solid #b4a078;
+          background-color: #b4a078;
+          width: px2rem(168);
+          height: px2rem(50);
+          line-height: px2rem(50);
+          font-size: px2rem(18);
+          color: #fff;
+          border: 1px solid #b4a078;
+          background-color: #b4a078;
+          cursor: pointer;
           display: flex;
-        }
-        .price {
-          margin-top: px2rem(16);
+          align-items: center;
+          justify-content: center;
 
-          .price__title {
-            line-height: px2rem(30);
-          }
-
-          .price__prefix {
-            color: #d7282d;
-            font-size: px2rem(18);
-            line-height: px2rem(30);
-          }
-          .price__num {
-            font-size: px2rem(28);
-            line-height: px2rem(30);
-            margin-left: px2rem(2);
-            color: #d7282d;
+          .action__icon {
+            display: inline-block;
+            margin-right: px2rem(10);
+            background-image: url('~@/assets/home/cart_x1.png');
+            background-position: 0 -68px;
+            height: 21px;
+            width: 21px;
           }
         }
-
-        .score {
-          .score__text {
-          }
-          .score__num {
-            color: #c43c3b;
-            margin-left: px2rem(2);
-          }
-        }
-
-        .delivery {
-          .delivery__text {
-            display: flex;
-            flex-direction: column;
-
-            .delivery__row {
-              display: flex;
-              align-items: center;
-            }
-            .delivery__menu {
-              border: 1px solid #ccc;
-              background: #fff;
-              color: #666;
-              height: px2rem(24);
-              line-height: px2rem(22);
-              padding: 0 px2rem(14);
-              max-width: px2rem(380);
-              margin-left: px2rem(10);
-            }
-            .delivery__tips {
-              font-size: px2rem(12);
-            }
-          }
-        }
-
-        .split {
-          border-bottom: 1px dashed #d2d2d2;
-          margin: 10px 20px;
-        }
-
-        .service {
-          .service__list {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-
-            li {
-              margin: 0 px2rem(10);
-            }
-          }
-        }
-      }
-    }
-
-    .spec {
-      margin-top: px2rem(20);
-      display: flex;
-      align-items: center;
-
-      .spec__title {
-        font-size: px2rem(12);
-        color: #666;
-        margin-right: px2rem(30);
-      }
-
-      .spec__select {
-        margin-right: px2rem(15);
-      }
-    }
-
-    .quantity {
-      margin-top: px2rem(20);
-      display: flex;
-      align-items: center;
-      .quantity__title {
-        font-size: px2rem(12);
-        color: #666;
-        margin-right: px2rem(30);
       }
     }
   }

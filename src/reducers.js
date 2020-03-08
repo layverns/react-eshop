@@ -8,7 +8,6 @@ import authReducer from './containers/Login/reducer';
 import homeReducer from './containers/Home/reducer';
 import navReducer from './containers/Nav/reducer';
 import eHeaderReducer from './containers/EHeader/reducer';
-import carouselReducer from './containers/Carousel/reducer';
 import productReducer from './containers/Product/reducer';
 
 export default function createReducer() {
@@ -19,7 +18,6 @@ export default function createReducer() {
     home: homeReducer,
     nav: navReducer,
     eHeader: eHeaderReducer,
-    carousel: carouselReducer,
     product: productReducer,
   });
 

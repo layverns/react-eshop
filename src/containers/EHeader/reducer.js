@@ -1,10 +1,11 @@
 import produce from 'immer';
 
-import { SET_HOT_WORDS, SET_CATEGORIES } from './constants';
+import { SET_HOT_WORDS, SET_CATEGORIES, SET_CART } from './constants';
 
 export const initialState = {
   hotWords: [],
   categories: [],
+  cart: [],
 };
 
 const reducer = (state = initialState, action) =>
@@ -15,6 +16,9 @@ const reducer = (state = initialState, action) =>
         break;
       case SET_CATEGORIES:
         draft.categories = action.payload.categories;
+        break;
+      case SET_CART:
+        draft.cart = action.payload.cart;
         break;
     }
   });

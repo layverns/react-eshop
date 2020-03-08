@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
-import { fetchCarousels } from './actions';
-import { makeSelectCarousels } from './selectors';
+import Loading from '@/components/Loading';
 
 import $style from './index.module.scss';
 
@@ -62,9 +59,8 @@ class Carousel extends Component {
     }
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.startTimer();
-    this.props.onLoad();
   }
 
   componentWillUnmount() {
@@ -75,29 +71,29 @@ class Carousel extends Component {
     let { carousels } = this.props;
 
     if (_.isEmpty(carousels)) {
-      return null;
+      return <Loading />;
     }
     return (
       <div className={$style.carousel}>
         <SwitchTransition>
           <CSSTransition key={this.state.curIndex} timeout={100} classNames="ECarousel__img">
-            <a className={$style.carousel__link}>
-              <img className={$style.carousel__img} src={carousels[this.state.curIndex].image} />
+            <a className={$style.link}>
+              <img className={$style.image} src={carousels[this.state.curIndex].image} />
             </a>
           </CSSTransition>
         </SwitchTransition>
 
-        <div className={$style.carousel__overlay}>
-          <div className={classnames($style.carousel__overlayContent, 'container')}>
-            <button onClick={() => this.prev()} className={$style.carousel__prev}>
+        <div className={$style.overlay}>
+          <div className={classnames($style.overlay__content, 'container')}>
+            <button onClick={() => this.prev()} className={$style.overlay__prev}>
               &lt;
             </button>
-            <button onClick={() => this.next()} className={$style.carousel__next}>
+            <button onClick={() => this.next()} className={$style.overlay__next}>
               &gt;
             </button>
-            <ul className={$style.carousel__dots}>
+            <ul className={$style.overlay__dots}>
               {carousels.map((c, index) => (
-                <li key={c.productId} className={$style.carousel__dot}>
+                <li key={c.id} className={$style.overlay__dot}>
                   <button className={this.state.curIndex == index ? $style.active : ''} onMouseOver={() => this.stopTimer(index)} onMouseLeave={() => this.startTimer()}></button>
                 </li>
               ))}
@@ -109,14 +105,4 @@ class Carousel extends Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  carousels: makeSelectCarousels(),
-});
-
-const mapDispatchToProps = dispatch => ({
-  onLoad: () => {
-    dispatch(fetchCarousels());
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Carousel);
+export default Carousel;

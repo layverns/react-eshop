@@ -6,6 +6,7 @@ import { setNotices } from './actions';
 import { noticeApi } from '@/api';
 
 export function* fetchNotices() {
+  console.log('fetchNotices');
   try {
     const res = yield call(noticeApi.getNotices);
     const notices = _.get(res, 'data.notices', null);
@@ -13,7 +14,7 @@ export function* fetchNotices() {
 
     yield put(setNotices(notices));
   } catch (err) {
-    console.error('fetch notices fail: ', err.response);
+    console.error('fetch notices fail: ', err.response || err);
   }
 }
 

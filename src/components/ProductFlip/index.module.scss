@@ -46,10 +46,8 @@
       overflow: hidden;
       font-weight: bold;
       margin-bottom: px2rem(4);
-      a {
-        color: #333;
-        text-decoration: none;
-      }
+      color: #333;
+      text-decoration: none;
     }
 
     .tags {
@@ -72,6 +70,14 @@
     .price {
       color: #d4282d;
       margin-bottom: px2rem(9);
+      font-size: px2rem(13);
+
+      .price__old {
+        margin-left: px2rem(6);
+        color: #999;
+        text-decoration: line-through;
+        font-size: px2rem(12);
+      }
     }
   }
 }

@@ -12,7 +12,7 @@ import { makeSelectNotices } from './selectors';
 import { makeSelectUser } from '@/containers/Login/selectors';
 
 import { fetchNotices } from './actions';
-import { showLogin, validateToken } from '@/containers/Login/actions';
+import { showLogin } from '@/containers/Login/actions';
 
 import Login from '@/containers/Login';
 import $style from './index.module.scss';
@@ -195,7 +195,6 @@ export function mapDispatchToProps(dispatch) {
   return {
     onShowLogin: () => dispatch(showLogin()),
     onLoad: () => {
-      dispatch(validateToken());
       dispatch(fetchNotices());
     },
   };

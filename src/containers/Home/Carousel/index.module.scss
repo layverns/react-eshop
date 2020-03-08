@@ -26,16 +26,17 @@
   justify-content: center;
   align-items: center;
 
-  .carousel__link {
+  .link {
     height: px2rem(420);
     display: inline-block;
     cursor: pointer;
 
-    .carousel__img {
+    .image {
       display: block;
     }
   }
-  .carousel__overlay {
+
+  .overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -45,12 +46,12 @@
     align-items: center;
     height: px2rem(420);
 
-    .carousel__overlayContent {
+    .overlay__content {
       position: relative;
       width: px2rem(1090);
       height: px2rem(420);
 
-      .carousel__prev {
+      .overlay__prev {
         @include button;
         top: px2rem(185);
         left: 0;
@@ -59,7 +60,7 @@
           left: -60px;
         }
       }
-      .carousel__next {
+      .overlay__next {
         @include button;
         top: px2rem(185);
         right: 0;
@@ -69,7 +70,7 @@
         }
       }
 
-      .carousel__dots {
+      .overlay__dots {
         position: absolute;
         bottom: px2rem(4);
         margin: 0 auto;
@@ -80,7 +81,7 @@
         justify-content: center;
         align-items: center;
 
-        .carousel__dot {
+        .overlay__dot {
           position: relative;
           display: inline-block;
           width: 8px;

@@ -8,9 +8,10 @@ import { Link } from 'react-router-dom';
 
 import { fetchCategories, fetchHotWords } from './actions';
 import { makeSelectHotWords, makeSelectCategories } from './selectors';
+import { makeSelectCart } from '@/containers/App/selectors';
 import $style from './index.module.scss';
 
-import CategoryBar from './CategoryBar';
+import CategoryBar from '@/containers/EHeader/CategoryBar';
 
 class EHeader extends React.Component {
   constructor(props) {
@@ -52,7 +53,6 @@ class EHeader extends React.Component {
 
   handleScroll = evt => {
     let scrollTop = window.pageYOffset;
-    console.log('scrollTop:', scrollTop);
     if (scrollTop > 170 && !this.state.isFixedStyle) {
       this.setState({
         isFixedStyle: true,
@@ -66,7 +66,7 @@ class EHeader extends React.Component {
 
   render() {
     const { curHotWordIndex } = this.state;
-    const { hotWords, categories } = this.props;
+    const { hotWords, categories, cart } = this.props;
 
     let hotWordsNode = null;
     let placeholder = '搜索';
@@ -84,6 +84,11 @@ class EHeader extends React.Component {
       );
     }
 
+    let cartQuantity = 0;
+    if (!_.isEmpty(cart)) {
+      cartQuantity = cart.reduce((total, c) => total + c.quantity, 0);
+    }
+
     return (
       <header className={classnames($style.header)}>
         <div className={this.state.isFixedStyle ? $style.header_fixed : ''}>
@@ -97,7 +102,7 @@ class EHeader extends React.Component {
             <a className={$style.cart}>
               <span className={$style.cart__icon} />
               <span className={$style.cart__title}>购物车</span>
-              <span className={$style.cart__num}>0</span>
+              <span className={$style.cart__num}>{cartQuantity}</span>
             </a>
             <a className={$style.user}>
               <span className={$style.user__icon} />
@@ -135,6 +140,7 @@ class EHeader extends React.Component {
 const mapStateToProps = createStructuredSelector({
   hotWords: makeSelectHotWords(),
   categories: makeSelectCategories(),
+  cart: makeSelectCart(),
 });
 
 const mapDispatchToProps = dispatch => ({

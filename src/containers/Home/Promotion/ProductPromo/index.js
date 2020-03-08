@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import $style from './ProductPromo.module.scss';
+import $style from './index.module.scss';
 
 function ProductPromo({ product, className }) {
   const { title, subtitle, image } = product;

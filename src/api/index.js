@@ -41,9 +41,18 @@ const carouselApi = {
 
 const productApi = {
   getProduct: id => axios.get(`/products/${id}`),
+  getNewProducts: () => axios.get(`/new_products`),
+  getRecommendProducts: () => axios.get(`/recommend_products`),
+  getBestSellProducts: () => axios.get(`/best_sell_products`),
+  getTimeProducts: () => axios.get('/time_products')
+};
+
+const cartApi = {
+  addToCart: product => axios.post(`/carts`, { product }),
+  getCarts: () => axios.get(`/carts`),
 };
 
 api.init();
 api.setToken(tokenStorage.load());
 
-export { api, authApi, homeApi, noticeApi, searchApi, categoryApi, carouselApi, productApi };
+export { api, authApi, homeApi, noticeApi, searchApi, categoryApi, carouselApi, productApi, cartApi };

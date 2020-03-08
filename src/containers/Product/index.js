@@ -4,17 +4,24 @@ import { createStructuredSelector } from 'reselect';
 import _ from 'lodash';
 
 import classnames from 'classnames';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, message } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { fetchProduct } from './actions';
-import { makeSelectProduct } from './selectors';
-import $style from './index.module.scss';
+import { fetchProduct, setIndexs, setSpecs } from './actions';
+import { makeSelectProduct, makeSelectIndexs, makeSelectSpecs } from './selectors';
+import { makeSelectUser } from '@/containers/Login/selectors';
+import { showLogin } from '@/containers/Login/actions';
+import { addToCart } from '@/containers/App/actions';
 
+import Loading from '@/components/Loading';
 import Nav from '@/containers/Nav';
 import EHeader from '@/containers/EHeader';
-import Spec from './Spec';
-import Count from './Count';
+import Spec from './Spec/index';
+import Like from './Like/index';
+import Count from './Count/index';
+import Info from './Info/index';
+
+import $style from './index.module.scss';
 
 class Product extends React.Component {
   constructor(props) {
@@ -22,9 +29,7 @@ class Product extends React.Component {
 
     this.state = {
       preview: '',
-      order: 0,
-      index: 0,
-      quantity: 0,
+      quantity: 1,
     };
   }
 
@@ -36,28 +41,73 @@ class Product extends React.Component {
     this.props.fetchProduct(id);
   }
 
-  onSelectSpec = (order, index) => {
-    this.setState({
-      order,
-      index,
+  onSelectSpec = (order, index, id, image) => {
+    let { indexs, specs } = this.props;
+    indexs[order] = index;
+    specs[order] = id;
+
+    if (!_.isEmpty(image)) {
+      this.setState({
+        preview: image,
+      });
+    }
+
+    this.props.setIndexs(indexs.slice(0, indexs.length));
+    this.props.setSpecs(specs.slice(0, specs.length));
+  };
+
+  onClickBuy = () => {
+    let { user, onShowLogin } = this.props;
+    if (_.isEmpty(user)) {
+      onShowLogin();
+    }
+  };
+
+  onClickAddToCart = () => {
+    const { product, specs, onAddToCart } = this.props;
+    const { quantity } = this.state;
+
+    if (_.isEmpty(specs) || _.isEmpty(product)) {
+      message.error('请选择商品规格');
+      return;
+    }
+
+    onAddToCart({
+      ...product,
+      specs,
+      quantity,
     });
   };
 
   render() {
-    const { product } = this.props;
-    const { preview, order, index, quantity } = this.state;
+    const { product, indexs } = this.props;
+    const { preview, quantity } = this.state;
 
     let price = 0;
     let old_price = 0;
     let score = 0;
-    if (!_.isEmpty(product) && !_.isEmpty(product.productInfo)) {
-      const {
-        productInfo: { prices, old_prices, scores },
-      } = product;
 
-      price = prices[order][index];
-      old_price = old_prices[order][index];
-      score = scores[order][index];
+    let getElmOfArray = (arr, indexs) => {
+      if (indexs.length == 1) {
+        return arr[indexs[0]];
+      } else {
+        arr = arr[indexs[0]];
+        indexs.shift();
+        return getElmOfArray(arr, indexs);
+      }
+    };
+
+    if (!_.isEmpty(product) && !_.isEmpty(product.productInfo) && !_.isEmpty(indexs)) {
+      const { productInfo } = product;
+      const { prices, old_prices, scores } = productInfo;
+
+      price = getElmOfArray(prices, indexs.slice(0, indexs.length));
+      old_price = getElmOfArray(old_prices, indexs.slice(0, indexs.length));
+      score = getElmOfArray(scores, indexs.slice(0, indexs.length));
+    }
+
+    if (_.isEmpty(product)) {
+      return <Loading />;
     }
 
     return (
@@ -92,48 +142,7 @@ class Product extends React.Component {
               <div className={$style.detail}>
                 <div className={$style.title}>{product.title}</div>
                 <div className={$style.subtitle}>{product.subtitle}</div>
-                <div className={$style.info}>
-                  <div className={classnames($style.price, $style.info__row)}>
-                    <div className={classnames($style.info__title, $style.price__title)}>价格</div>
-                    <div className={$style.price__prefix}>¥</div>
-                    <div className={$style.price__num}>{price}</div>
-                  </div>
-                  <div className={classnames($style.score, $style.info__row)}>
-                    <div className={$style.info__title}>购物返</div>
-                    <div className={$style.score__text}>最高返 </div>
-                    <div className={$style.score__num}>{score}积分</div>
-                  </div>
-                  <div className={classnames($style.coupon, $style.info__row)}>
-                    <div className={$style.info__title}>限制</div>
-                    <div className={$style.coupon__text}>该商品不可使用优惠券</div>
-                  </div>
-                  <div className={classnames($style.delivery, $style.info__row)}>
-                    <div className={$style.info__title}>配送</div>
-                    <div className={$style.delivery__text}>
-                      <div className={$style.delivery__row}>
-                        至<div className={$style.delivery__menu}>北京市西城区西长安街街道 </div>
-                      </div>
-                      <div className={$style.delivery__tips}>防疫品将优先发货，预计48小时内发出，我们会全力为您服务，请您耐心等待</div>
-                    </div>
-                  </div>
-                  <div className={$style.split}></div>
-                  <div className={classnames($style.service, $style.info__row)}>
-                    <div className={$style.info__title}>服务</div>
-                    <ul className={$style.service__list}>
-                      <li>･&nbsp;支持30天无忧退换货</li>
-                      <li>･&nbsp;满88元免邮费</li>
-                      <li>･&nbsp;48小时快速退款</li>
-                      <li>･&nbsp;不享受企业特权</li>
-                      <li>･&nbsp;不享受学生特权</li>
-                      <li>･&nbsp;不支持回馈金抵扣</li>
-                      <li>･&nbsp;不支持返回馈金</li>
-                    </ul>
-                  </div>
-                  <div className={classnames($style.remark, $style.info__row)}>
-                    <div className={$style.info__title}>备注</div>
-                    <div className={$style.remark__text}></div>
-                  </div>
-                </div>
+                <Info className={$style.info} price={price} old_price={old_price} score={score} />
                 {!_.isEmpty(product.productSpecs) &&
                   product.productSpecs.map(pss => (
                     <div className={$style.spec} key={pss[0].id}>
@@ -143,10 +152,11 @@ class Product extends React.Component {
                           key={ps.id}
                           className={$style.spec__select}
                           title={ps.title}
-                          isSelected={ps.order == order && ps.index == index}
+                          isSelected={indexs[ps.order] == ps.index}
                           image={ps.image}
                           order={ps.order}
                           index={ps.index}
+                          id={ps.id}
                           onSelect={this.onSelectSpec}
                         />
                       ))}
@@ -156,9 +166,18 @@ class Product extends React.Component {
                   <div className={$style.quantity__title}>数量</div>
                   <Count value={quantity} onChange={val => this.setState({ quantity: val })} />
                 </div>
+                <div className={$style.action}>
+                  <button className={$style.action__buy} onClick={this.onClickBuy}>
+                    立即购买
+                  </button>
+                  <button className={$style.action__cart} onClick={this.onClickAddToCart}>
+                    <span className={$style.action__icon}></span>
+                    <span>加入购物车</span>
+                  </button>
+                </div>
               </div>
             </div>
-            <div className={$style.like}></div>
+            <Like />
             <div className={$style.body}></div>
           </div>
         )}
@@ -169,11 +188,18 @@ class Product extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   product: makeSelectProduct(),
+  indexs: makeSelectIndexs(),
+  user: makeSelectUser(),
+  specs: makeSelectSpecs(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     fetchProduct: id => dispatch(fetchProduct(id)),
+    setIndexs: indexs => dispatch(setIndexs(indexs)),
+    setSpecs: specs => dispatch(setSpecs(specs)),
+    onShowLogin: () => dispatch(showLogin()),
+    onAddToCart: product => dispatch(addToCart(product)),
   };
 }
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
-import $style from './Count.module.scss';
+import $style from './index.module.scss';
 
-function Count({ value, onChange }) {
+function Count({ className, value, onChange }) {
   const onValueChange = e => {
     let val = e.target.value;
     if (isNaN(val)) return;
 
-    if (val < 0) val = 0;
+    if (val < 1) val = 1;
     if (val > 99) val = 99;
 
     onChange(val);
@@ -16,7 +16,7 @@ function Count({ value, onChange }) {
 
   const onMinus = () => {
     let newVal = value - 1;
-    if (newVal < 0) newVal = 0;
+    if (newVal < 1) newVal = 1;
     onChange(newVal);
   };
 
@@ -27,7 +27,7 @@ function Count({ value, onChange }) {
   };
 
   return (
-    <div className={$style.count}>
+    <div className={classnames(className, $style.count)}>
       <span className={$style.minus} onClick={onMinus}>
         -
       </span>

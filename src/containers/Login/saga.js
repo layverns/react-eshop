@@ -6,8 +6,10 @@ import { authApi, api } from '@/api';
 import { tokenStorage } from '@/utils/localStorage';
 import { LOGIN, VALIDATE_TOKEN } from './constants';
 import { loginSuccess, loginFail, setUser } from './actions';
+import { transferToUserCart } from '@/containers/App/actions';
 
 export function* login(action) {
+  console.log('login');
   try {
     const res = yield call(authApi.login, action.payload.email, action.payload.password);
 
@@ -19,21 +21,22 @@ export function* login(action) {
     api.setToken(token);
     tokenStorage.save(token);
 
+    yield put(transferToUserCart());
     yield put(loginSuccess(user));
     yield put(push('/'));
   } catch (err) {
-    console.error('login fail: ', err.response || err);
+    console.error('登陆错误: ', err.response || err);
     yield put(loginFail(_.get(err, 'response.data.message', null) || _.get(err, 'message', null)));
   }
 }
 
 export function* validateToken() {
+  console.log('validateToken');
   try {
     let token = tokenStorage.load();
     if (!token) {
       return;
     }
-
     api.init();
     api.setToken(token);
     const res = yield call(authApi.user);
@@ -41,7 +44,6 @@ export function* validateToken() {
     const user = _.get(res, 'data.user', null);
     if (!user) throw new Error('登陆信息失效！');
 
-    console.log('validateToken: ', user);
     token = user.token;
 
     api.setToken(token);
@@ -49,7 +51,7 @@ export function* validateToken() {
 
     yield put(setUser(user));
   } catch (err) {
-    console.error('校验失败: ', err.response || err);
+    console.error('校验错误: ', err.response || err);
     api.setToken(null);
     tokenStorage.save(null);
     yield put(setUser(null));

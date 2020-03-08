@@ -6,7 +6,8 @@ import _ from 'lodash';
 
 import $style from './index.module.scss';
 
-import { loadApp } from './actions';
+import { loadCart } from './actions';
+import { validateToken } from '@/containers/Login/actions';
 
 import Home from '@/containers/Home';
 import Notice from '@/containers/Notice';
@@ -14,7 +15,7 @@ import Product from '@/containers/Product';
 
 class App extends React.Component {
   componentWillMount() {
-    this.props.loadApp();
+    this.props.onLoad();
   }
 
   render() {
@@ -34,7 +35,10 @@ class App extends React.Component {
 const mapStateToProps = createStructuredSelector({});
 
 const mapDispatchToProps = dispatch => ({
-  loadApp: () => dispatch(loadApp()),
+  onLoad: () => {
+    dispatch(validateToken());
+    dispatch(loadCart());
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

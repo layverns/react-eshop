@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
 import classnames from 'classnames';
+import _ from 'lodash';
 
 import { Dropdown } from 'antd';
-import SubCategory from './SubCategory';
+import SubCategory from '../SubCategory';
+import Loading from '@/components/Loading';
 
-import $style from './CategoryBar.module.scss';
+import $style from './index.module.scss';
 
 function CategoryBar({ className, categories, isFixedStyle }) {
   const [categoryIndex, setCategoryIndex] = useState(0);
@@ -27,6 +29,10 @@ function CategoryBar({ className, categories, isFixedStyle }) {
       </li>
     );
   });
+
+  if (_.isEmpty(categories)) {
+    return <Loading />;
+  }
 
   return (
     <div className={classnames($style.categorybar, className, isFixedStyle ? $style.categorybar_fixed : '')} ref={categoryRef}>

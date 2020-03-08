@@ -6,6 +6,7 @@ import { FETCH_HOT_WORDS, FETCH_CATEGORIES } from './constants';
 import { searchApi, categoryApi } from '@/api';
 
 export function* fetchHotWords() {
+  console.log('fetchHotWords');
   try {
     const res = yield call(searchApi.getHotWords);
 
@@ -21,6 +22,7 @@ export function* fetchHotWords() {
 }
 
 export function* fetchCategories() {
+  console.log('fetchCategories');
   try {
     const res = yield call(categoryApi.getCategories);
     const categories = _.get(res, 'data.categories', []);
