@@ -5,15 +5,35 @@ import _ from 'lodash';
 
 import classnames from 'classnames';
 
-import { fetchCarousels, fetchNewProducts, fetchRecommendProducts, fetchBestSellProducts, fetchTimeProducts } from './actions';
-import { makeSelectCarousels, makeSelectNewProducts, makeSelectRecommendProducts, makeSelectBestSellProducts, makeSelectTimeProducts } from './selectors';
+import {
+  fetchCarousels,
+  fetchNewProducts,
+  fetchRecommendProducts,
+  fetchBestSellProducts,
+  fetchTimeProducts,
+  fetchWelfareProducts,
+  fetchPresentProducts,
+  fetchCategoryCarousels,
+} from './actions';
+import {
+  makeSelectCarousels,
+  makeSelectNewProducts,
+  makeSelectRecommendProducts,
+  makeSelectBestSellProducts,
+  makeSelectTimeProducts,
+  makeSelectWelfareProducts,
+  makeSelectPresentProducts,
+  makeSelectCategoryCarousels,
+} from './selectors';
 
 import Nav from '@/containers/Nav';
 import EHeader from '@/containers/EHeader';
-import Carousel from '@/containers/Home/Carousel';
-import NewProduct from '@/containers/Home/NewProduct';
+import Carousel from './Carousel';
+import NewProduct from './NewProduct';
 import Recommend from './Recommend';
 import FlashSale from './FlashSale';
+import Welfare from './Welfare';
+import Category from './Category';
 
 import $style from './index.module.scss';
 
@@ -27,22 +47,17 @@ class Home extends React.Component {
   }
 
   render() {
-    const { carousels, newProducts, recommendProducts, bestSellProducts, timeProducts } = this.props;
+    const { carousels, newProducts, recommendProducts, bestSellProducts, timeProducts, welfareProducts, presentProducts, categoryCarousels } = this.props;
     return (
       <div>
         <Nav />
-        <EHeader></EHeader>
-        <Carousel carousels={carousels}></Carousel>
-        <NewProduct newProducts={newProducts}></NewProduct>
-        <Recommend recommends={recommendProducts} bestSells={bestSellProducts}></Recommend>
-        <FlashSale timeProducts={timeProducts}></FlashSale>
-        <div className={classnames($style.panel, 'py60')}>
-          <div className={classnames($style.panel__content, 'container')}>
-            <div className={$style.panel__header}>
-              <h2 className={$style.panel__title}>人气推荐</h2>
-            </div>
-          </div>
-        </div>
+        <EHeader />
+        <Carousel carousels={carousels} />
+        <NewProduct newProducts={newProducts} />
+        <Recommend recommends={recommendProducts} bestSells={bestSellProducts} />
+        <FlashSale timeProducts={timeProducts} />
+        <Welfare welfareProducts={welfareProducts} presentProducts={presentProducts} />
+        {_.isEmpty(categoryCarousels) ? null : categoryCarousels.map(cs => <Category carousels={categoryCarousels} />)}
         <div>
           <h1>新品首发</h1>
         </div>
@@ -57,6 +72,9 @@ const mapStateToProps = createStructuredSelector({
   recommendProducts: makeSelectRecommendProducts(),
   bestSellProducts: makeSelectBestSellProducts(),
   timeProducts: makeSelectTimeProducts(),
+  welfareProducts: makeSelectWelfareProducts(),
+  presentProducts: makeSelectPresentProducts(),
+  categoryCarousels: makeSelectCategoryCarousels(),
 });
 
 export function mapDispatchToProps(dispatch) {
@@ -67,6 +85,9 @@ export function mapDispatchToProps(dispatch) {
       dispatch(fetchRecommendProducts());
       dispatch(fetchBestSellProducts());
       dispatch(fetchTimeProducts());
+      dispatch(fetchWelfareProducts());
+      dispatch(fetchPresentProducts());
+      dispatch(fetchCategoryCarousels());
     },
   };
 }

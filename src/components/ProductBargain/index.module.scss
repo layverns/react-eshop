@@ -1,0 +1,75 @@
+@import '@/styles/utils';
+@import '@/styles/colors';
+
+.product {
+  width: px2rem(284);
+  height: px2rem(130);
+  display: flex;
+  align-items: center;
+
+  .header {
+    .header__image {
+      display: block;
+      width: px2rem(130);
+      height: px2rem(130);
+      margin: 0 auto;
+    }
+  }
+
+  .content {
+    padding-left: px2rem(10);
+    padding-top: px2rem(8);
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      color: #333;
+      text-decoration: none;
+      line-height: px2rem(20);
+      font-size: px2rem(14);
+      &:hover {
+        color: $mainGold;
+      }
+    }
+
+    .price {
+      display: flex;
+      align-items: center;
+      color: #be4141;
+
+      .price__title {
+        font-size: px2rem(14);
+        line-height: 1.1;
+      }
+
+      .price__now {
+        font-weight: 700;
+        font-size: px2rem(20);
+        line-height: px2rem(22);
+      }
+    }
+
+    .oldprice {
+      text-decoration: line-through;
+      color: #999;
+      font-size: px2rem(14);
+      line-height: px2rem(16);
+      font-weight: 400;
+    }
+
+    .buy {
+      display: block;
+      width: px2rem(90);
+      height: px2rem(28);
+      margin-top: px2rem(8);
+      line-height: px2rem(26);
+      text-align: center;
+      font-size: px2rem(12);
+      border-radius: px2rem(2);
+      cursor: pointer;
+      background-color: #be4141;
+      color: #fff;
+      border: none;
+    }
+  }
+}

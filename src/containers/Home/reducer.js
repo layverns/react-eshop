@@ -1,6 +1,15 @@
 import produce from 'immer';
 
-import { SET_CAROUSELS, SET_NEW_PRODUCTS, SET_RECOMMEND_PRODUCTS, SET_BEST_SELL_PRODUCTS, SET_TIME_PRODUCTS } from './constants';
+import {
+  SET_CAROUSELS,
+  SET_NEW_PRODUCTS,
+  SET_RECOMMEND_PRODUCTS,
+  SET_BEST_SELL_PRODUCTS,
+  SET_TIME_PRODUCTS,
+  SET_WELFARE_PRODUCTS,
+  SET_PRESENT_PRODUCTS,
+  SET_CATEGORY_CAROUSELS,
+} from './constants';
 
 export const initialState = {
   carousels: [],
@@ -8,6 +17,9 @@ export const initialState = {
   recommendProducts: [],
   bestSellProducts: [],
   timeProducts: [],
+  welfareProducts: [],
+  presentProducts: [],
+  categoryCarousels: [],
 };
 
 const reducer = (state = initialState, action) =>
@@ -27,6 +39,15 @@ const reducer = (state = initialState, action) =>
         break;
       case SET_TIME_PRODUCTS:
         draft.timeProducts = action.payload.timeProducts;
+        break;
+      case SET_WELFARE_PRODUCTS:
+        draft.welfareProducts = action.payload.welfareProducts;
+        break;
+      case SET_PRESENT_PRODUCTS:
+        draft.presentProducts = action.payload.presentProducts;
+        break;
+      case SET_CATEGORY_CAROUSELS:
+        draft.categoryCarousels = action.payload.categoryCarousels;
         break;
     }
   });

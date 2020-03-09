@@ -1,14 +1,32 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import _ from 'lodash';
 
-import { setCarousels, setNewProducts, setRecommendProducts, setBestSellProducts, setTimeProducts } from './actions';
-import { FETCH_CAROUSELS, FETCH_NEW_PRODUCTS, FETCH_RECOMMEND_PRODUCTS, FETCH_BEST_SELL_PRODUCTS, FETCH_TIME_PRODUCTS } from './constants';
-import { carouselApi, productApi } from '@/api';
+import {
+  setCarousels,
+  setNewProducts,
+  setRecommendProducts,
+  setBestSellProducts,
+  setTimeProducts,
+  setWelfareProducts,
+  setPresentProducts,
+  setCategoryCarousels,
+} from './actions';
+import {
+  FETCH_CAROUSELS,
+  FETCH_NEW_PRODUCTS,
+  FETCH_RECOMMEND_PRODUCTS,
+  FETCH_BEST_SELL_PRODUCTS,
+  FETCH_TIME_PRODUCTS,
+  FETCH_WELFARE_PRODUCTS,
+  FETCH_PRESENT_PRODUCTS,
+  FETCH_CATEGORY_CAROUSELS,
+} from './constants';
+import { carouselApi, productApi, categoryApi } from '@/api';
 
 function* fetchCarousels() {
   console.log('fetchCarousels');
   try {
-    const res = yield call(carouselApi.getCarousels);
+    const res = yield call(carouselApi.getHomeCarousels);
     const carousels = _.get(res, 'data.carousels', []);
     if (_.isEmpty(carousels)) {
       return;
@@ -80,10 +98,58 @@ function* fetchTimeProducts() {
   }
 }
 
+function* fetchWelfareProducts() {
+  try {
+    console.log('fetchWelfareProducts');
+    const res = yield call(productApi.getWelfareProducts);
+    const welfareProducts = _.get(res, 'data.welfareProducts', []);
+    if (_.isEmpty(welfareProducts)) {
+      return;
+    }
+
+    yield put(setWelfareProducts(welfareProducts));
+  } catch (err) {
+    console.error('获取特价产品错误: ', err.response || err);
+  }
+}
+
+function* fetchPresentProducts() {
+  try {
+    console.log('fetchPresentProducts');
+    const res = yield call(productApi.getPresentProducts);
+    const presentProducts = _.get(res, 'data.presentProducts', []);
+    if (_.isEmpty(presentProducts)) {
+      return;
+    }
+
+    yield put(setPresentProducts(presentProducts));
+  } catch (err) {
+    console.error('获取赠送产品错误: ', err.response || err);
+  }
+}
+
+function* fetchCategoryCarousels() {
+  try {
+    console.log('fetchCategoryCarousels');
+    const res = yield call(categoryApi.getAllCarousels);
+    const categoryCarousels = _.get(res, 'data.categoryCarousels', []);
+    if (_.isEmpty(categoryCarousels)) {
+      return;
+    }
+
+    yield put(setCategoryCarousels(categoryCarousels));
+  } catch (err) {
+    console.error('获取分类轮播图错误: ', err.response || err);
+  }
+}
+
 export default function* saga() {
   yield takeLatest(FETCH_CAROUSELS, fetchCarousels);
   yield takeLatest(FETCH_NEW_PRODUCTS, fetchNewProducts);
   yield takeLatest(FETCH_RECOMMEND_PRODUCTS, fetchRecommendProducts);
   yield takeLatest(FETCH_BEST_SELL_PRODUCTS, fetchBestSellProducts);
   yield takeLatest(FETCH_TIME_PRODUCTS, fetchTimeProducts);
+  yield takeLatest(FETCH_WELFARE_PRODUCTS, fetchWelfareProducts);
+  yield takeLatest(FETCH_PRESENT_PRODUCTS, fetchPresentProducts);
+  yield takeLatest(FETCH_CATEGORY_CAROUSELS, fetchCategoryCarousels);
 }

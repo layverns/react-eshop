@@ -14,4 +14,19 @@ const makeSelectBestSellProducts = () => createSelector(selectHome, home => home
 
 const makeSelectTimeProducts = () => createSelector(selectHome, home => home.timeProducts);
 
-export { makeSelectCarousels, makeSelectNewProducts, makeSelectRecommendProducts, makeSelectBestSellProducts, makeSelectTimeProducts };
+const makeSelectWelfareProducts = () => createSelector(selectHome, home => home.welfareProducts);
+
+const makeSelectPresentProducts = () => createSelector(selectHome, home => home.presentProducts);
+
+const makeSelectCategoryCarousels = () => createSelector(selectHome, home => home.categoryCarousels);
+
+export {
+  makeSelectCarousels,
+  makeSelectNewProducts,
+  makeSelectRecommendProducts,
+  makeSelectBestSellProducts,
+  makeSelectTimeProducts,
+  makeSelectWelfareProducts,
+  makeSelectPresentProducts,
+  makeSelectCategoryCarousels,
+};

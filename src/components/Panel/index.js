@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import $style from './index.module.scss';
 
-function Panel({ children, title, subtitle, more, bgtype = 'white', link = '', tabs }) {
+function Panel({ children, title, subtitle, more, bgtype = 'white', tabs }) {
   let [page, setPage] = useState(0);
 
   let tabNodes = null;
@@ -27,12 +27,12 @@ function Panel({ children, title, subtitle, more, bgtype = 'white', link = '', t
       <div className={classnames($style.content, 'container')}>
         <div className={$style.header}>
           <div className={$style.header__left}>
-            <a className={$style.title}>{title}</a>
+            <div className={$style.title}>{title}</div>
             {subtitle && <div className={$style.subtitle}>{subtitle}</div>}
-            <div className={$style.tabs}>{tabNodes}</div>
+            {tabNodes && <div className={$style.tabs}>{tabNodes}</div>}
           </div>
           <div className={$style.header__right}>
-            <a className={$style.more}>{more} ></a>
+            <div className={$style.more}>{more} ></div>
           </div>
         </div>
         {children}

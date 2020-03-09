@@ -9,6 +9,12 @@ import {
   SET_BEST_SELL_PRODUCTS,
   FETCH_TIME_PRODUCTS,
   SET_TIME_PRODUCTS,
+  FETCH_WELFARE_PRODUCTS,
+  SET_WELFARE_PRODUCTS,
+  FETCH_PRESENT_PRODUCTS,
+  SET_PRESENT_PRODUCTS,
+  FETCH_CATEGORY_CAROUSELS,
+  SET_CATEGORY_CAROUSELS,
 } from './constants';
 
 export function fetchCarousels() {
@@ -82,6 +88,51 @@ export function setTimeProducts(timeProducts) {
     type: SET_TIME_PRODUCTS,
     payload: {
       timeProducts,
+    },
+  };
+}
+
+export function fetchWelfareProducts() {
+  return {
+    type: FETCH_WELFARE_PRODUCTS,
+  };
+}
+
+export function setWelfareProducts(welfareProducts) {
+  return {
+    type: SET_WELFARE_PRODUCTS,
+    payload: {
+      welfareProducts,
+    },
+  };
+}
+
+export function fetchPresentProducts() {
+  return {
+    type: FETCH_PRESENT_PRODUCTS,
+  };
+}
+
+export function setPresentProducts(presentProducts) {
+  return {
+    type: SET_PRESENT_PRODUCTS,
+    payload: {
+      presentProducts,
+    },
+  };
+}
+
+export function fetchCategoryCarousels() {
+  return {
+    type: FETCH_CATEGORY_CAROUSELS,
+  };
+}
+
+export function setCategoryCarousels(categoryCarousels) {
+  return {
+    type: SET_CATEGORY_CAROUSELS,
+    payload: {
+      categoryCarousels,
     },
   };
 }

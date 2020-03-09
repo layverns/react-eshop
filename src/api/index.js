@@ -33,18 +33,21 @@ const searchApi = {
 
 const categoryApi = {
   getCategories: () => axios.get('/categories'),
+  getAllCarousels: id => axios.get(`/categories/carousels`),
 };
 
 const carouselApi = {
-  getCarousels: () => axios.get('/carousels'),
+  getHomeCarousels: () => axios.get('/home/carousels'),
 };
 
 const productApi = {
   getProduct: id => axios.get(`/products/${id}`),
-  getNewProducts: () => axios.get(`/new_products`),
-  getRecommendProducts: () => axios.get(`/recommend_products`),
-  getBestSellProducts: () => axios.get(`/best_sell_products`),
-  getTimeProducts: () => axios.get('/time_products')
+  getNewProducts: () => axios.get(`/new_products`, { params: { limit: 16 } }),
+  getRecommendProducts: () => axios.get(`/recommend_products`, { params: { limit: 7 } }),
+  getBestSellProducts: () => axios.get(`/best_sell_products`, { params: { limit: 7 } }),
+  getTimeProducts: () => axios.get('/time_products', { params: { limit: 4 } }),
+  getWelfareProducts: () => axios.get('/welfare_products', { params: { limit: 4 } }),
+  getPresentProducts: () => axios.get('/present_products', { params: { limit: 4 } }),
 };
 
 const cartApi = {
