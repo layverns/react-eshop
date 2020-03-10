@@ -1,0 +1,101 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.link {
+  width: 100%;
+  background-color: #414141;
+
+  .content {
+    padding: px2rem(37) 0;
+
+    .ensure {
+      padding: 0 px2rem(18);
+      padding-bottom: px2rem(30);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #4f4f4f;
+
+      .ensure__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .ensure__title {
+          margin-left: px2rem(16);
+          color: #fff;
+          font-size: px2rem(18);
+          line-height: px2rem(51);
+        }
+
+        .ensure__yi {
+          background-image: url('~@/assets/home/footer_x1.png');
+          background-position: 0 -134px;
+          height: 50px;
+          width: 50px;
+        }
+        .ensure__tui {
+          background-image: url('~@/assets/home/footer_x1.png');
+          background-position: 0 -368px;
+          height: 50px;
+          width: 51px;
+        }
+        .ensure__bao {
+          background-image: url('~@/assets/home/footer_x1.png');
+          background-position: 0 0;
+          height: 50px;
+          width: 51px;
+        }
+        .ensure__ping {
+          background-image: url('~@/assets/home/footer_x1.png');
+          background-position: 0 -194px;
+          height: 50px;
+          width: 50px;
+        }
+      }
+    }
+
+    .list {
+      margin: 0;
+      margin-top: px2rem(30);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+
+      .list__item {
+        cursor: pointer;
+        font-size: px2rem(12);
+        line-height: px2rem(12);
+        color: #999;
+        padding: 0 px2rem(14);
+        border-right: 1px solid #999;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+    .certs {
+      margin: 0;
+      margin-top: px2rem(16);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+
+      .certs__item {
+        cursor: pointer;
+        font-size: px2rem(12);
+        line-height: px2rem(12);
+        color: #999;
+        padding: 0 px2rem(8);
+        white-space: nowrap;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

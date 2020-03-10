@@ -6,9 +6,10 @@ import homeSaga from '@/containers/Home/saga';
 import navSaga from '@/containers/Nav/saga';
 import eHeaderSaga from '@/containers/EHeader/saga';
 import productSaga from '@/containers/Product/saga';
+import listSaga from '@/containers/List/saga';
 
 export default function* rootSaga() {
-  const sagas = [appSaga, authSaga, homeSaga, navSaga, eHeaderSaga, productSaga];
+  const sagas = [appSaga, authSaga, homeSaga, navSaga, eHeaderSaga, productSaga, listSaga];
 
   yield all(
     sagas.map(saga =>

@@ -1,0 +1,111 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+@mixin button {
+  position: absolute;
+  z-index: 100;
+  width: px2rem(50);
+  height: px2rem(50);
+  cursor: pointer;
+  opacity: 0.8;
+  background-color: #e2c199;
+  border-radius: px2rem(500);
+  text-align: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: px2rem(50);
+}
+
+.carousel {
+  position: relative;
+  height: px2rem(310);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: px2rem(20);
+
+  .link {
+    height: px2rem(310);
+    display: inline-block;
+    cursor: pointer;
+
+    .image {
+      display: block;
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: px2rem(310);
+
+    .overlay__content {
+      position: relative;
+      width: px2rem(1090);
+      height: px2rem(310);
+
+      .overlay__prev {
+        @include button;
+        top: px2rem(130);
+        left: px2rem(10);
+      }
+      .overlay__next {
+        @include button;
+        top: px2rem(130);
+        right: px2rem(10);
+      }
+
+      .overlay__dots {
+        position: absolute;
+        bottom: px2rem(4);
+        margin: 0 auto;
+        width: 100%;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .overlay__dot {
+          position: relative;
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          margin: 0 8px 10px;
+          padding: 0;
+          cursor: pointer;
+
+          button {
+            font-size: 0;
+            line-height: 0;
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-radius: 500px;
+            cursor: pointer;
+            color: transparent;
+            border: 1px solid #cecece;
+            background: #fff;
+            padding: 0;
+            margin: 0;
+          }
+
+          button.active {
+            box-shadow: 0 0 0 4px #dfcead;
+            background: #a7936e;
+            border-radius: 500px;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+}

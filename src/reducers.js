@@ -9,6 +9,7 @@ import homeReducer from './containers/Home/reducer';
 import navReducer from './containers/Nav/reducer';
 import eHeaderReducer from './containers/EHeader/reducer';
 import productReducer from './containers/Product/reducer';
+import listReducer from './containers/List/reducer';
 
 export default function createReducer() {
   const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ export default function createReducer() {
     nav: navReducer,
     eHeader: eHeaderReducer,
     product: productReducer,
+    list: listReducer,
   });
 
   return rootReducer;

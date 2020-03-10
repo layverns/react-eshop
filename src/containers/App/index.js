@@ -12,6 +12,7 @@ import { validateToken } from '@/containers/Login/actions';
 import Home from '@/containers/Home';
 import Notice from '@/containers/Notice';
 import Product from '@/containers/Product';
+import List from '@/containers/List';
 
 class App extends React.Component {
   componentWillMount() {
@@ -26,6 +27,7 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/notices/:id" component={Notice} />
             <Route path="/products/:id" component={Product} />
+            <Route path="/lists/:categoryId" component={List} />
           </Switch>
         </div>
       </BrowserRouter>

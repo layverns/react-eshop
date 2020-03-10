@@ -59,31 +59,33 @@ class Carousel extends Component {
   };
 
   componentDidMount() {
-    this.startTimer();
+    const { autoSlide } = this.props;
+    if (autoSlide) this.startTimer();
   }
 
   componentWillUnmount() {
-    this.stopTimer();
+    this.stopTimer(0);
   }
 
   render() {
-    let { carousels } = this.props;
+    let { images, autoHide, autoSlide } = this.props;
 
-    if (_.isEmpty(carousels)) {
+    if (_.isEmpty(images)) {
       return <Loading />;
     }
+
     return (
       <div className={$style.carousel}>
         <SwitchTransition>
-          <CSSTransition key={this.state.curIndex} timeout={100} classNames="ECarousel__img">
+          <CSSTransition key={this.state.curIndex} timeout={100} classNames="Category__img">
             <a className={$style.link}>
-              <img className={$style.image} src={carousels[this.state.curIndex].image} />
+              <img className={$style.image} src={images[this.state.curIndex].image} />
             </a>
           </CSSTransition>
         </SwitchTransition>
 
         <div className={$style.overlay}>
-          <div className={classnames($style.overlay__content, 'container')}>
+          <div className={$style.overlay__content}>
             <button onClick={() => this.prev()} className={$style.overlay__prev}>
               &lt;
             </button>
@@ -91,13 +93,9 @@ class Carousel extends Component {
               &gt;
             </button>
             <ul className={$style.overlay__dots}>
-              {carousels.map((c, index) => (
-                <li key={c.id} className={$style.overlay__dot}>
-                  <button
-                    className={this.state.curIndex == index ? $style.active : ''}
-                    onMouseOver={() => this.stopTimer(index)}
-                    onMouseLeave={() => this.startTimer()}
-                  ></button>
+              {images.map((image, index) => (
+                <li key={image.id} className={$style.overlay__dot}>
+                  <button className={this.state.curIndex == index ? $style.active : ''} onMouseOver={() => this.setState({ curIndex: index })}></button>
                 </li>
               ))}
             </ul>

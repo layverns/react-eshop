@@ -55,7 +55,11 @@ const cartApi = {
   getCarts: () => axios.get(`/carts`),
 };
 
+const listApi = {
+  getList: categoryId => axios.get(`/lists/${categoryId}`),
+};
+
 api.init();
 api.setToken(tokenStorage.load());
 
-export { api, authApi, homeApi, noticeApi, searchApi, categoryApi, carouselApi, productApi, cartApi };
+export { api, authApi, homeApi, noticeApi, searchApi, categoryApi, carouselApi, productApi, cartApi, listApi };

@@ -1,0 +1,127 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+:global(.Header_notice__text-enter) {
+  transform: translateY(40px);
+}
+:global(.Header_notice__text-enter-active) {
+  transform: translateY(0);
+  transition: transform 500ms ease-in;
+}
+:global(.Header_notice__text-exit) {
+  transform: translateY(0);
+}
+:global(.Header_notice__text-exit-active) {
+  transform: translateY(-40px);
+  transition: transform 500ms ease-in;
+}
+
+.nav {
+  width: 100%;
+  background-color: #333;
+
+  .content {
+    display: flex;
+    align-items: center;
+    font-size: px2rem(12);
+
+    .notice {
+      display: flex;
+      align-items: center;
+      margin-right: auto;
+      position: relative;
+
+      .notice__img {
+        width: px2rem(14);
+        height: px2rem(14);
+        margin-right: px2rem(12);
+      }
+
+      .notice__list {
+        list-style: none;
+        color: $mainGold;
+        line-height: px2rem(36);
+        height: px2rem(36);
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+
+        a {
+          color: $mainGold;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .link {
+      .link__list {
+        list-style: none;
+        color: #ccc;
+        line-height: px2rem(36);
+        display: flex;
+        align-items: center;
+
+        .link__item {
+          margin-right: px2rem(10);
+          &::after {
+            content: '';
+            display: inline-block;
+            height: px2rem(16);
+            border-right: 1px solid #5c5c5c;
+            vertical-align: middle;
+            margin-left: px2rem(10);
+          }
+
+          &:last-child::after {
+            display: none;
+          }
+
+          .link__appIcon {
+            display: inline-block;
+            background-image: url('~@/assets/home/icon_x1.png');
+            background-position: 0 0;
+            width: px2rem(7);
+            height: px2rem(11);
+            margin-right: px2rem(6);
+          }
+
+          a {
+            color: #ccc;
+          }
+        }
+      }
+    }
+  }
+}
+
+.menu {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 3px 0;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+
+  .menu__item {
+    display: block;
+    margin: 0 13px;
+    color: #999;
+    text-align: center;
+    line-height: 38px;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+
+    .menu__link {
+      color: #999;
+    }
+    &:last-child {
+      border: none;
+    }
+
+    &:hover .menu__link {
+      color: $mainGold;
+    }
+  }
+}

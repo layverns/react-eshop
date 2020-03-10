@@ -1,5 +1,6 @@
 @import '@/styles/utils.scss';
-@import '@/styles/sizes.scss';
+@import '@/styles/colors.scss';
+
 @mixin button {
   position: absolute;
   z-index: 100;
@@ -17,100 +18,187 @@
   line-height: px2rem(50);
 }
 
-.carousel {
-  position: relative;
+.category {
   width: 100%;
-  height: px2rem(420);
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: white;
 
-  .link {
-    height: px2rem(420);
-    display: inline-block;
-    cursor: pointer;
+  .content {
+    padding: px2rem(58) 0;
 
-    .image {
-      display: block;
+    .header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      .header__left {
+        display: flex;
+        align-items: flex-end;
+
+        .title {
+          color: #333;
+          font-size: px2rem(28);
+          font-weight: 700;
+          line-height: px2rem(28);
+          text-decoration: none;
+
+          &:hover {
+            color: $mainGold;
+          }
+        }
+      }
+
+      .header__right {
+        display: flex;
+        align-items: flex-end;
+
+        .header__list {
+          display: flex;
+          align-items: flex-end;
+          font-size: px2rem(14);
+          line-height: px2rem(14);
+          list-style: none;
+          margin: 0;
+          padding: 0;
+
+          .header__item {
+            a {
+              color: #333;
+              text-decoration: none;
+
+              &:hover {
+                color: $mainGold;
+              }
+            }
+            span {
+              margin: 0 px2rem(13);
+            }
+
+            &:last-child {
+              span {
+                display: none;
+              }
+            }
+          }
+        }
+
+        .header__more {
+          color: $fontBlack;
+          text-decoration: none;
+          font-size: px2rem(14);
+          line-height: px2rem(14);
+          margin-left: px2rem(28);
+
+          &:hover {
+            color: $mainGold;
+          }
+        }
+      }
     }
-  }
 
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: px2rem(420);
-
-    .overlay__content {
+    .carousel {
       position: relative;
-      width: px2rem(1090);
-      height: px2rem(420);
+      height: px2rem(310);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: px2rem(20);
 
-      .overlay__prev {
-        @include button;
-        top: px2rem(185);
-        left: 0;
+      .link {
+        height: px2rem(310);
+        display: inline-block;
+        cursor: pointer;
 
-        @media screen and (min-width: #{$contentMaxWidth + 120}px) {
-          left: -60px;
-        }
-      }
-      .overlay__next {
-        @include button;
-        top: px2rem(185);
-        right: 0;
-
-        @media screen and (min-width: #{$contentMaxWidth + 120}px) {
-          left: #{$contentMaxWidth + 10}px;
+        .image {
+          display: block;
         }
       }
 
-      .overlay__dots {
+      .overlay {
         position: absolute;
-        bottom: px2rem(4);
-        margin: 0 auto;
+        top: 0;
+        left: 0;
         width: 100%;
-        padding: 0;
-        list-style: none;
         display: flex;
         justify-content: center;
         align-items: center;
+        height: px2rem(310);
 
-        .overlay__dot {
+        .overlay__content {
           position: relative;
-          display: inline-block;
-          width: 8px;
-          height: 8px;
-          margin: 0 8px 10px;
-          padding: 0;
-          cursor: pointer;
+          width: px2rem(1090);
+          height: px2rem(310);
 
-          button {
-            font-size: 0;
-            line-height: 0;
-            display: block;
-            width: 8px;
-            height: 8px;
-            border-radius: 500px;
-            cursor: pointer;
-            color: transparent;
-            border: 1px solid #cecece;
-            background: #fff;
+          .overlay__prev {
+            @include button;
+            top: px2rem(130);
+            left: px2rem(10);
+          }
+          .overlay__next {
+            @include button;
+            top: px2rem(130);
+            right: px2rem(10);
+          }
+
+          .overlay__dots {
+            position: absolute;
+            bottom: px2rem(4);
+            margin: 0 auto;
+            width: 100%;
             padding: 0;
-            margin: 0;
-          }
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-          button.active {
-            box-shadow: 0 0 0 4px #dfcead;
-            background: #a7936e;
-            border-radius: 500px;
-            border: none;
+            .overlay__dot {
+              position: relative;
+              display: inline-block;
+              width: 8px;
+              height: 8px;
+              margin: 0 8px 10px;
+              padding: 0;
+              cursor: pointer;
+
+              button {
+                font-size: 0;
+                line-height: 0;
+                display: block;
+                width: 8px;
+                height: 8px;
+                border-radius: 500px;
+                cursor: pointer;
+                color: transparent;
+                border: 1px solid #cecece;
+                background: #fff;
+                padding: 0;
+                margin: 0;
+              }
+
+              button.active {
+                box-shadow: 0 0 0 4px #dfcead;
+                background: #a7936e;
+                border-radius: 500px;
+                border: none;
+              }
+            }
           }
+        }
+      }
+    }
+
+    .products {
+      margin-top: px2rem(20);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .product {
+        margin-left: px2rem(10);
+        width: px2rem(256);
+
+        &:first-child {
+          margin-left: 0;
         }
       }
     }

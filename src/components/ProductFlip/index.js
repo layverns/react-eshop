@@ -13,7 +13,7 @@ const ProductFlip = forwardRef(({ className, product }, ref) => {
   }
 
   return (
-    <Link ref={ref} className={classnames($style.productFlip, className)} to={'/products/' + product.id}>
+    <Link ref={ref} className={classnames($style.product, className)} to={'/products/' + product.id}>
       <div className={$style.header}>
         <img className={$style.img} src={product.images[0]} />
         <img className={$style.altImg} src={product.images[1]} />

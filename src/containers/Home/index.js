@@ -28,6 +28,7 @@ import {
 
 import Nav from '@/containers/Nav';
 import EHeader from '@/containers/EHeader';
+import Footer from '@/components/Footer';
 import Carousel from './Carousel';
 import NewProduct from './NewProduct';
 import Recommend from './Recommend';
@@ -57,10 +58,8 @@ class Home extends React.Component {
         <Recommend recommends={recommendProducts} bestSells={bestSellProducts} />
         <FlashSale timeProducts={timeProducts} />
         <Welfare welfareProducts={welfareProducts} presentProducts={presentProducts} />
-        {_.isEmpty(categoryCarousels) ? null : categoryCarousels.map(cs => <Category carousels={categoryCarousels} />)}
-        <div>
-          <h1>新品首发</h1>
-        </div>
+        {_.isEmpty(categoryCarousels) ? null : categoryCarousels.map(cs => <Category carousel={cs} />)}
+        <Footer />
       </div>
     );
   }
