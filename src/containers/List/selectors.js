@@ -4,6 +4,12 @@ import { initialState } from './reducer';
 
 const selectList = state => state.list || initialState;
 
-const makeSelectList = () => createSelector(selectList, list => list.list);
+const makeSelectCarousels = () => createSelector(selectList, list => list.carousels);
 
-export { makeSelectList };
+const makeSelectCategory = () => createSelector(selectList, list => list.category);
+
+const makeSelectThirdCategories = () => createSelector(selectList, list => list.thirdCategories);
+
+const makeSelectData = () => createSelector(selectList, list => list.data);
+
+export { makeSelectCarousels, makeSelectCategory, makeSelectThirdCategories, makeSelectData };

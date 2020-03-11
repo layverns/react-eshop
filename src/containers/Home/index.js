@@ -13,7 +13,7 @@ import {
   fetchTimeProducts,
   fetchWelfareProducts,
   fetchPresentProducts,
-  fetchCategoryCarousels,
+  fetchCategoryList,
 } from './actions';
 import {
   makeSelectCarousels,
@@ -23,7 +23,7 @@ import {
   makeSelectTimeProducts,
   makeSelectWelfareProducts,
   makeSelectPresentProducts,
-  makeSelectCategoryCarousels,
+  makeSelectCategoryList,
 } from './selectors';
 
 import Nav from '@/containers/Nav';
@@ -48,7 +48,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { carousels, newProducts, recommendProducts, bestSellProducts, timeProducts, welfareProducts, presentProducts, categoryCarousels } = this.props;
+    const { carousels, newProducts, recommendProducts, bestSellProducts, timeProducts, welfareProducts, presentProducts, categoryList } = this.props;
     return (
       <div>
         <Nav />
@@ -58,7 +58,7 @@ class Home extends React.Component {
         <Recommend recommends={recommendProducts} bestSells={bestSellProducts} />
         <FlashSale timeProducts={timeProducts} />
         <Welfare welfareProducts={welfareProducts} presentProducts={presentProducts} />
-        {_.isEmpty(categoryCarousels) ? null : categoryCarousels.map(cs => <Category carousel={cs} />)}
+        {/* {_.isEmpty(categoryList) ? null : categoryList.map(cs => <Category carousel={cs} />)} */}
         <Footer />
       </div>
     );
@@ -73,7 +73,7 @@ const mapStateToProps = createStructuredSelector({
   timeProducts: makeSelectTimeProducts(),
   welfareProducts: makeSelectWelfareProducts(),
   presentProducts: makeSelectPresentProducts(),
-  categoryCarousels: makeSelectCategoryCarousels(),
+  categoryList: makeSelectCategoryList(),
 });
 
 export function mapDispatchToProps(dispatch) {
@@ -86,7 +86,7 @@ export function mapDispatchToProps(dispatch) {
       dispatch(fetchTimeProducts());
       dispatch(fetchWelfareProducts());
       dispatch(fetchPresentProducts());
-      dispatch(fetchCategoryCarousels());
+      dispatch(fetchCategoryList());
     },
   };
 }

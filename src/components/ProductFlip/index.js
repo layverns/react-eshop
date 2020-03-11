@@ -13,11 +13,11 @@ const ProductFlip = forwardRef(({ className, product }, ref) => {
   }
 
   return (
-    <Link ref={ref} className={classnames($style.product, className)} to={'/products/' + product.id}>
-      <div className={$style.header}>
+    <div ref={ref} className={classnames($style.product, className)}>
+      <Link className={$style.header} to={'/products/' + product.id}>
         <img className={$style.img} src={product.images[0]} />
         <img className={$style.altImg} src={product.images[1]} />
-      </div>
+      </Link>
       <div className={$style.content}>
         <div className={$style.tags}>
           {product.tags.map(tag => (
@@ -26,13 +26,15 @@ const ProductFlip = forwardRef(({ className, product }, ref) => {
             </span>
           ))}
         </div>
-        <div className={$style.title}>{product.title}</div>
+        <Link className={$style.title} to={'/products/' + product.id}>
+          {product.title}
+        </Link>
         <div className={$style.price}>
           <span>¥{product.price}</span>
           {product.old_price > 0 && <span className={$style.price__old}>¥{product.old_price}</span>}
         </div>
       </div>
-    </Link>
+    </div>
   );
 });
 

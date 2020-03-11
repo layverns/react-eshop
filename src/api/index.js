@@ -34,14 +34,17 @@ const searchApi = {
 const categoryApi = {
   getCategories: () => axios.get('/categories'),
   getAllCarousels: id => axios.get(`/categories/carousels`),
+  getCategory: id => axios.get(`/categories/${id}`),
 };
 
 const carouselApi = {
   getHomeCarousels: () => axios.get('/home/carousels'),
+  getCarousels: categoryId => axios.get('/carousels', { params: { categoryId } }),
 };
 
 const productApi = {
   getProduct: id => axios.get(`/products/${id}`),
+  getProducts: ({ thirdCategoryId }) => axios.get(`/products`, { params: { limit: 100, thirdCategoryId } }),
   getNewProducts: () => axios.get(`/new_products`, { params: { limit: 16 } }),
   getRecommendProducts: () => axios.get(`/recommend_products`, { params: { limit: 7 } }),
   getBestSellProducts: () => axios.get(`/best_sell_products`, { params: { limit: 7 } }),

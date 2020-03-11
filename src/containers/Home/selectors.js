@@ -18,7 +18,7 @@ const makeSelectWelfareProducts = () => createSelector(selectHome, home => home.
 
 const makeSelectPresentProducts = () => createSelector(selectHome, home => home.presentProducts);
 
-const makeSelectCategoryCarousels = () => createSelector(selectHome, home => home.categoryCarousels);
+const makeSelectCategoryList = () => createSelector(selectHome, home => home.categoryList);
 
 export {
   makeSelectCarousels,
@@ -28,5 +28,5 @@ export {
   makeSelectTimeProducts,
   makeSelectWelfareProducts,
   makeSelectPresentProducts,
-  makeSelectCategoryCarousels,
+  makeSelectCategoryList,
 };

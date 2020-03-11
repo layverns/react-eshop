@@ -9,7 +9,7 @@ import {
   setTimeProducts,
   setWelfareProducts,
   setPresentProducts,
-  setCategoryCarousels,
+  setCategoryList,
 } from './actions';
 import {
   FETCH_CAROUSELS,
@@ -19,7 +19,7 @@ import {
   FETCH_TIME_PRODUCTS,
   FETCH_WELFARE_PRODUCTS,
   FETCH_PRESENT_PRODUCTS,
-  FETCH_CATEGORY_CAROUSELS,
+  FETCH_CATEGORY_LIST,
 } from './constants';
 import { carouselApi, productApi, categoryApi } from '@/api';
 
@@ -128,16 +128,16 @@ function* fetchPresentProducts() {
   }
 }
 
-function* fetchCategoryCarousels() {
+function* fetchCategoryList() {
   try {
-    console.log('fetchCategoryCarousels');
+    console.log('fetchCategoryList');
     const res = yield call(categoryApi.getAllCarousels);
-    const categoryCarousels = _.get(res, 'data.categoryCarousels', []);
-    if (_.isEmpty(categoryCarousels)) {
+    const categoryList = _.get(res, 'data.categoryList', []);
+    if (_.isEmpty(categoryList)) {
       return;
     }
 
-    yield put(setCategoryCarousels(categoryCarousels));
+    yield put(setCategoryList(categoryList));
   } catch (err) {
     console.error('获取分类轮播图错误: ', err.response || err);
   }
@@ -151,5 +151,5 @@ export default function* saga() {
   yield takeLatest(FETCH_TIME_PRODUCTS, fetchTimeProducts);
   yield takeLatest(FETCH_WELFARE_PRODUCTS, fetchWelfareProducts);
   yield takeLatest(FETCH_PRESENT_PRODUCTS, fetchPresentProducts);
-  yield takeLatest(FETCH_CATEGORY_CAROUSELS, fetchCategoryCarousels);
+  yield takeLatest(FETCH_CATEGORY_LIST, fetchCategoryList);
 }

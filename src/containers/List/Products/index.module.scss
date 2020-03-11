@@ -1,0 +1,26 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.products {
+  border-top: 1px solid #dedede;
+  padding-top: px2rem(30);
+
+  .title {
+    font-size: px2rem(24);
+    font-weight: 700;
+    line-height: px2rem(44);
+    text-align: center;
+  }
+  .list {
+    margin-top: px2rem(30);
+    display: flex;
+    flex-wrap: wrap;
+
+    .product {
+      width: px2rem(242);
+      height: px2rem(401);
+      margin-right: px2rem(9);
+      margin-bottom: px2rem(50);
+    }
+  }
+}

@@ -1,5 +1,13 @@
 const PREFIX = 'LIST/';
 
-export const FETCH_LIST = PREFIX + 'FETCH_LIST';
+export const FETCH_CAROUSELS = PREFIX + 'FETCH_CAROUSELS';
 
-export const SET_LIST = PREFIX + 'SET_LIST';
+export const SET_CAROUSELS = PREFIX + 'SET_CAROUSELS';
+
+export const FETCH_DATA = PREFIX + 'FETCH_DATA';
+
+export const SET_CATEGORY = PREFIX + 'SET_CATEGORY';
+
+export const SET_THIRD_CATEGORIES = PREFIX + 'SET_THIRD_CATEGORIES';
+
+export const SET_DATA = PREFIX + 'SET_DATA';

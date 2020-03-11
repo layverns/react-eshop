@@ -25,7 +25,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: px2rem(20);
 
   .link {
     height: px2rem(310);
@@ -35,6 +34,14 @@
     .image {
       display: block;
     }
+  }
+
+  .overlay__autohide {
+    display: none !important;
+  }
+
+  &:hover .overlay__autohide {
+    display: block !important;
   }
 
   .overlay {

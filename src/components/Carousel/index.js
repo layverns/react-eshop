@@ -68,9 +68,9 @@ class Carousel extends Component {
   }
 
   render() {
-    let { images, autoHide, autoSlide } = this.props;
+    let { carousels, autoHide } = this.props;
 
-    if (_.isEmpty(images)) {
+    if (_.isEmpty(carousels)) {
       return <Loading />;
     }
 
@@ -79,22 +79,22 @@ class Carousel extends Component {
         <SwitchTransition>
           <CSSTransition key={this.state.curIndex} timeout={100} classNames="Category__img">
             <a className={$style.link}>
-              <img className={$style.image} src={images[this.state.curIndex].image} />
+              <img className={$style.image} src={carousels[this.state.curIndex].image} />
             </a>
           </CSSTransition>
         </SwitchTransition>
 
         <div className={$style.overlay}>
           <div className={$style.overlay__content}>
-            <button onClick={() => this.prev()} className={$style.overlay__prev}>
+            <button onClick={() => this.prev()} className={classnames($style.overlay__prev, autoHide ? $style.overlay__autohide : '')}>
               &lt;
             </button>
-            <button onClick={() => this.next()} className={$style.overlay__next}>
+            <button onClick={() => this.next()} className={classnames($style.overlay__next, autoHide ? $style.overlay__autohide : '')}>
               &gt;
             </button>
             <ul className={$style.overlay__dots}>
-              {images.map((image, index) => (
-                <li key={image.id} className={$style.overlay__dot}>
+              {carousels.map((carousel, index) => (
+                <li key={carousel.id} className={$style.overlay__dot}>
                   <button className={this.state.curIndex == index ? $style.active : ''} onMouseOver={() => this.setState({ curIndex: index })}></button>
                 </li>
               ))}

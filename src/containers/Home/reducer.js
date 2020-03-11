@@ -8,7 +8,7 @@ import {
   SET_TIME_PRODUCTS,
   SET_WELFARE_PRODUCTS,
   SET_PRESENT_PRODUCTS,
-  SET_CATEGORY_CAROUSELS,
+  SET_CATEGORY_LIST,
 } from './constants';
 
 export const initialState = {
@@ -19,7 +19,7 @@ export const initialState = {
   timeProducts: [],
   welfareProducts: [],
   presentProducts: [],
-  categoryCarousels: [],
+  categoryList: {},
 };
 
 const reducer = (state = initialState, action) =>
@@ -46,8 +46,8 @@ const reducer = (state = initialState, action) =>
       case SET_PRESENT_PRODUCTS:
         draft.presentProducts = action.payload.presentProducts;
         break;
-      case SET_CATEGORY_CAROUSELS:
-        draft.categoryCarousels = action.payload.categoryCarousels;
+      case SET_CATEGORY_LIST:
+        draft.categoryList = action.payload.categoryList;
         break;
     }
   });

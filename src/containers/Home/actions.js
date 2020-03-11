@@ -13,8 +13,8 @@ import {
   SET_WELFARE_PRODUCTS,
   FETCH_PRESENT_PRODUCTS,
   SET_PRESENT_PRODUCTS,
-  FETCH_CATEGORY_CAROUSELS,
-  SET_CATEGORY_CAROUSELS,
+  FETCH_CATEGORY_LIST,
+  SET_CATEGORY_LIST,
 } from './constants';
 
 export function fetchCarousels() {
@@ -122,17 +122,17 @@ export function setPresentProducts(presentProducts) {
   };
 }
 
-export function fetchCategoryCarousels() {
+export function fetchCategoryList() {
   return {
-    type: FETCH_CATEGORY_CAROUSELS,
+    type: FETCH_CATEGORY_LIST,
   };
 }
 
-export function setCategoryCarousels(categoryCarousels) {
+export function setCategoryList(list) {
   return {
-    type: SET_CATEGORY_CAROUSELS,
+    type: SET_CATEGORY_LIST,
     payload: {
-      categoryCarousels,
+      list,
     },
   };
 }
