@@ -1,4 +1,4 @@
-import { FETCH_CAROUSELS, SET_CAROUSELS, FETCH_DATA, SET_CATEGORY, SET_THIRD_CATEGORIES, SET_DATA } from './constants';
+import { FETCH_CAROUSELS, SET_CAROUSELS, FETCH_PRODUCTS, SET_CATEGORY, SET_THIRD_CATEGORIES, SET_PRODUCTS } from './constants';
 
 export function fetchCarousels(categoryId) {
   return {
@@ -18,9 +18,9 @@ export function setCarousels(carousels) {
   };
 }
 
-export function fetchData(categoryId) {
+export function fetchProducts(categoryId) {
   return {
-    type: FETCH_DATA,
+    type: FETCH_PRODUCTS,
     payload: {
       categoryId,
     },
@@ -45,11 +45,11 @@ export function setThirdCategories(thirdCategories) {
   };
 }
 
-export function setData(data) {
+export function setProducts(products) {
   return {
-    type: SET_DATA,
+    type: SET_PRODUCTS,
     payload: {
-      data,
+      products,
     },
   };
 }

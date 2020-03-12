@@ -2,10 +2,10 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import _ from 'lodash';
 import moment from 'moment';
 
-import { FETCH_CAROUSELS, FETCH_DATA } from './constants';
-import { setCarousels, setCategory, setThirdCategories, setData } from './actions';
+import { FETCH_CAROUSELS, FETCH_PRODUCTS } from './constants';
+import { setCarousels, setCategory, setThirdCategories, setProducts } from './actions';
 import { carouselApi, categoryApi, productApi } from '@/api';
-import { makeSelectData } from './selectors';
+import { makeSelectProducts, makeSelectThirdCategories } from './selectors';
 
 export function* fetchCarousels(action) {
   console.log('fetchCarousels');
@@ -21,36 +21,44 @@ export function* fetchCarousels(action) {
   }
 }
 
-export function* fetchData(action) {
-  console.log('fetchData');
+export function* fetchProducts(action) {
+  console.log('fetchProducts');
   try {
     const res = yield call(categoryApi.getCategory, action.payload.categoryId);
     const category = _.get(res, 'data.category', {});
-    const thirdCategories = _.get(res, 'data.thirdCategories', {});
     yield put(setCategory(category));
-    yield put(setThirdCategories(thirdCategories));
+
+    let thirdCategories = _.get(res, 'data.thirdCategories', []);
 
     //对每个三级分类的产品列表缓存10分钟
     for (let i = 0; i < thirdCategories.length; i++) {
-      let data = yield select(makeSelectData());
-      let tc = thirdCategories[i];
+      let allThirdCategories = yield select(makeSelectThirdCategories());
+      let tc = _.find(allThirdCategories, atc => atc.id == thirdCategories[i].id);
+      console.log('find tc: ', tc);
+      _.isEmpty(tc) ||
+        console.log(
+          'moment : ',
+          moment()
+            .subtract(10, 'minutes')
+            .isAfter(moment(tc.updateTime))
+        );
       if (
-        _.isEmpty(data[tc.id]) ||
+        _.isEmpty(tc) ||
         moment()
           .subtract(10, 'minutes')
-          .isAfter(moment(data[tc.id].updateTime))
+          .isAfter(moment(tc.updateTime))
       ) {
+        tc = thirdCategories[i];
+
         const res = yield call(productApi.getProducts, { thirdCategoryId: tc.id });
-        const products = _.get(res, 'data.products', {});
-        data = {
-          ...data,
-          [tc.id]: {
-            ...tc,
-            products,
-            updateTime: moment(),
-          },
-        };
-        yield put(setData(data));
+        let allProducts = yield select(makeSelectProducts());
+        const products = _.get(res, 'data.products', []);
+        allProducts = [...allProducts, ...products];
+        yield put(setProducts(allProducts));
+
+        tc.updateTime = moment();
+        allThirdCategories = [...allThirdCategories, tc];
+        yield put(setThirdCategories(allThirdCategories));
       }
     }
   } catch (err) {
@@ -60,5 +68,5 @@ export function* fetchData(action) {
 
 export default function* saga() {
   yield takeLatest(FETCH_CAROUSELS, fetchCarousels);
-  yield takeLatest(FETCH_DATA, fetchData);
+  yield takeLatest(FETCH_PRODUCTS, fetchProducts);
 }

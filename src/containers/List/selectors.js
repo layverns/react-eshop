@@ -10,6 +10,6 @@ const makeSelectCategory = () => createSelector(selectList, list => list.categor
 
 const makeSelectThirdCategories = () => createSelector(selectList, list => list.thirdCategories);
 
-const makeSelectData = () => createSelector(selectList, list => list.data);
+const makeSelectProducts = () => createSelector(selectList, list => list.products);
 
-export { makeSelectCarousels, makeSelectCategory, makeSelectThirdCategories, makeSelectData };
+export { makeSelectCarousels, makeSelectCategory, makeSelectThirdCategories, makeSelectProducts };

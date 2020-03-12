@@ -1,23 +1,21 @@
 import produce from 'immer';
 
-import { SET_CAROUSELS, SET_CATEGORY, SET_THIRD_CATEGORIES, SET_DATA } from './constants';
+import { SET_CAROUSELS, SET_CATEGORY, SET_THIRD_CATEGORIES, SET_PRODUCTS } from './constants';
 
 export const initialState = {
   carousels: [],
   category: {},
-  thirdCategories: [],
-  data: {},
-  /*
-    data: {
-      [thirdCategoryId]: {
-        id,
-        subcategory,
-        title,
-        image,
-        products: [{...}]
-      }
-    }
+  /**
+   * 缓存网站所有的三级分类
+   * {
+   *  id,
+   *  title,
+   *  category,
+   *  updateTime
+   * }
    */
+  thirdCategories: [],
+  products: [],
 };
 
 const reducer = (state = initialState, action) =>
@@ -32,8 +30,8 @@ const reducer = (state = initialState, action) =>
       case SET_THIRD_CATEGORIES:
         draft.thirdCategories = action.payload.thirdCategories;
         break;
-      case SET_DATA:
-        draft.data = action.payload.data;
+      case SET_PRODUCTS:
+        draft.products = action.payload.products;
         break;
     }
   });
