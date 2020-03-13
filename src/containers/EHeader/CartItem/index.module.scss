@@ -1,0 +1,79 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.item {
+  display: flex;
+  align-items: center;
+
+  .image {
+    width: px2rem(60);
+    height: px2rem(60);
+  }
+
+  .body {
+    width: px2rem(130);
+    margin-left: px2rem(10);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      color: $fontBlack;
+      font-size: px2rem(14);
+      line-height: px2rem(14);
+      padding: px2rem(12) 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .row {
+      display: flex;
+      align-items: flex-end;
+      color: #999;
+      font-size: px2rem(12);
+
+      .specs {
+        max-width: px2rem(84);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: flex;
+        align-items: flex-end;
+
+        .spec {
+          margin-left: px2rem(4);
+          color: #999;
+          font-size: px2rem(12);
+          line-height: px2rem(12);
+        }
+      }
+
+      .quantity {
+        margin-left: px2rem(14);
+        color: #999;
+        font-size: px2rem(12);
+        line-height: px2rem(12);
+      }
+    }
+  }
+
+  .price {
+    width: px2rem(60);
+    text-align: right;
+    font-size: px2rem(12);
+    color: #b62628;
+    line-height: px2rem(12);
+  }
+
+  .del {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('~@/assets/home/close_x1.png');
+    background-position: 0 -40px;
+    height: 10px;
+    width: 11px;
+    margin-left: px2rem(12);
+  }
+}

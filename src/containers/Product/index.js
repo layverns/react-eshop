@@ -12,6 +12,7 @@ import { makeSelectProduct, makeSelectIndexs, makeSelectSpecs } from './selector
 import { makeSelectUser } from '@/containers/Login/selectors';
 import { showLogin } from '@/containers/Login/actions';
 import { addToCart } from '@/containers/App/actions';
+import { getElmOfArray } from '@/utils/libs';
 
 import Loading from '@/components/Loading';
 import Nav from '@/containers/Nav';
@@ -63,7 +64,7 @@ class Product extends React.Component {
     }
   };
 
-  onClickAddToCart = () => {
+  onClickAddToCart = price => {
     const { product, specs, onAddToCart } = this.props;
     const { quantity } = this.state;
 
@@ -74,6 +75,7 @@ class Product extends React.Component {
 
     onAddToCart({
       ...product,
+      price,
       specs,
       quantity,
     });
@@ -86,16 +88,6 @@ class Product extends React.Component {
     let price = 0;
     let old_price = 0;
     let score = 0;
-
-    let getElmOfArray = (arr, indexs) => {
-      if (indexs.length == 1) {
-        return arr[indexs[0]];
-      } else {
-        arr = arr[indexs[0]];
-        indexs.shift();
-        return getElmOfArray(arr, indexs);
-      }
-    };
 
     if (!_.isEmpty(product) && !_.isEmpty(product.productInfo) && !_.isEmpty(indexs)) {
       const { productInfo } = product;
@@ -170,7 +162,7 @@ class Product extends React.Component {
                   <button className={$style.action__buy} onClick={this.onClickBuy}>
                     立即购买
                   </button>
-                  <button className={$style.action__cart} onClick={this.onClickAddToCart}>
+                  <button className={$style.action__cart} onClick={() => this.onClickAddToCart(price)}>
                     <span className={$style.action__icon}></span>
                     <span>加入购物车</span>
                   </button>

@@ -5,13 +5,16 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
+import { Dropdown } from 'antd';
 
 import { fetchCategories, fetchHotWords } from './actions';
+import { delFromCart } from '@/containers/App/actions';
 import { makeSelectHotWords, makeSelectCategories } from './selectors';
 import { makeSelectCart } from '@/containers/App/selectors';
-import $style from './index.module.scss';
-
 import CategoryBar from '@/containers/EHeader/CategoryBar';
+import CartItem from './CartItem';
+
+import $style from './index.module.scss';
 
 class EHeader extends React.Component {
   constructor(props) {
@@ -21,9 +24,10 @@ class EHeader extends React.Component {
       curHotWordIndex: 0,
       isFixedStyle: false,
     };
-  }
 
-  interval = null;
+    this.headerRef = React.createRef();
+    this.interval = null;
+  }
 
   componentDidMount() {
     this.props.onLoad();
@@ -64,6 +68,10 @@ class EHeader extends React.Component {
     }
   };
 
+  onClickDelCart = product => {
+    this.props.onDelFromCart(product);
+  };
+
   render() {
     const { curHotWordIndex } = this.state;
     const { hotWords, categories, cart } = this.props;
@@ -85,12 +93,32 @@ class EHeader extends React.Component {
     }
 
     let cartQuantity = 0;
+    let cartSum = 0;
     if (!_.isEmpty(cart)) {
       cartQuantity = cart.reduce((total, c) => total + c.quantity, 0);
+      cartSum = cart.reduce((total, c) => total + c.price * c.quantity, 0);
     }
 
+    let cartOverlay = (
+      <div>
+        <div className={$style.cart__content}>
+          {cart.map(p => {
+            let id = p.id + ' ' + p.specs.join(' ');
+            return <CartItem className={$style.cart__item} key={id} product={p} onClickDel={this.onClickDelCart} />;
+          })}
+        </div>
+        <div className={$style.cart__footer}>
+          <div className={$style.price}>
+            <div className={$style.price__title}>商品合计：</div>
+            <div className={$style.price__sum}>¥{cartSum}</div>
+          </div>
+          <div className={$style.checkout}>去购物车结算</div>
+        </div>
+      </div>
+    );
+
     return (
-      <header className={classnames($style.header)}>
+      <header className={classnames($style.header)} ref={this.headerRef}>
         <div className={this.state.isFixedStyle ? $style.header_fixed : ''}>
           <div className={classnames('container', $style.header__content)}>
             <Link className={$style.header__logo} to="/">
@@ -99,11 +127,13 @@ class EHeader extends React.Component {
             <Link className={$style.header__smlogo} to="/">
               <span className={$style.header__smlogoImg}></span>
             </Link>
-            <a className={$style.cart}>
-              <span className={$style.cart__icon} />
-              <span className={$style.cart__title}>购物车</span>
-              <span className={$style.cart__num}>{cartQuantity}</span>
-            </a>
+            <Dropdown overlay={cartOverlay} overlayClassName={$style.cart__overlay} getPopupContainer={() => this.headerRef.current} trigger={['hover']}>
+              <a className={$style.cart}>
+                <span className={$style.cart__icon} />
+                <span className={$style.cart__title}>购物车</span>
+                <span className={$style.cart__num}>{cartQuantity}</span>
+              </a>
+            </Dropdown>
             <a className={$style.user}>
               <span className={$style.user__icon} />
             </a>
@@ -147,6 +177,9 @@ const mapDispatchToProps = dispatch => ({
   onLoad: () => {
     dispatch(fetchHotWords());
     dispatch(fetchCategories());
+  },
+  onDelFromCart: prodcut => {
+    dispatch(delFromCart(prodcut));
   },
 });
 

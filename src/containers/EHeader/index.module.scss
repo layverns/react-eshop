@@ -20,6 +20,64 @@
   background-color: white;
   border-bottom: 1px solid $borderGrey;
 
+  .cart__overlay {
+    position: relative;
+    width: px2rem(330);
+    height: px2rem(328);
+    border: 1px solid #b5a176;
+    border-top: 2px solid #d7ccb6;
+    background-color: #fff;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+
+    .cart__content {
+      padding: px2rem(14);
+      height: px2rem(245);
+      background-color: #fff;
+      overflow-y: scroll;
+
+      .cart__item {
+        padding: 0 0 10px 15px;
+      }
+    }
+    .cart__footer {
+      height: px2rem(66);
+      background-color: #f4f0ea;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .price {
+        font-size: px2rem(14);
+        line-height: px2rem(20);
+        margin-left: px2rem(15);
+        color: #be4141;
+        display: flex;
+        flex-direction: column;
+
+        .price__title {
+          color: #999;
+        }
+        .price__sum {
+          margin-top: px2rem(2);
+        }
+      }
+      .checkout {
+        margin-right: px2rem(31);
+        width: px2rem(110);
+        height: px2rem(36);
+        line-height: px2rem(36);
+        color: #fff;
+        border: 1px solid #b4a078;
+        background-color: #b4a078;
+        text-align: center;
+        font-size: px2rem(12);
+      }
+    }
+  }
+
   .header__content {
     background-color: #fff;
     z-index: 110;
