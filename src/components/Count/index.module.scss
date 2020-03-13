@@ -6,6 +6,7 @@
 
   .minus,
   .plus {
+    box-sizing: border-box;
     width: px2rem(36);
     height: px2rem(30);
     line-height: px2rem(22);

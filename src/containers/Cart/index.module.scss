@@ -1,0 +1,121 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.cart {
+  width: 100%;
+  background-color: white;
+
+  .content {
+    padding: px2rem(20) 0;
+
+    .header {
+      margin-bottom: px2rem(20);
+      padding: px2rem(12) 0;
+      border: 1px solid #ddd;
+      background-color: #f5f5f5;
+      display: flex;
+      font-size: px2rem(13);
+      color: $fontBlack;
+
+      .header__checkbox {
+        margin-left: px2rem(20);
+      }
+      .header__all {
+        margin-left: px2rem(14);
+      }
+      .header__info {
+        margin-left: px2rem(130);
+      }
+      .header__price {
+        margin-left: px2rem(270);
+      }
+      .header__quantity {
+        margin-left: px2rem(170);
+      }
+      .header__sum {
+        margin-left: px2rem(150);
+      }
+      .header__option {
+        margin-left: px2rem(60);
+      }
+    }
+
+    .cart {
+      .cart__item {
+        margin-top: px2rem(10);
+      }
+    }
+
+    .footer {
+      margin-top: px2rem(20);
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: px2rem(14);
+      color: $fontBlack;
+      height: px2rem(70);
+
+      .footer__left {
+        display: flex;
+        align-items: center;
+
+        .footer__checkbox {
+          margin-left: px2rem(20);
+        }
+        .footer__all {
+          margin-left: px2rem(14);
+        }
+        .footer__del {
+          margin-left: px2rem(30);
+        }
+      }
+      .footer__right {
+        display: flex;
+        justify-content: flex-end;
+
+        &::before {
+          margin-top: px2rem(10);
+          content: '';
+          height: px2rem(50);
+          border-left: 1px solid #ddd;
+        }
+
+        .footer__sum {
+          margin-top: px2rem(16);
+          margin-left: px2rem(20);
+          margin-right: px2rem(32);
+          font-size: px2rem(14);
+          display: flex;
+
+          .footer__price {
+            margin-left: px2rem(20);
+            font-size: px2rem(22);
+            line-height: px2rem(22);
+            font-weight: 700;
+            color: #be4141;
+          }
+        }
+
+        .footer__order {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: px2rem(140);
+          height: px2rem(70);
+          line-height: px2rem(50);
+          font-size: px2rem(18);
+          color: #fff;
+          border: 1px solid #b4a078;
+          background-color: #b4a078;
+          cursor: pointer;
+        }
+        .footer__order_disable {
+          border: 1px solid #ccc;
+          background-color: #ccc;
+        }
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import $style from './index.module.scss';
 
-function Count({ className, value, onChange }) {
+function Count({ className, value, onChange, btnWidth = '36px', inputWidth = '60px', height = '30px' }) {
   const onValueChange = e => {
     let val = e.target.value;
     if (isNaN(val)) return;
@@ -28,11 +28,11 @@ function Count({ className, value, onChange }) {
 
   return (
     <div className={classnames(className, $style.count)}>
-      <span className={$style.minus} onClick={onMinus}>
+      <span className={$style.minus} onClick={onMinus} style={{ width: btnWidth, height: height }}>
         -
       </span>
-      <input className={$style.input} type="text" value={value} onChange={onValueChange} />
-      <span className={$style.plus} onClick={onPlus}>
+      <input className={$style.input} type="text" value={value} onChange={onValueChange} style={{ width: inputWidth, height: height }} />
+      <span className={$style.plus} onClick={onPlus} style={{ width: btnWidth, height: height }}>
         +
       </span>
     </div>

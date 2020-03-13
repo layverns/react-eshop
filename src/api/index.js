@@ -58,6 +58,8 @@ const productApi = {
 const cartApi = {
   addToCart: product => axios.post(`/carts`, { product }),
   delFromCart: product => axios.delete(`/carts`, { product }),
+  changeCartQuantity: product => axios.put(`/carts`, { product }),
+  checkCart: product => axios.put(`/cart/check`, { product }),
   getCarts: () => axios.get(`/carts`),
 };
 

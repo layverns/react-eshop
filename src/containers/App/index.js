@@ -13,6 +13,7 @@ import Home from '@/containers/Home';
 import Notice from '@/containers/Notice';
 import Product from '@/containers/Product';
 import List from '@/containers/List';
+import Cart from '@/containers/Cart';
 
 class App extends React.Component {
   componentWillMount() {
@@ -28,6 +29,7 @@ class App extends React.Component {
             <Route path="/notices/:id" component={Notice} />
             <Route path="/products/:id" component={Product} />
             <Route path="/lists/:categoryId" component={List} />
+            <Route path="/cart/" component={Cart} />
           </Switch>
         </div>
       </BrowserRouter>

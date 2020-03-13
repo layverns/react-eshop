@@ -1,0 +1,13 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.checkbox {
+  background-image: url('~@/assets/home/checkbox.png');
+  background-position: 0 -84px;
+  height: 18px;
+  width: 18px;
+}
+
+.checkbox.checkbox_checked {
+  background-position: 0 -56px;
+}

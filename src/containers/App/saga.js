@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import { cartApi } from '@/api';
 import { cartStorage } from '@/utils/localStorage';
-import { ADD_TO_CART, TRANSFER_TO_USER_CART, LOAD_CART, DEL_FROM_CART } from './constants';
+import { ADD_TO_CART, CHANGE_CART_QUANTITY, TRANSFER_TO_USER_CART, LOAD_CART, DEL_FROM_CART, CHECK_CART } from './constants';
 import { makeSelectUser } from '@/containers/Login/selectors';
 import { makeSelectCart } from './selectors';
 import { setCart } from './actions';
@@ -13,16 +13,21 @@ export function* addToCart(action) {
     console.log('addToCart');
     let user = yield select(makeSelectUser());
     const { product } = action.payload;
+    product.isChecked = true;
     let cart = [];
     if (_.isEmpty(user)) {
       cart = cartStorage.load() || [];
       let index = _.findIndex(cart, c => c && c.id == product.id && _.isEqual(c.specs, product.specs));
       if (index < 0) {
-        product.quantity = product.quantity >= 99 ? 99 : product.quantity;
+        let quantity = product.quantity;
+        if (quantity > 99) quantity = 99;
+        if (quantity < 1) quantity = 1;
         cart.push(product);
       } else {
         let quantity = cart[index].quantity + product.quantity;
-        cart[index].quantity = quantity >= 99 ? 99 : quantity;
+        if (quantity > 99) quantity = 99;
+        if (quantity < 1) quantity = 1;
+        cart[index].quantity = quantity;
       }
       cartStorage.save(cart);
     } else {
@@ -38,9 +43,66 @@ export function* addToCart(action) {
   }
 }
 
+export function* changeCartQuantity(action) {
+  try {
+    console.log('changeCartQuantity');
+    let user = yield select(makeSelectUser());
+    const { product } = action.payload;
+    let cart = [];
+    if (_.isEmpty(user)) {
+      cart = cartStorage.load() || [];
+      let index = _.findIndex(cart, c => c && c.id == product.id && _.isEqual(c.specs, product.specs));
+      console.log(' index: ', index);
+      if (index >= 0) {
+        let quantity = product.quantity;
+        if (quantity > 99) quantity = 99;
+        if (quantity < 1) quantity = 1;
+        cart[index].quantity = quantity;
+        console.log(' cart[index]: ', cart[index]);
+      }
+      cartStorage.save(cart);
+    } else {
+      const { id, specs, quantity } = product;
+      yield call(cartApi.changeCartQuantity, { id, specs, quantity });
+      const res = yield call(cartApi.getCarts);
+      cart = _.get(res, 'data.carts', []);
+    }
+
+    yield put(setCart(cart));
+  } catch (err) {
+    console.error('改变购物车数量错误: ', err.response || err);
+  }
+}
+
+export function* checkCart(action) {
+  try {
+    console.log('checkCart');
+    let user = yield select(makeSelectUser());
+    const { product } = action.payload;
+    let cart = [];
+    if (_.isEmpty(user)) {
+      cart = cartStorage.load() || [];
+      let index = _.findIndex(cart, c => c && c.id == product.id && _.isEqual(c.specs, product.specs));
+      if (index >= 0) {
+        cart[index].isChecked = !cart[index].isChecked;
+      }
+      cartStorage.save(cart);
+    } else {
+      const { id, specs } = product;
+      yield call(cartApi.checkCart, { id, specs });
+      const res = yield call(cartApi.getCarts);
+      cart = _.get(res, 'data.carts', []);
+    }
+
+    yield put(setCart(cart));
+  } catch (err) {
+    console.error('改变购物车数量错误: ', err.response || err);
+  }
+}
+
 export function* delFromCart(action) {
   try {
-    console.log('addToCart');
+    console.log('delFromCart');
     let user = yield select(makeSelectUser());
     const { product } = action.payload;
     let cart = [];
@@ -102,6 +164,8 @@ export function* loadCart() {
 export default function* saga() {
   yield takeLatest(LOAD_CART, loadCart);
   yield takeLatest(ADD_TO_CART, addToCart);
+  yield takeLatest(CHANGE_CART_QUANTITY, changeCartQuantity);
+  yield takeLatest(CHECK_CART, checkCart);
   yield takeLatest(DEL_FROM_CART, delFromCart);
   yield takeLatest(TRANSFER_TO_USER_CART, transferToUserCart);
 }

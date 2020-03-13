@@ -19,7 +19,7 @@ import Nav from '@/containers/Nav';
 import EHeader from '@/containers/EHeader';
 import Spec from './Spec/index';
 import Like from './Like/index';
-import Count from './Count/index';
+import Count from '@/components/Count';
 import Info from './Info/index';
 
 import $style from './index.module.scss';
