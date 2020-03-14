@@ -3,3 +3,7 @@ const PREFIX = 'CONTACT/';
 export const FETCH_CONTACTS = PREFIX + 'FETCH_CONTACTS';
 
 export const SET_CONTACTS = PREFIX + 'SET_CONTACTS';
+
+export const SAVE_CONTACT = PREFIX + 'SAVE_CONTACT';
+
+export const SET_ERROR = PREFIX + 'SET_ERROR';

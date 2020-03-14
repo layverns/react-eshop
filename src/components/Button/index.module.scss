@@ -1,18 +1,22 @@
 @import '@/styles/utils.scss';
 @import '@/styles/colors.scss';
 
+@mixin btn {
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: center;
+}
+
 .button {
   color: #fff;
   border: 1px solid #b4a078;
   background-color: #b4a078;
-  text-align: center;
-  border-radius: 2px;
+  @include btn;
 }
 
 .button_light {
   color: #b4a078;
   border: 1px solid #b4a078;
   background-color: #f5f3ef;
-  text-align: center;
-  border-radius: 2px;
+  @include btn;
 }

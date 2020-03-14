@@ -69,6 +69,7 @@ const listApi = {
 
 const contactApi = {
   getContacts: () => axios.get(`/contacts`),
+  saveContact: contact => axios.post(`/contacts`, { ...contact }),
 };
 
 api.init();

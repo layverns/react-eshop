@@ -18,6 +18,24 @@
   }
   .body {
     padding: 30px 0 30px 30px;
+    .error {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .error__icon {
+        background-image: url('~@/assets/home/icon_normal.png');
+        background-position: 0px -1055px;
+        width: 17px;
+        height: 18px;
+      }
+
+      .error__text {
+        margin-left: px2rem(4);
+        font-size: 12px;
+        color: #d4282d;
+      }
+    }
 
     .show {
       display: flex;
@@ -54,6 +72,7 @@
           line-height: px2rem(26);
           font-size: px2rem(12);
           text-align: center;
+          cursor: pointer;
         }
         .show__title {
           color: #999;
@@ -80,6 +99,7 @@
           color: #69c;
           font-size: px2rem(12);
           line-height: px2rem(12);
+          cursor: pointer;
         }
         .show__new {
           margin-top: px2rem(16);
@@ -92,6 +112,7 @@
           color: $fontBlack;
           border: 1px solid #ccc;
           background-color: #f5f5f5;
+          cursor: pointer;
         }
       }
     }

@@ -1,9 +1,8 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import _ from 'lodash';
-import moment from 'moment';
 
-import { FETCH_CONTACTS } from './constants';
-import { setContacts } from './actions';
+import { FETCH_CONTACTS, SAVE_CONTACT } from './constants';
+import { setContacts, setError } from './actions';
 import { contactApi } from '@/api';
 
 export function* fetchContacts() {
@@ -14,10 +13,29 @@ export function* fetchContacts() {
 
     yield put(setContacts(contacts));
   } catch (err) {
-    console.error('加载购物车错误: ', err.response || err);
+    let message = _.get(err, 'response.data.message', null) || _.get(err, 'message', null);
+    yield put(setError(message));
+    console.error('获取地址信息错误: ', err.response || err);
+  }
+}
+
+export function* saveContact(action) {
+  try {
+    console.log('saveContact');
+    yield call(contactApi.saveContact, action.payload.contact);
+
+    const res = yield call(contactApi.getContacts);
+    let contacts = _.get(res, 'data.contacts', []);
+
+    yield put(setContacts(contacts));
+  } catch (err) {
+    let message = _.get(err, 'response.data.message', null) || _.get(err, 'message', null);
+    yield put(setError(message));
+    console.error('保存地址信息错误: ', err.response || err);
   }
 }
 
 export default function* saga() {
   yield takeLatest(FETCH_CONTACTS, fetchContacts);
+  yield takeLatest(SAVE_CONTACT, saveContact);
 }
