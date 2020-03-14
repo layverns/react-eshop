@@ -1,0 +1,11 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.input {
+  font-size: px2rem(14);
+  line-height: px2rem(28);
+  border: 1px solid #ddd;
+  padding-left: px2rem(9);
+  color: $fontBlack;
+  border: 1px solid #ddd;
+}

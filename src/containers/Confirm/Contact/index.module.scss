@@ -1,0 +1,197 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.contact {
+  border: 1px solid #e8e8e8;
+  .header {
+    padding-left: px2rem(21);
+    background-color: #f5f5f5;
+    height: px2rem(42);
+    box-sizing: border-box;
+    border-bottom: 1px solid #e8e8e8;
+
+    .title {
+      font-size: px2rem(14);
+      line-height: px2rem(42);
+      color: #999;
+    }
+  }
+  .body {
+    padding: 30px 0 30px 30px;
+
+    .show {
+      display: flex;
+      align-items: center;
+
+      .show__left {
+        display: flex;
+        flex-direction: column;
+        margin-right: auto;
+
+        .show__row {
+          margin-top: px2rem(10);
+          display: flex;
+          align-items: center;
+
+          &:first-child {
+            margin: 0;
+          }
+        }
+
+        .show__icon {
+          background-image: url('~@/assets/home/icon_normal.png');
+          background-position: 0 -60px;
+          height: 23px;
+          width: 23px;
+        }
+        .show__edit {
+          color: #b4a078;
+          border: 1px solid #b4a078;
+          background-color: #f5f3ef;
+          width: px2rem(60);
+          height: px2rem(28);
+          margin-left: px2rem(20);
+          line-height: px2rem(26);
+          font-size: px2rem(12);
+          text-align: center;
+        }
+        .show__title {
+          color: #999;
+          width: px2rem(70);
+          text-align: center;
+          font-size: px2rem(14);
+          line-height: px2rem(24);
+        }
+        .show__text {
+          color: $fontBlack;
+          font-size: px2rem(14);
+          line-height: px2rem(24);
+        }
+      }
+      .show__right {
+        padding: 0 px2rem(80);
+        border-left: 1px solid #e8e8e8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-self: center;
+
+        .show__change {
+          color: #69c;
+          font-size: px2rem(12);
+          line-height: px2rem(12);
+        }
+        .show__new {
+          margin-top: px2rem(16);
+          border-radius: px2rem(2);
+          width: px2rem(96);
+          height: px2rem(28);
+          line-height: px2rem(26);
+          font-size: px2rem(12);
+          text-align: center;
+          color: $fontBlack;
+          border: 1px solid #ccc;
+          background-color: #f5f5f5;
+        }
+      }
+    }
+
+    .edit {
+      display: flex;
+      align-items: center;
+      .edit__left {
+        .edit__row {
+          display: flex;
+          margin-top: px2rem(20);
+
+          .edit__title {
+            color: $fontBlack;
+            font-size: px2rem(14);
+            line-height: px2rem(14);
+            margin-top: px2rem(6);
+            margin-right: px2rem(20);
+            width: px2rem(60);
+            text-align: right;
+          }
+
+          :global(.area-select-wrap) {
+            color: $fontBlack !important;
+            font-size: px2rem(14) !important;
+            line-height: px2rem(14) !important;
+          }
+
+          :global(.area-select.medium) {
+            width: px2rem(170) !important;
+            height: px2rem(28) !important;
+            font-size: px2rem(14) !important;
+            line-height: px2rem(14) !important;
+
+            &:first-child {
+              margin-left: 0;
+            }
+
+            :global(.area-selected-trigger) {
+              padding: px2rem(6) px2rem(20) px2rem(6) px2rem(12) !important;
+            }
+          }
+
+          .edit__address {
+            width: px2rem(530);
+            height: px2rem(70);
+          }
+
+          .edit__person {
+            display: flex;
+          }
+          .edit__phone {
+            display: flex;
+            margin-left: px2rem(43);
+          }
+          .edit__input {
+            width: px2rem(200);
+            height: px2rem(34);
+          }
+        }
+      }
+      .edit__right {
+        display: flex;
+        flex-direction: column;
+        margin-left: px2rem(40);
+        padding: px2rem(57) 0 px2rem(43) px2rem(60);
+        border-left: 1px dashed #dedede;
+
+        .edit__default {
+          display: flex;
+          align-items: center;
+
+          .edit__defaultTitle {
+            margin-left: px2rem(14);
+            font-size: px2rem(12);
+            line-height: px2rem(12);
+            color: #333;
+          }
+        }
+        .edit__btns {
+          margin-top: px2rem(24);
+          display: flex;
+          align-items: center;
+
+          .edit__save {
+            width: px2rem(144);
+            height: px2rem(42);
+            line-height: px2rem(40);
+            font-size: px2rem(16);
+          }
+
+          .edit__cancel {
+            margin-left: px2rem(10);
+            width: px2rem(144);
+            height: px2rem(42);
+            line-height: px2rem(40);
+            font-size: px2rem(16);
+          }
+        }
+      }
+    }
+  }
+}

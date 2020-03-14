@@ -2,14 +2,8 @@ import { createSelector } from 'reselect';
 
 import { initialState } from './reducer';
 
-const selectList = state => state.list || initialState;
+const selectCart = state => state.cart || initialState;
 
-const makeSelectCarousels = () => createSelector(selectList, list => list.carousels);
+const makeSelectCart = () => createSelector(selectCart, cart => cart.cart);
 
-const makeSelectCategory = () => createSelector(selectList, list => list.category);
-
-const makeSelectThirdCategories = () => createSelector(selectList, list => list.thirdCategories);
-
-const makeSelectProducts = () => createSelector(selectList, list => list.products);
-
-export { makeSelectCarousels, makeSelectCategory, makeSelectThirdCategories, makeSelectProducts };
+export { makeSelectCart };

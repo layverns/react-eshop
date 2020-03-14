@@ -11,7 +11,7 @@ import { fetchProduct, setIndexs, setSpecs } from './actions';
 import { makeSelectProduct, makeSelectIndexs, makeSelectSpecs } from './selectors';
 import { makeSelectUser } from '@/containers/Login/selectors';
 import { showLogin } from '@/containers/Login/actions';
-import { addToCart } from '@/containers/App/actions';
+import { addToCart } from '@/containers/Cart/actions';
 import { getElmOfArray } from '@/utils/libs';
 
 import Loading from '@/components/Loading';

@@ -1,0 +1,12 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.textarea {
+  font-size: px2rem(14);
+  line-height: px2rem(14);
+  color: $fontBlack;
+  padding: 9px;
+  border: 1px solid #ddd;
+  border-radius: px2rem(2);
+  resize: none;
+}

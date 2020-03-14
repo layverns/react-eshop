@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import {} from './selectors';
 
-import { makeSelectCart } from '@/containers/App/selectors';
+import { makeSelectCart } from './selectors';
 import { delFromCart, changeCartQuantity, checkCart } from '@/containers/App/actions';
 import {} from './actions';
 

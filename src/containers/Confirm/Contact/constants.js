@@ -1,0 +1,5 @@
+const PREFIX = 'CONTACT/';
+
+export const FETCH_CONTACTS = PREFIX + 'FETCH_CONTACTS';
+
+export const SET_CONTACTS = PREFIX + 'SET_CONTACTS';

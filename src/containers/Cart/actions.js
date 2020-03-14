@@ -1,55 +1,48 @@
-import { FETCH_CAROUSELS, SET_CAROUSELS, FETCH_PRODUCTS, SET_CATEGORY, SET_THIRD_CATEGORIES, SET_PRODUCTS } from './constants';
+import { ADD_TO_CART, DEL_FROM_CART, CHECK_CART, CHANGE_CART_QUANTITY, TRANSFER_TO_USER_CART, LOAD_CART, SET_CART } from './constants';
 
-export function fetchCarousels(categoryId) {
+export function addToCart(product) {
   return {
-    type: FETCH_CAROUSELS,
-    payload: {
-      categoryId,
-    },
+    type: ADD_TO_CART,
+    payload: { product },
   };
 }
 
-export function setCarousels(carousels) {
+export function changeCartQuantity(product) {
   return {
-    type: SET_CAROUSELS,
-    payload: {
-      carousels,
-    },
+    type: CHANGE_CART_QUANTITY,
+    payload: { product },
   };
 }
 
-export function fetchProducts(categoryId) {
+export function checkCart(product) {
   return {
-    type: FETCH_PRODUCTS,
-    payload: {
-      categoryId,
-    },
+    type: CHECK_CART,
+    payload: { product },
   };
 }
 
-export function setCategory(category) {
+export function delFromCart(product) {
   return {
-    type: SET_CATEGORY,
-    payload: {
-      category,
-    },
+    type: DEL_FROM_CART,
+    payload: { product },
   };
 }
 
-export function setThirdCategories(thirdCategories) {
+export function transferToUserCart() {
   return {
-    type: SET_THIRD_CATEGORIES,
-    payload: {
-      thirdCategories,
-    },
+    type: TRANSFER_TO_USER_CART,
   };
 }
 
-export function setProducts(products) {
+export function loadCart() {
   return {
-    type: SET_PRODUCTS,
-    payload: {
-      products,
-    },
+    type: LOAD_CART,
+  };
+}
+
+export function setCart(cart) {
+  return {
+    type: SET_CART,
+    payload: { cart },
   };
 }

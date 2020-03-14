@@ -1,0 +1,18 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.button {
+  color: #fff;
+  border: 1px solid #b4a078;
+  background-color: #b4a078;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.button_light {
+  color: #b4a078;
+  border: 1px solid #b4a078;
+  background-color: #f5f3ef;
+  text-align: center;
+  border-radius: 2px;
+}

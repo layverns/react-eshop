@@ -7,9 +7,11 @@ import navSaga from '@/containers/Nav/saga';
 import eHeaderSaga from '@/containers/EHeader/saga';
 import productSaga from '@/containers/Product/saga';
 import listSaga from '@/containers/List/saga';
+import cartSaga from '@/containers/Cart/saga';
+import contactSaga from '@/containers/Confirm/Contact/saga';
 
 export default function* rootSaga() {
-  const sagas = [appSaga, authSaga, homeSaga, navSaga, eHeaderSaga, productSaga, listSaga];
+  const sagas = [appSaga, authSaga, homeSaga, navSaga, eHeaderSaga, productSaga, listSaga, cartSaga, contactSaga];
 
   yield all(
     sagas.map(saga =>

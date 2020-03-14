@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import $style from './index.module.scss';
 
-import { loadCart } from './actions';
+import { loadCart } from '@/containers/Cart/actions';
 import { validateToken } from '@/containers/Login/actions';
 
 import Home from '@/containers/Home';
@@ -14,6 +14,7 @@ import Notice from '@/containers/Notice';
 import Product from '@/containers/Product';
 import List from '@/containers/List';
 import Cart from '@/containers/Cart';
+import Confirm from '@/containers/Confirm';
 
 class App extends React.Component {
   componentWillMount() {
@@ -30,6 +31,7 @@ class App extends React.Component {
             <Route path="/products/:id" component={Product} />
             <Route path="/lists/:categoryId" component={List} />
             <Route path="/cart/" component={Cart} />
+            <Route path="/confirm/" component={Confirm} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -1,17 +1,14 @@
 import produce from 'immer';
 
-import { SET_CART } from './constants';
+import {} from './constants';
 
 export const initialState = {
-  cart: [],
+  contacts: [],
 };
 
 const reducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case SET_CART:
-        draft.cart = action.payload.cart;
-        break;
     }
   });
 

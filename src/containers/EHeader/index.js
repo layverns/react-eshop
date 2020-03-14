@@ -10,7 +10,7 @@ import { Dropdown } from 'antd';
 import { fetchCategories, fetchHotWords } from './actions';
 import { delFromCart } from '@/containers/App/actions';
 import { makeSelectHotWords, makeSelectCategories } from './selectors';
-import { makeSelectCart } from '@/containers/App/selectors';
+import { makeSelectCart } from '@/containers/Cart/selectors';
 import CategoryBar from '@/containers/EHeader/CategoryBar';
 import CartItem from './CartItem';
 
