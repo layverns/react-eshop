@@ -58,7 +58,7 @@ class Home extends React.Component {
         <Recommend recommends={recommendProducts} bestSells={bestSellProducts} />
         <FlashSale timeProducts={timeProducts} />
         <Welfare welfareProducts={welfareProducts} presentProducts={presentProducts} />
-        {/* {_.isEmpty(categoryList) ? null : categoryList.map(cs => <Category carousel={cs} />)} */}
+        {_.isEmpty(categoryList) ? null : categoryList.map(cs => <Category carousel={cs} />)}
         <Footer />
       </div>
     );

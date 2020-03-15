@@ -6,8 +6,7 @@ import _ from 'lodash';
 
 import $style from './index.module.scss';
 
-import { loadCart } from '@/containers/Cart/actions';
-import { validateToken } from '@/containers/Login/actions';
+import { loadApp } from './actions';
 
 import Home from '@/containers/Home';
 import Notice from '@/containers/Notice';
@@ -42,8 +41,7 @@ const mapStateToProps = createStructuredSelector({});
 
 const mapDispatchToProps = dispatch => ({
   onLoad: () => {
-    dispatch(validateToken());
-    dispatch(loadCart());
+    dispatch(loadApp());
   },
 });
 

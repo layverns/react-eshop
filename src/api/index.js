@@ -56,11 +56,13 @@ const productApi = {
 };
 
 const cartApi = {
-  addToCart: product => axios.post(`/carts`, { product }),
-  delFromCart: product => axios.delete(`/carts`, { product }),
-  changeCartQuantity: product => axios.put(`/carts`, { product }),
-  checkCart: product => axios.put(`/cart/check`, { product }),
+  addToCart: product => axios.post(`/carts`, { ...product }),
+  delFromCart: product => axios.delete(`/carts`, { ...product }),
+  changeCartQuantity: product => axios.put(`/carts`, { ...product }),
+  checkCart: product => axios.put(`/cart/check`, { ...product }),
   getCarts: () => axios.get(`/carts`),
+  checkAll: () => axios.put(`/cart/check_all`),
+  unCheckAll: () => axios.put(`/cart/uncheck_all`),
 };
 
 const listApi = {

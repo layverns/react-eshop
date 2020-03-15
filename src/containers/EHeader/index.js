@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom';
 import { Dropdown } from 'antd';
 
 import { fetchCategories, fetchHotWords } from './actions';
-import { delFromCart } from '@/containers/App/actions';
+import { delFromCart } from '@/containers/Cart/actions';
 import { makeSelectHotWords, makeSelectCategories } from './selectors';
-import { makeSelectCart } from '@/containers/Cart/selectors';
+import { makeSelectCarts } from '@/containers/Cart/selectors';
 import CategoryBar from '@/containers/EHeader/CategoryBar';
 import CartItem from './CartItem';
 
@@ -74,7 +74,7 @@ class EHeader extends React.Component {
 
   render() {
     const { curHotWordIndex } = this.state;
-    const { hotWords, categories, cart } = this.props;
+    const { hotWords, categories, carts } = this.props;
 
     let hotWordsNode = null;
     let placeholder = '搜索';
@@ -94,15 +94,15 @@ class EHeader extends React.Component {
 
     let cartQuantity = 0;
     let cartSum = 0;
-    if (!_.isEmpty(cart)) {
-      cartQuantity = cart.reduce((total, c) => total + c.quantity, 0);
-      cartSum = cart.reduce((total, c) => total + c.price * c.quantity, 0);
+    if (!_.isEmpty(carts)) {
+      cartQuantity = carts.reduce((total, c) => total + c.quantity, 0);
+      cartSum = carts.reduce((total, c) => total + c.price * c.quantity, 0);
     }
 
     let cartOverlay = (
       <div>
         <div className={$style.cart__content}>
-          {cart.map(p => {
+          {carts.map(p => {
             let id = p.id + ' ' + p.specs.join(' ');
             return <CartItem className={$style.cart__item} key={id} product={p} onClickDel={this.onClickDelCart} />;
           })}
@@ -128,11 +128,11 @@ class EHeader extends React.Component {
               <span className={$style.header__smlogoImg}></span>
             </Link>
             <Dropdown overlay={cartOverlay} overlayClassName={$style.cart__overlay} getPopupContainer={() => this.headerRef.current} trigger={['hover']}>
-              <a className={$style.cart}>
+              <Link className={$style.cart} to="/cart">
                 <span className={$style.cart__icon} />
                 <span className={$style.cart__title}>购物车</span>
                 <span className={$style.cart__num}>{cartQuantity}</span>
-              </a>
+              </Link>
             </Dropdown>
             <a className={$style.user}>
               <span className={$style.user__icon} />
@@ -170,7 +170,7 @@ class EHeader extends React.Component {
 const mapStateToProps = createStructuredSelector({
   hotWords: makeSelectHotWords(),
   categories: makeSelectCategories(),
-  cart: makeSelectCart(),
+  carts: makeSelectCarts(),
 });
 
 const mapDispatchToProps = dispatch => ({

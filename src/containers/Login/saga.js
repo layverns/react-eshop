@@ -4,9 +4,10 @@ import { push } from 'connected-react-router';
 
 import { authApi, api } from '@/api';
 import { tokenStorage } from '@/utils/localStorage';
-import { LOGIN, VALIDATE_TOKEN } from './constants';
+import { LOGIN, LOGOUT } from './constants';
 import { loginSuccess, loginFail, setUser } from './actions';
-import { transferToUserCart } from '@/containers/App/actions';
+
+import { transferToUserCart } from '@/containers/Cart/actions';
 
 export function* login(action) {
   console.log('login');
@@ -30,35 +31,20 @@ export function* login(action) {
   }
 }
 
-export function* validateToken() {
-  console.log('validateToken');
+export function* logout() {
+  console.log('logout');
   try {
-    let token = tokenStorage.load();
-    if (!token) {
-      return;
-    }
-    api.init();
-    api.setToken(token);
-    const res = yield call(authApi.user);
-
-    const user = _.get(res, 'data.user', null);
-    if (!user) throw new Error('登陆信息失效！');
-
-    token = user.token;
-
-    api.setToken(token);
-    tokenStorage.save(token);
-
-    yield put(setUser(user));
-  } catch (err) {
-    console.error('校验错误: ', err.response || err);
     api.setToken(null);
     tokenStorage.save(null);
+
     yield put(setUser(null));
+    yield put(push('/'));
+  } catch (err) {
+    console.error('登出错误: ', err.response || err);
   }
 }
 
 export default function* saga() {
   yield takeLatest(LOGIN, login);
-  yield takeLatest(VALIDATE_TOKEN, validateToken);
+  yield takeLatest(LOGOUT, logout);
 }

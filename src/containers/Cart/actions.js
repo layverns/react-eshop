@@ -1,4 +1,15 @@
-import { ADD_TO_CART, DEL_FROM_CART, CHECK_CART, CHANGE_CART_QUANTITY, TRANSFER_TO_USER_CART, LOAD_CART, SET_CART } from './constants';
+import {
+  ADD_TO_CART,
+  DEL_FROM_CART,
+  CHECK_CART,
+  CHANGE_CART_QUANTITY,
+  TRANSFER_TO_USER_CART,
+  LOAD_CARTS,
+  SET_CARTS,
+  SET_IS_CHECK_ALL,
+  CHECK_ALL,
+  UN_CHECK_ALL,
+} from './constants';
 
 export function addToCart(product) {
   return {
@@ -34,15 +45,34 @@ export function transferToUserCart() {
   };
 }
 
-export function loadCart() {
+export function loadCarts() {
   return {
-    type: LOAD_CART,
+    type: LOAD_CARTS,
   };
 }
 
-export function setCart(cart) {
+export function setCarts(carts) {
   return {
-    type: SET_CART,
-    payload: { cart },
+    type: SET_CARTS,
+    payload: { carts },
+  };
+}
+
+export function setIsCheckAll(isCheckAll) {
+  return {
+    type: SET_IS_CHECK_ALL,
+    payload: { isCheckAll },
+  };
+}
+
+export function checkAll() {
+  return {
+    type: CHECK_ALL,
+  };
+}
+
+export function unCheckAll() {
+  return {
+    type: UN_CHECK_ALL,
   };
 }

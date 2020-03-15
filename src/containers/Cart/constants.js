@@ -10,6 +10,12 @@ export const DEL_FROM_CART = PREFIX + 'DEL_FROM_CART';
 
 export const TRANSFER_TO_USER_CART = PREFIX + 'TRANSFER_TO_USER_CART';
 
-export const LOAD_CART = PREFIX + 'LOAD_CART';
+export const LOAD_CARTS = PREFIX + 'LOAD_CARTS';
 
-export const SET_CART = PREFIX + 'SET_CART';
+export const SET_CARTS = PREFIX + 'SET_CARTS';
+
+export const SET_IS_CHECK_ALL = PREFIX + 'SET_IS_CHECK_ALL';
+
+export const CHECK_ALL = PREFIX + 'CHECK_ALL';
+
+export const UN_CHECK_ALL = PREFIX + 'UN_CHECK_ALL';

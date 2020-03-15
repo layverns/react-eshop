@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom';
 
 import {} from './selectors';
 
-import { makeSelectCart } from './selectors';
-import { delFromCart, changeCartQuantity, checkCart } from '@/containers/App/actions';
-import {} from './actions';
+import { makeSelectCarts, makeSelectIsCheckAll } from './selectors';
+import { delFromCart, changeCartQuantity, checkCart } from '@/containers/Cart/actions';
+import { checkAll, unCheckAll } from './actions';
 
 import Loading from '@/components/Loading';
 import Footer from '@/components/Footer';
@@ -42,7 +42,9 @@ class Cart extends React.Component {
   };
 
   render() {
-    const { cart } = this.props;
+    const { carts, isCheckAll, onCheckAll, onUnCheckAll } = this.props;
+
+    const sumPrice = carts.reduce((total, c) => total + c.price * c.quantity, 0);
 
     return (
       <div className={$style.cart}>
@@ -50,7 +52,7 @@ class Cart extends React.Component {
         <EHeader />
         <div className={classnames('container', $style.content)}>
           <div className={$style.header}>
-            <Checkbox className={$style.header__checkbox} />
+            <Checkbox className={$style.header__checkbox} isChecked={isCheckAll} onCheck={() => (isCheckAll ? onUnCheckAll() : onCheckAll())} />
             <div className={$style.header__all}>全选</div>
             <div className={$style.header__info}>商品信息</div>
             <div className={$style.header__price}>单价</div>
@@ -59,7 +61,7 @@ class Cart extends React.Component {
             <div className={$style.header__option}>操作</div>
           </div>
           <div className={$style.cart}>
-            {cart.map(p => {
+            {carts.map(p => {
               let id = p.id + ' ' + p.specs.join(' ');
               return (
                 <CartItem
@@ -82,7 +84,7 @@ class Cart extends React.Component {
             <div className={$style.footer__right}>
               <div className={$style.footer__sum}>
                 <div>应付总额：</div>
-                <div className={$style.footer__price}>¥1100.00</div>
+                <div className={$style.footer__price}>¥{sumPrice}</div>
               </div>
               <div className={$style.footer__order}>下单</div>
             </div>
@@ -95,7 +97,8 @@ class Cart extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  cart: makeSelectCart(),
+  carts: makeSelectCarts(),
+  isCheckAll: makeSelectIsCheckAll(),
 });
 
 export function mapDispatchToProps(dispatch) {
@@ -103,6 +106,8 @@ export function mapDispatchToProps(dispatch) {
     onDelFromCart: product => dispatch(delFromCart(product)),
     onCheckCart: product => dispatch(checkCart(product)),
     onChangeCartQuantity: product => dispatch(changeCartQuantity(product)),
+    onCheckAll: () => dispatch(checkAll()),
+    onUnCheckAll: () => dispatch(unCheckAll()),
   };
 }
 

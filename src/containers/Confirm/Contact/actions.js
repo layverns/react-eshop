@@ -1,4 +1,4 @@
-import { FETCH_CONTACTS, SET_CONTACTS, SAVE_CONTACT, SET_ERROR } from './constants';
+import { FETCH_CONTACTS, SET_CONTACTS, SAVE_CONTACT, SET_ERROR, SET_CONTACT, SET_IS_EDIT } from './constants';
 
 export function fetchContacts() {
   return {
@@ -29,6 +29,24 @@ export function saveContact(contact) {
     type: SAVE_CONTACT,
     payload: {
       contact,
+    },
+  };
+}
+
+export function setContact(contact) {
+  return {
+    type: SET_CONTACT,
+    payload: {
+      contact,
+    },
+  };
+}
+
+export function setIsEdit(isEdit) {
+  return {
+    type: SET_IS_EDIT,
+    payload: {
+      isEdit,
     },
   };
 }

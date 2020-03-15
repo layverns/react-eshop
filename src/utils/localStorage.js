@@ -7,7 +7,7 @@ const tokenStorage = {
 };
 
 const cartStorage = {
-  save: cart => window.localStorage.setItem(KEY_CART, JSON.stringify(cart)),
+  save: carts => window.localStorage.setItem(KEY_CART, JSON.stringify(carts)),
   load: () => JSON.parse(window.localStorage.getItem(KEY_CART)),
 };
 

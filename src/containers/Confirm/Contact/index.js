@@ -8,16 +8,18 @@ import 'react-area-linkage/dist/index.css';
 import { pca, pcaa } from 'area-data';
 import { AreaSelect } from 'react-area-linkage';
 import validator from 'validator';
+import { Modal } from 'antd';
 
-import { makeSelectContacts, makeSelectError } from './selectors';
+import { makeSelectContacts, makeSelectError, makeSelectContact, makeSelectIsEdit } from './selectors';
 
-import { fetchContacts, saveContact, setError } from './actions';
+import { fetchContacts, saveContact, setError, setContact, setIsEdit } from './actions';
 
 import Loading from '@/components/Loading';
 import Input from '@/components/Input';
 import Textarea from '@/components/Textarea';
 import Button from '@/components/Button';
 import Checkbox from '@/components/Checkbox';
+import Selection from './Selection';
 
 import $style from './index.module.scss';
 
@@ -26,10 +28,11 @@ class Contact extends React.Component {
     super(props);
 
     this.state = {
-      isEdit: false,
-      contact: null,
-      contacts: null,
+      isShowChange: false,
+      contact: {},
     };
+
+    this.bodyRef = React.createRef();
   }
 
   componentDidMount() {
@@ -37,13 +40,11 @@ class Contact extends React.Component {
   }
 
   onClickNew = () => {
+    this.props.onSetIsEdit(true);
     this.setState({
-      isEdit: true,
       contact: {},
     });
   };
-
-  setDefaultAddress = () => {};
 
   onClickSave = () => {
     const { province, city, district, address, person, phone } = this.state.contact;
@@ -121,8 +122,9 @@ class Contact extends React.Component {
   };
 
   onClickEdit = () => {
+    this.props.onSetIsEdit(true);
     this.setState({
-      isEdit: true,
+      contact: this.props.contact,
     });
   };
 
@@ -133,61 +135,41 @@ class Contact extends React.Component {
       return onSetError('还没有可用的联系地址！');
     }
 
-    let index = _.findIndex(contacts, c => c.isDefault == 1);
+    this.props.onSetIsEdit(false);
+  };
+
+  onHideChange = () => {
+    this.setState({
+      isShowChange: false,
+    });
+  };
+
+  onClickChange = () => {
+    this.setState({
+      isShowChange: true,
+    });
+  };
+
+  onClickSelection = id => {
+    const { contacts } = this.props;
+    let index = contacts.findIndex(c => c.id == id);
     if (index >= 0) {
-      return this.setState({
-        contact: contacts[index],
-        isEdit: false,
-      });
-    } else {
-      if (!_.isEmpty(contacts[0])) {
-        return this.setState({
-          contact: contacts[0],
-          isEdit: false,
-        });
-      }
+      this.props.onSetContact(contacts[index]);
     }
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.contacts !== prevState.contacts) {
-      if (_.isEmpty(nextProps.contacts)) {
-        return {
-          isEdit: true,
-          contact: {},
-          contacts: nextProps.contacts,
-        };
-      } else {
-        let index = _.findIndex(nextProps.contacts, c => c.isDefault == 1);
-        if (index >= 0) {
-          return {
-            isEdit: false,
-            contact: nextProps.contacts[index],
-            contacts: nextProps.contacts,
-          };
-        } else {
-          if (!_.isEmpty(nextProps.contacts[0])) {
-            return {
-              isEdit: false,
-              contact: nextProps.contacts[0],
-              contacts: nextProps.contacts,
-            };
-          }
-          return {
-            isEdit: true,
-            contact: {},
-            contacts: nextProps.contacts,
-          };
-        }
-      }
-    }
-  }
-
   render() {
-    const { className, error } = this.props;
-    const { contact, isEdit } = this.state;
+    const { className, error, contacts, isEdit } = this.props;
+    const { isShowChange } = this.state;
 
-    if (_.isNull(contact) && isEdit == false) {
+    let contact = null;
+    if (isEdit) {
+      contact = this.state.contact;
+    } else {
+      contact = this.props.contact;
+    }
+
+    if (_.isEmpty(contact) && isEdit == false) {
       return <Loading />;
     }
 
@@ -199,7 +181,24 @@ class Contact extends React.Component {
     }
 
     return (
-      <div className={classnames(className, $style.contact)}>
+      <div className={classnames(className, $style.contact)} ref={this.bodyRef}>
+        <Modal className={$style.change} visible={isShowChange} footer={null} getContainer={() => this.bodyRef.current} onCancel={this.onHideChange}>
+          <div className={$style.change__header}>选择地址</div>
+          <div className={$style.change__body}>
+            {!_.isEmpty(contacts) &&
+              contacts.map(c => (
+                <Selection className={$style.change__selection} active={contact.id == c.id} key={c.id} contact={c} onClick={this.onClickSelection} />
+              ))}
+          </div>
+          <div className={$style.change__footer}>
+            <Button className={$style.change__confirm} type="gold" onClick={this.onHideChange}>
+              确定
+            </Button>
+            <Button className={$style.change__cancel} type="gray" onClick={this.onHideChange}>
+              取消
+            </Button>
+          </div>
+        </Modal>
         <div className={$style.header}>
           <div className={$style.title}>收货信息</div>
         </div>
@@ -252,6 +251,7 @@ class Contact extends React.Component {
               <div className={$style.show__left}>
                 <div className={$style.show__row}>
                   <div className={$style.show__icon}></div>
+                  {isDefault ? <div className={$style.show__default}>默认地址</div> : null}
                   <div className={$style.show__edit} onClick={this.onClickEdit}>
                     修改
                   </div>
@@ -270,7 +270,9 @@ class Contact extends React.Component {
                 </div>
               </div>
               <div className={$style.show__right}>
-                <div className={$style.show__change}>地址切换</div>
+                <div className={$style.show__change} onClick={this.onClickChange}>
+                  地址切换
+                </div>
                 <div className={$style.show__new} onClick={this.onClickNew}>
                   新建地址
                 </div>
@@ -286,6 +288,8 @@ class Contact extends React.Component {
 const mapStateToProps = createStructuredSelector({
   contacts: makeSelectContacts(),
   error: makeSelectError(),
+  contact: makeSelectContact(),
+  isEdit: makeSelectIsEdit(),
 });
 
 export function mapDispatchToProps(dispatch) {
@@ -293,6 +297,8 @@ export function mapDispatchToProps(dispatch) {
     onFetchContacts: () => dispatch(fetchContacts()),
     onSaveContact: contact => dispatch(saveContact(contact)),
     onSetError: error => dispatch(setError(error)),
+    onSetContact: contact => dispatch(setContact(contact)),
+    onSetIsEdit: isEdit => dispatch(setIsEdit(isEdit)),
   };
 }
 

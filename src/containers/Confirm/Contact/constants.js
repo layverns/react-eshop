@@ -7,3 +7,7 @@ export const SET_CONTACTS = PREFIX + 'SET_CONTACTS';
 export const SAVE_CONTACT = PREFIX + 'SAVE_CONTACT';
 
 export const SET_ERROR = PREFIX + 'SET_ERROR';
+
+export const SET_CONTACT = PREFIX + 'SET_CONTACT';
+
+export const SET_IS_EDIT = PREFIX + 'SET_IS_EDIT';

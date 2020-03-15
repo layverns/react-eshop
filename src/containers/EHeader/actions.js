@@ -1,4 +1,4 @@
-import { FETCH_HOT_WORDS, SET_HOT_WORDS, FETCH_CATEGORIES, SET_CATEGORIES, SET_CART } from './constants';
+import { FETCH_HOT_WORDS, SET_HOT_WORDS, FETCH_CATEGORIES, SET_CATEGORIES } from './constants';
 
 export function fetchCategories() {
   return {

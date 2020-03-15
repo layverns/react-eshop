@@ -12,7 +12,7 @@ import { makeSelectNotices } from './selectors';
 import { makeSelectUser } from '@/containers/Login/selectors';
 
 import { fetchNotices } from './actions';
-import { showLogin } from '@/containers/Login/actions';
+import { showLogin, logout } from '@/containers/Login/actions';
 
 import Login from '@/containers/Login';
 import $style from './index.module.scss';
@@ -45,7 +45,7 @@ class Nav extends React.Component {
   }
 
   render() {
-    const { notices, user, onShowLogin } = this.props;
+    const { notices, user, onShowLogin, onLogout } = this.props;
 
     let noticeNode = null;
     if (!_.isEmpty(notices)) {
@@ -76,9 +76,9 @@ class Nav extends React.Component {
           </Link>
         </div>
         <div className={$style.menu__item}>
-          <Link to="/user" className={$style.menu__link}>
+          <div to="/user" className={$style.menu__link} onClick={() => onLogout()}>
             退出登陆
-          </Link>
+          </div>
         </div>
       </div>
     );
@@ -194,9 +194,8 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     onShowLogin: () => dispatch(showLogin()),
-    onLoad: () => {
-      dispatch(fetchNotices());
-    },
+    onLoad: () => dispatch(fetchNotices()),
+    onLogout: () => dispatch(logout()),
   };
 }
 

@@ -1,0 +1,56 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.selection {
+  position: relative;
+  padding: px2rem(19) px2rem(24);
+  border: 1px solid #e8e8e8;
+  box-sizing: border-box;
+  width: px2rem(525);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  .row {
+    display: flex;
+    align-items: center;
+    font-size: px2rem(14);
+    line-height: px2rem(24);
+
+    .title {
+      color: #999;
+      width: px2rem(70);
+    }
+
+    .text {
+      color: $fontBlack;
+      width: px2rem(330);
+    }
+  }
+  .default {
+    position: absolute;
+    right: px2rem(29);
+    bottom: px2rem(19);
+    color: $mainGold;
+    font-size: px2rem(12);
+    line-height: px2rem(18);
+  }
+  .icon {
+    display: none;
+  }
+}
+
+.selection_active {
+  border: 2px solid $mainGold !important;
+  padding: px2rem(17) px2rem(22);
+  .icon {
+    display: block !important;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-image: url('~@/assets/home/icon_normal.png');
+    background-position: 0 -5712px;
+    height: 12px;
+    width: 12px;
+  }
+}

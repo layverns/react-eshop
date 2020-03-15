@@ -4,6 +4,8 @@ import { initialState } from './reducer';
 
 const selectCart = state => state.cart || initialState;
 
-const makeSelectCart = () => createSelector(selectCart, cart => cart.cart);
+const makeSelectCarts = () => createSelector(selectCart, cart => cart.carts);
 
-export { makeSelectCart };
+const makeSelectIsCheckAll = () => createSelector(selectCart, cart => cart.isCheckAll);
+
+export { makeSelectCarts, makeSelectIsCheckAll };

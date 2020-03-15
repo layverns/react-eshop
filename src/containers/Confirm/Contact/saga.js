@@ -2,7 +2,7 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import _ from 'lodash';
 
 import { FETCH_CONTACTS, SAVE_CONTACT } from './constants';
-import { setContacts, setError } from './actions';
+import { setContacts, setError, setContact, setIsEdit } from './actions';
 import { contactApi } from '@/api';
 
 export function* fetchContacts() {
@@ -12,6 +12,16 @@ export function* fetchContacts() {
     let contacts = _.get(res, 'data.contacts', []);
 
     yield put(setContacts(contacts));
+
+    if (_.isEmpty(contacts)) {
+      yield put(setContact({}));
+      yield put(setIsEdit(true));
+    } else {
+      let index = _.findIndex(contacts, c => c.isDefault == 1);
+      if (index < 0) index = 0;
+      yield put(setContact(contacts[index]));
+      yield put(setIsEdit(false));
+    }
   } catch (err) {
     let message = _.get(err, 'response.data.message', null) || _.get(err, 'message', null);
     yield put(setError(message));
@@ -28,6 +38,11 @@ export function* saveContact(action) {
     let contacts = _.get(res, 'data.contacts', []);
 
     yield put(setContacts(contacts));
+    yield put(setIsEdit(false));
+
+    let index = _.findIndex(contacts, c => c.isDefault == 1);
+    if (index < 0) index = 0;
+    yield put(setContact(contacts[index]));
   } catch (err) {
     let message = _.get(err, 'response.data.message', null) || _.get(err, 'message', null);
     yield put(setError(message));

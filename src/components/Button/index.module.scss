@@ -20,3 +20,10 @@
   background-color: #f5f3ef;
   @include btn;
 }
+
+.button_gray {
+  @include btn;
+  color: $fontBlack;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+}

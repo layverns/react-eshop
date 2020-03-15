@@ -1,4 +1,4 @@
-import { LOGIN, SHOW_LOGIN, HIDE_LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, SET_USER, VALIDATE_TOKEN } from './constants';
+import { LOGIN, SHOW_LOGIN, HIDE_LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, SET_USER, LOGOUT } from './constants';
 
 export function showLogin() {
   return {
@@ -49,8 +49,8 @@ export function setUser(user) {
   };
 }
 
-export function validateToken() {
+export function logout() {
   return {
-    type: VALIDATE_TOKEN,
+    type: LOGOUT,
   };
 }

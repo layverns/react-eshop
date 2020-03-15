@@ -22,7 +22,11 @@ function CartItem({ className, product, onDelete, onCheck, onChangeQuantity }) {
     const productSpec = productSpecs[index];
     const spec = productSpec.filter(ps => ps.id == s)[0];
     indexs[spec.order] = spec.index;
-    return <div className={$style.spec}>{spec.title}</div>;
+    return (
+      <div className={$style.spec} key={s}>
+        {spec.title}
+      </div>
+    );
   });
   let price = getElmOfArray(prices, indexs.slice(0, indexs.length));
 

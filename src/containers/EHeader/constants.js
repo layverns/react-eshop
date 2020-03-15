@@ -7,5 +7,3 @@ export const SET_HOT_WORDS = PREFIX + 'SET_HOT_WORDS';
 export const FETCH_CATEGORIES = PREFIX + 'FETCH_CATEGORIES';
 
 export const SET_CATEGORIES = PREFIX + 'SET_CATEGORIES';
-
-export const SET_CART = PREFIX + 'SET_CART';

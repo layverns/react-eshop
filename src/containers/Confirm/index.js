@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import {} from '@/containers/App/selectors';
 import {} from './actions';
-import { makeSelectCart } from '@/containers/Cart/selectors';
+import { makeSelectCarts } from '@/containers/Cart/selectors';
 
 import Loading from '@/components/Loading';
 import Footer from '@/components/Footer';
@@ -29,7 +29,7 @@ class Confirm extends React.Component {
   }
 
   render() {
-    const { cart } = this.props;
+    const { carts } = this.props;
 
     return (
       <div className={$style.confirm}>
@@ -47,7 +47,7 @@ class Confirm extends React.Component {
             </div>
             <div className={$style.body}>
               <div className={$style.cart}>
-                {cart.map(p => {
+                {carts.map(p => {
                   let id = p.id + ' ' + p.specs.join(' ');
                   return (
                     <CartItem
@@ -105,7 +105,7 @@ class Confirm extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  cart: makeSelectCart(),
+  carts: makeSelectCarts(),
 });
 
 export function mapDispatchToProps(dispatch) {
