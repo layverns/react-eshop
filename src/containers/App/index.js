@@ -22,18 +22,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div className={$style.app}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/notices/:id" component={Notice} />
-            <Route path="/products/:id" component={Product} />
-            <Route path="/lists/:categoryId" component={List} />
-            <Route path="/cart/" component={Cart} />
-            <Route path="/confirm/" component={Confirm} />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <div className={$style.app}>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/notices/:id" component={Notice} />
+          <Route path="/products/:id" component={Product} />
+          <Route path="/lists/:categoryId" component={List} />
+          <Route path="/cart/" component={Cart} />
+          <Route path="/confirm/" component={Confirm} />
+        </Switch>
+      </div>
     );
   }
 }

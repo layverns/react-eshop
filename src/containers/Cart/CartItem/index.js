@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Loading from '@/components/Loading';
 import Checkbox from '@/components/Checkbox';
 import Count from '@/components/Count';
-import { getElmOfArray } from '@/utils/libs';
+import { getInfoOfSpecs } from '@/utils/libs';
 import $style from './index.module.scss';
 
 function CartItem({ className, product, onDelete, onCheck, onChangeQuantity }) {
@@ -16,19 +16,18 @@ function CartItem({ className, product, onDelete, onCheck, onChangeQuantity }) {
 
   const { id, title, images, specs, productSpecs, quantity, productInfo, isChecked } = product;
   const { prices } = productInfo;
-  let specNodes = null;
-  let indexs = [];
-  specNodes = specs.map((s, index) => {
+
+  let specNodes = specs.map((s, index) => {
     const productSpec = productSpecs[index];
     const spec = productSpec.filter(ps => ps.id == s)[0];
-    indexs[spec.order] = spec.index;
     return (
       <div className={$style.spec} key={s}>
         {spec.title}
       </div>
     );
   });
-  let price = getElmOfArray(prices, indexs.slice(0, indexs.length));
+
+  let price = getInfoOfSpecs(specs, productSpecs, prices);
 
   let totalPrice = price * quantity;
 

@@ -1,0 +1,22 @@
+@import '@/styles/utils';
+@import '@/styles/colors';
+
+.alert {
+  padding: 0;
+  width: auto !important;
+  border-radius: 5px;
+
+  :global(.ant-modal-content) {
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 5px;
+
+    :global(.ant-modal-body) {
+      padding: 20px;
+      font-size: 20px;
+      text-align: center;
+      min-width: 320px;
+      color: white;
+    }
+  }
+}

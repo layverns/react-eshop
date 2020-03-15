@@ -74,7 +74,11 @@ const contactApi = {
   saveContact: contact => axios.post(`/contacts`, { ...contact }),
 };
 
+const orderApi = {
+  makeOrder: () => axios.post('/orders'),
+};
+
 api.init();
 api.setToken(tokenStorage.load());
 
-export { api, authApi, homeApi, noticeApi, searchApi, categoryApi, carouselApi, productApi, cartApi, listApi, contactApi };
+export { api, authApi, homeApi, noticeApi, searchApi, categoryApi, carouselApi, productApi, cartApi, listApi, contactApi, orderApi };

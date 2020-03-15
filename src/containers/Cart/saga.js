@@ -7,7 +7,7 @@ import { cartStorage } from '@/utils/localStorage';
 import { ADD_TO_CART, CHANGE_CART_QUANTITY, TRANSFER_TO_USER_CART, LOAD_CARTS, DEL_FROM_CART, CHECK_CART, CHECK_ALL, UN_CHECK_ALL } from './constants';
 import { makeSelectUser } from '@/containers/Login/selectors';
 import { makeSelectCarts } from './selectors';
-import { setCarts, setIsCheckAll } from './actions';
+import { setCarts, setIsCheckAll, setIsCheckOne } from './actions';
 
 export function* addToCart(action) {
   try {
@@ -38,6 +38,7 @@ export function* addToCart(action) {
       carts = _.get(res, 'data.carts', []);
     }
 
+    yield put(setIsCheckOne(isCheckOne(carts)));
     yield put(setIsCheckAll(isCheckAll(carts)));
     yield put(setCarts(carts));
   } catch (err) {
@@ -70,6 +71,7 @@ export function* changeCartQuantity(action) {
       carts = _.get(res, 'data.carts', []);
     }
 
+    yield put(setIsCheckOne(isCheckOne(carts)));
     yield put(setIsCheckAll(isCheckAll(carts)));
     yield put(setCarts(carts));
   } catch (err) {
@@ -97,6 +99,7 @@ export function* checkCart(action) {
       carts = _.get(res, 'data.carts', []);
     }
 
+    yield put(setIsCheckOne(isCheckOne(carts)));
     yield put(setIsCheckAll(isCheckAll(carts)));
     yield put(setCarts(carts));
   } catch (err) {
@@ -119,6 +122,7 @@ export function* checkAll(action) {
       carts = _.get(res, 'data.carts', []);
     }
 
+    yield put(setIsCheckOne(isCheckOne(carts)));
     yield put(setIsCheckAll(isCheckAll(carts)));
     yield put(setCarts(carts));
   } catch (err) {
@@ -141,6 +145,7 @@ export function* unCheckAll(action) {
       carts = _.get(res, 'data.carts', []);
     }
 
+    yield put(setIsCheckOne(isCheckOne(carts)));
     yield put(setIsCheckAll(isCheckAll(carts)));
     yield put(setCarts(carts));
   } catch (err) {
@@ -167,6 +172,7 @@ export function* delFromCart(action) {
       carts = _.get(res, 'data.carts', []);
     }
 
+    yield put(setIsCheckOne(isCheckOne(carts)));
     yield put(setIsCheckAll(isCheckAll(carts)));
     yield put(setCarts(carts));
   } catch (err) {
@@ -189,6 +195,8 @@ export function* transferToUserCart() {
       cartStorage.save([]);
       const res = yield call(cartApi.getCarts);
       carts = _.get(res, 'data.carts', []);
+
+      yield put(setIsCheckOne(isCheckOne(carts)));
       yield put(setIsCheckAll(isCheckAll(carts)));
       yield put(setCarts(carts));
     }
@@ -210,6 +218,7 @@ export function* loadCarts() {
       carts = _.get(res, 'data.carts', []);
     }
 
+    yield put(setIsCheckOne(isCheckOne(carts)));
     yield put(setIsCheckAll(isCheckAll(carts)));
     yield put(setCarts(carts));
   } catch (err) {
@@ -219,12 +228,24 @@ export function* loadCarts() {
 
 function isCheckAll(carts) {
   let isCheckAll = true;
-  carts.forEach(c => {
-    if (!c.isChecked) {
+  for (let i = 0; i < carts.length; i++) {
+    if (!carts[i].isChecked) {
       isCheckAll = false;
+      break;
     }
-  });
+  }
   return isCheckAll;
+}
+
+function isCheckOne(carts) {
+  let isCheckOne = false;
+  for (let i = 0; i < carts.length; i++) {
+    if (carts[i].isChecked) {
+      isCheckOne = true;
+      break;
+    }
+  }
+  return isCheckOne;
 }
 
 export default function* saga() {

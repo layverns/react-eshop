@@ -30,6 +30,10 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      &:hover {
+        color: $mainGold;
+      }
     }
 
     .specs {
@@ -75,6 +79,7 @@
     color: #666;
     font-size: 14px;
     line-height: px2rem(14);
+    cursor: pointer;
 
     &:hover {
       color: $mainGold;

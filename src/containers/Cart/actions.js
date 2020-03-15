@@ -7,6 +7,7 @@ import {
   LOAD_CARTS,
   SET_CARTS,
   SET_IS_CHECK_ALL,
+  SET_IS_CHECK_ONE,
   CHECK_ALL,
   UN_CHECK_ALL,
 } from './constants';
@@ -62,6 +63,13 @@ export function setIsCheckAll(isCheckAll) {
   return {
     type: SET_IS_CHECK_ALL,
     payload: { isCheckAll },
+  };
+}
+
+export function setIsCheckOne(isCheckOne) {
+  return {
+    type: SET_IS_CHECK_ONE,
+    payload: { isCheckOne },
   };
 }
 
