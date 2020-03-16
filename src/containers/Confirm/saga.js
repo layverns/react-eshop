@@ -13,7 +13,8 @@ export function* makeOrder() {
     yield call(orderApi.makeOrder);
     yield put(push('/'));
   } catch (err) {
-    Alert.info('error');
+    let message = _.get(err, 'response.data.message', null) || _.get(err, 'message', null);
+    Alert.info(message);
     console.error('订单错误: ', err.response || err);
   }
 }

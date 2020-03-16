@@ -5,7 +5,7 @@ import { Input } from 'antd';
 import { SearchOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import $style from './index.module.scss';
 
-function ToolBar() {
+function SideBar() {
   return (
     <div className={classnames($style.toolbar, 'py2')}>
       <div className={classnames($style.toolbar__content, 'container')}>
@@ -25,4 +25,4 @@ function ToolBar() {
   );
 }
 
-export default ToolBar;
+export default SideBar;

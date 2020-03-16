@@ -11,12 +11,12 @@ import { fetchCategories, fetchHotWords } from './actions';
 import { delFromCart } from '@/containers/Cart/actions';
 import { makeSelectHotWords, makeSelectCategories } from './selectors';
 import { makeSelectCarts } from '@/containers/Cart/selectors';
-import CategoryBar from '@/containers/EHeader/CategoryBar';
+import CategoryBar from '@/containers/Header/CategoryBar';
 import CartItem from './CartItem';
 
 import $style from './index.module.scss';
 
-class EHeader extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
 
@@ -183,4 +183,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

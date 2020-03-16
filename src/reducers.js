@@ -7,11 +7,12 @@ import appReducer from './containers/App/reducer';
 import authReducer from './containers/Login/reducer';
 import homeReducer from './containers/Home/reducer';
 import navReducer from './containers/Nav/reducer';
-import eHeaderReducer from './containers/EHeader/reducer';
+import headerReducer from './containers/Header/reducer';
 import productReducer from './containers/Product/reducer';
 import listReducer from './containers/List/reducer';
 import cartReducer from './containers/Cart/reducer';
 import contactReducer from './containers/Confirm/Contact/reducer';
+import orderReducer from './containers/Order/reducer';
 
 export default function createReducer() {
   const rootReducer = combineReducers({
@@ -20,11 +21,12 @@ export default function createReducer() {
     auth: authReducer,
     home: homeReducer,
     nav: navReducer,
-    eHeader: eHeaderReducer,
+    header: headerReducer,
     product: productReducer,
     list: listReducer,
     cart: cartReducer,
     contact: contactReducer,
+    order: orderReducer,
   });
 
   return rootReducer;

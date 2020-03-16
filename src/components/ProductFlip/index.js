@@ -31,7 +31,7 @@ const ProductFlip = forwardRef(({ className, product }, ref) => {
         </Link>
         <div className={$style.price}>
           <span>¥{product.price}</span>
-          {product.old_price > 0 && <span className={$style.price__old}>¥{product.old_price}</span>}
+          {product.oldPrice > 0 && <span className={$style.price__old}>¥{product.oldPrice}</span>}
         </div>
       </div>
     </div>

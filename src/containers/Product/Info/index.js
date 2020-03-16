@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import $style from './index.module.scss';
 
-function Info({ className, price, old_price, score }) {
+function Info({ className, price, oldPrice, score }) {
   return (
     <div className={classnames(className, $style.info)}>
       <div className={classnames($style.price, $style.info__row)}>

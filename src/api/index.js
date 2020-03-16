@@ -76,6 +76,8 @@ const contactApi = {
 
 const orderApi = {
   makeOrder: () => axios.post('/orders'),
+  getOrders: () => axios.get('/orders'),
+  payOrder: orderId => axios.put('/order/pay', { orderId }),
 };
 
 api.init();

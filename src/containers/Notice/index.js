@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import $style from './index.module.scss';
 
 import { noticeApi } from '@/api';
-import EHeader from '@/containers/EHeader';
+import Header from '@/containers/Header';
 import Nav from '@/containers/Nav';
 class Notice extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class Notice extends React.Component {
     return (
       <div className={$style.notice}>
         <Nav></Nav>
-        <EHeader></EHeader>
+        <Header></Header>
         <div className={classnames('container', $style.content)}>
           <Breadcrumb className={$style.breadcrumb} separator=">">
             <Breadcrumb.Item>

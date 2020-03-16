@@ -16,7 +16,7 @@ import { getElmOfArray } from '@/utils/libs';
 
 import Loading from '@/components/Loading';
 import Nav from '@/containers/Nav';
-import EHeader from '@/containers/EHeader';
+import Header from '@/containers/Header';
 import Spec from './Spec/index';
 import Like from './Like/index';
 import Count from '@/components/Count';
@@ -86,15 +86,15 @@ class Product extends React.Component {
     const { preview, quantity } = this.state;
 
     let price = 0;
-    let old_price = 0;
+    let oldPrice = 0;
     let score = 0;
 
     if (!_.isEmpty(product) && !_.isEmpty(product.productInfo) && !_.isEmpty(indexs)) {
       const { productInfo } = product;
-      const { prices, old_prices, scores } = productInfo;
+      const { prices, oldPrices, scores } = productInfo;
 
       price = getElmOfArray(prices, indexs.slice(0, indexs.length));
-      old_price = getElmOfArray(old_prices, indexs.slice(0, indexs.length));
+      oldPrice = getElmOfArray(oldPrices, indexs.slice(0, indexs.length));
       score = getElmOfArray(scores, indexs.slice(0, indexs.length));
     }
 
@@ -105,7 +105,7 @@ class Product extends React.Component {
     return (
       <div>
         <Nav />
-        <EHeader></EHeader>
+        <Header></Header>
         {product && (
           <div className={classnames('container', $style.content)}>
             <Breadcrumb className={$style.breadcrumb} separator=">">
@@ -134,7 +134,7 @@ class Product extends React.Component {
               <div className={$style.detail}>
                 <div className={$style.title}>{product.title}</div>
                 <div className={$style.subtitle}>{product.subtitle}</div>
-                <Info className={$style.info} price={price} old_price={old_price} score={score} />
+                <Info className={$style.info} price={price} oldPrice={oldPrice} score={score} />
                 {!_.isEmpty(product.productSpecs) &&
                   product.productSpecs.map(pss => (
                     <div className={$style.spec} key={pss[0].id}>

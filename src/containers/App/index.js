@@ -14,6 +14,7 @@ import Product from '@/containers/Product';
 import List from '@/containers/List';
 import Cart from '@/containers/Cart';
 import Confirm from '@/containers/Confirm';
+import Order from '@/containers/Order';
 
 class App extends React.Component {
   componentWillMount() {
@@ -30,6 +31,7 @@ class App extends React.Component {
           <Route path="/lists/:categoryId" component={List} />
           <Route path="/cart/" component={Cart} />
           <Route path="/confirm/" component={Confirm} />
+          <Route path="/order/" component={Order} />
         </Switch>
       </div>
     );

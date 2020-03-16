@@ -27,7 +27,7 @@ import {
 } from './selectors';
 
 import Nav from '@/containers/Nav';
-import EHeader from '@/containers/EHeader';
+import Header from '@/containers/Header';
 import Footer from '@/components/Footer';
 import Carousel from './Carousel';
 import NewProduct from './NewProduct';
@@ -52,7 +52,7 @@ class Home extends React.Component {
     return (
       <div>
         <Nav />
-        <EHeader />
+        <Header />
         <Carousel carousels={carousels} />
         <NewProduct newProducts={newProducts} />
         <Recommend recommends={recommendProducts} bestSells={bestSellProducts} />

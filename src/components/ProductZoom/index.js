@@ -30,7 +30,7 @@ const ProductZoom = ({ className, product, size = 'normal' }) => {
         </Link>
         <div className={size == 'normal' ? $style.normal__price : $style.large__price}>
           <span>¥{product.price}</span>
-          {product.old_price > 0 && <span className={size == 'normal' ? $style.normal__old : $style.large__old}>¥{product.old_price}</span>}
+          {product.oldPrice > 0 && <span className={size == 'normal' ? $style.normal__old : $style.large__old}>¥{product.oldPrice}</span>}
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ import Footer from '@/components/Footer';
 import Checkbox from '@/components/Checkbox';
 import Button from '@/components/Button';
 import Alert from '@/components/Alert';
-import EHeader from '@/containers/EHeader';
+import Header from '@/containers/Header';
 import Nav from '@/containers/Nav';
 import Contact from './Contact';
 import CartItem from './CartItem';
@@ -65,7 +65,7 @@ class Confirm extends React.Component {
     return (
       <div className={$style.confirm}>
         <Nav />
-        <EHeader />
+        <Header />
         <div className={classnames('container', $style.content)}>
           <Contact className={$style.contact} />
           {_.isEmpty(checkedCarts) ? (

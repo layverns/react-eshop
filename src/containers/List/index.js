@@ -14,7 +14,7 @@ import { fetchCarousels, fetchProducts } from './actions';
 import Carousel from '@/components/Carousel';
 import Loading from '@/components/Loading';
 import Footer from '@/components/Footer';
-import EHeader from '@/containers/EHeader';
+import Header from '@/containers/Header';
 import Nav from '@/containers/Nav';
 import ProductList from '@/components/ProductList';
 
@@ -113,7 +113,7 @@ class List extends React.Component {
     return (
       <div className={$style.list}>
         <Nav />
-        <EHeader />
+        <Header />
 
         <div className={classnames('container', $style.content)}>
           <Breadcrumb className={$style.breadcrumb} separator=">">

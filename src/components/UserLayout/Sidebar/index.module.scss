@@ -1,0 +1,46 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.sidebar {
+  width: px2rem(180);
+  border: 1px solid #eaeaea;
+  padding-bottom: 40px;
+
+  .category {
+    margin-top: 40px;
+
+    .category__title {
+      font-size: px2rem(16);
+      color: $fontBlack;
+      font-weight: 700;
+      padding-left: 43px;
+    }
+    .category__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+
+      .category__item {
+        color: $fontBlack;
+        font-size: 14px;
+        line-height: 18px;
+        padding-left: 41px;
+        margin-top: 16px;
+        border-left: 2px solid #fff;
+        border-right: 2px solid #fff;
+        cursor: pointer;
+
+        &:hover {
+          color: $mainGold;
+        }
+      }
+
+      .category__item_active {
+        color: $mainGold !important;
+        border-left: 2px solid $mainGold !important;
+      }
+    }
+  }
+}

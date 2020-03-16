@@ -13,7 +13,7 @@ import { checkAll, unCheckAll } from './actions';
 import Loading from '@/components/Loading';
 import Footer from '@/components/Footer';
 import Checkbox from '@/components/Checkbox';
-import EHeader from '@/containers/EHeader';
+import Header from '@/containers/Header';
 import Nav from '@/containers/Nav';
 import CartItem from './CartItem';
 import { getInfoOfSpecs } from '@/utils/libs';
@@ -56,7 +56,7 @@ class Cart extends React.Component {
     return (
       <div className={$style.cart}>
         <Nav />
-        <EHeader />
+        <Header />
         <div className={classnames('container', $style.content)}>
           <div className={$style.header}>
             <Checkbox className={$style.header__checkbox} isChecked={isCheckAll} onCheck={() => (isCheckAll ? onUnCheckAll() : onCheckAll())} />

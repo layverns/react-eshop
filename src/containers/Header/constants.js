@@ -1,4 +1,4 @@
-const PREFIX = 'EHEADER/';
+const PREFIX = 'HEADER/';
 
 export const FETCH_HOT_WORDS = PREFIX + 'FETCH_HOT_WORDS';
 

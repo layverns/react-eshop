@@ -1,0 +1,31 @@
+@import '@/styles/utils';
+@import '@/styles/colors';
+
+.layout {
+  width: 100%;
+
+  .content {
+    .breadcrumb {
+      font-size: px2rem(12) !important;
+      line-height: px2rem(12) !important;
+      color: $fontBlack !important;
+      padding: px2rem(20) 0 !important;
+
+      .breadcrumb__link {
+        &:hover {
+          text-decoration: underline;
+          color: $mainGold;
+        }
+      }
+    }
+
+    .body {
+      display: flex;
+
+      .sidebar {
+        margin-right: px2rem(20);
+        margin-bottom: px2rem(20);
+      }
+    }
+  }
+}
