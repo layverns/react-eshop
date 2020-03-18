@@ -14,7 +14,6 @@ export function* fetchCarousels(action) {
 
     const carousels = _.get(res, 'data.carousels', []);
 
-    console.log('setCarousels: ', carousels);
     yield put(setCarousels(carousels));
   } catch (err) {
     console.error('获取列表页轮播图错误: ', err.response || err);

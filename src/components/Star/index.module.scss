@@ -1,0 +1,21 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+@mixin star {
+  width: 18px;
+  height: 12px;
+  background-image: url('~@/assets/star.png');
+}
+
+.star {
+  display: flex;
+  align-items: center;
+  .star__empty {
+    @include star;
+    background-position: 0px 0px;
+  }
+  .star__active {
+    @include star;
+    background-position: 0px -15px;
+  }
+}

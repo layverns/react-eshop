@@ -7,20 +7,21 @@ import classnames from 'classnames';
 import { Breadcrumb, message } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { fetchProduct, setIndexs, setSpecs } from './actions';
-import { makeSelectProduct, makeSelectIndexs, makeSelectSpecs } from './selectors';
+import { fetchProduct, setSpecs, fetchComments } from './actions';
+import { makeSelectProduct, makeSelectComments, makeSelectCommentCount, makeSelectSpecs, makeSelectCommentAvgStars } from './selectors';
 import { makeSelectUser } from '@/containers/Login/selectors';
 import { showLogin } from '@/containers/Login/actions';
 import { addToCart } from '@/containers/Cart/actions';
-import { getElmOfArray } from '@/utils/libs';
+import { getInfoOfSpecs } from '@/utils/libs';
 
 import Loading from '@/components/Loading';
 import Nav from '@/containers/Nav';
 import Header from '@/containers/Header';
 import Spec from './Spec/index';
-import Like from './Like/index';
 import Count from '@/components/Count';
+import Comments from './Comments';
 import Info from './Info/index';
+import Detail from './Detail';
 
 import $style from './index.module.scss';
 
@@ -39,12 +40,12 @@ class Product extends React.Component {
     if (!id) {
       return;
     }
-    this.props.fetchProduct(id);
+    this.props.onFetchProduct(id);
+    this.props.onFetchComments(id);
   }
 
   onSelectSpec = (order, index, id, image) => {
-    let { indexs, specs } = this.props;
-    indexs[order] = index;
+    let { specs } = this.props;
     specs[order] = id;
 
     if (!_.isEmpty(image)) {
@@ -53,8 +54,7 @@ class Product extends React.Component {
       });
     }
 
-    this.props.setIndexs(indexs.slice(0, indexs.length));
-    this.props.setSpecs(specs.slice(0, specs.length));
+    this.props.onSetSpecs(specs.slice(0, specs.length));
   };
 
   onClickBuy = () => {
@@ -82,25 +82,28 @@ class Product extends React.Component {
   };
 
   render() {
-    const { product, indexs } = this.props;
+    const { product, specs, comments, commentCount, commentAvgStars } = this.props;
     const { preview, quantity } = this.state;
-
-    let price = 0;
-    let oldPrice = 0;
-    let score = 0;
-
-    if (!_.isEmpty(product) && !_.isEmpty(product.productInfo) && !_.isEmpty(indexs)) {
-      const { productInfo } = product;
-      const { prices, oldPrices, scores } = productInfo;
-
-      price = getElmOfArray(prices, indexs.slice(0, indexs.length));
-      oldPrice = getElmOfArray(oldPrices, indexs.slice(0, indexs.length));
-      score = getElmOfArray(scores, indexs.slice(0, indexs.length));
-    }
 
     if (_.isEmpty(product)) {
       return <Loading />;
     }
+
+    let price = 0;
+    let oldPrice = 0;
+    let score = 0;
+    if (!_.isEmpty(product) && !_.isEmpty(product.productInfo) && !_.isEmpty(specs)) {
+      const {
+        productInfo: { prices, oldPrices, scores },
+        productSpecs,
+      } = product;
+
+      price = getInfoOfSpecs(specs, productSpecs, prices);
+      oldPrice = getInfoOfSpecs(specs, productSpecs, oldPrices);
+      score = getInfoOfSpecs(specs, productSpecs, scores);
+    }
+
+    const { details } = product;
 
     return (
       <div>
@@ -144,7 +147,7 @@ class Product extends React.Component {
                           key={ps.id}
                           className={$style.spec__select}
                           title={ps.title}
-                          isSelected={indexs[ps.order] == ps.index}
+                          isSelected={specs.includes(ps.id)}
                           image={ps.image}
                           order={ps.order}
                           index={ps.index}
@@ -169,8 +172,19 @@ class Product extends React.Component {
                 </div>
               </div>
             </div>
-            <Like />
-            <div className={$style.body}></div>
+            <div className={$style.body}>
+              <div className={$style.relevant}>
+                <ul className={$style.tabs}>
+                  <li className={classnames($style.tab, $style.tab_active)}>详情</li>
+                  <li className={$style.tab}>评价</li>
+                  <li className={$style.tab}>常见问题</li>
+                </ul>
+                <div>
+                  {/* <Detail details={details} /> */}
+                  <Comments comments={comments} count={commentCount} avgStars={commentAvgStars} />
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
@@ -180,16 +194,18 @@ class Product extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   product: makeSelectProduct(),
-  indexs: makeSelectIndexs(),
   user: makeSelectUser(),
   specs: makeSelectSpecs(),
+  comments: makeSelectComments(),
+  commentCount: makeSelectCommentCount(),
+  commentAvgStars: makeSelectCommentAvgStars(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
-    fetchProduct: id => dispatch(fetchProduct(id)),
-    setIndexs: indexs => dispatch(setIndexs(indexs)),
-    setSpecs: specs => dispatch(setSpecs(specs)),
+    onFetchProduct: id => dispatch(fetchProduct(id)),
+    onFetchComments: id => dispatch(fetchComments(id)),
+    onSetSpecs: specs => dispatch(setSpecs(specs)),
     onShowLogin: () => dispatch(showLogin()),
     onAddToCart: product => dispatch(addToCart(product)),
   };

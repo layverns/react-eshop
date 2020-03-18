@@ -33,7 +33,7 @@ export function* addToCart(action) {
       cartStorage.save(carts);
     } else {
       const { id, specs, quantity } = product;
-      yield call(cartApi.addToCart, { id, specs, quantity });
+      yield call(cartApi.addToCart, { productId: id, specs, quantity });
       const res = yield call(cartApi.getCarts);
       carts = _.get(res, 'data.carts', []);
     }
@@ -66,7 +66,7 @@ export function* changeCartQuantity(action) {
       cartStorage.save(carts);
     } else {
       const { id, specs, quantity } = product;
-      yield call(cartApi.changeCartQuantity, { id, specs, quantity });
+      yield call(cartApi.changeCartQuantity, { productId: id, specs, quantity });
       const res = yield call(cartApi.getCarts);
       carts = _.get(res, 'data.carts', []);
     }
@@ -94,7 +94,7 @@ export function* checkCart(action) {
       cartStorage.save(carts);
     } else {
       const { id, specs } = product;
-      yield call(cartApi.checkCart, { id, specs });
+      yield call(cartApi.checkCart, { productId: id, specs });
       const res = yield call(cartApi.getCarts);
       carts = _.get(res, 'data.carts', []);
     }
@@ -190,7 +190,7 @@ export function* transferToUserCart() {
     } else {
       for (let i = 0; i < carts.length; i++) {
         const { id, specs, quantity } = carts[i];
-        yield call(cartApi.addToCart, { product: id, specs, quantity });
+        yield call(cartApi.addToCart, { productId: id, specs, quantity });
       }
       cartStorage.save([]);
       const res = yield call(cartApi.getCarts);

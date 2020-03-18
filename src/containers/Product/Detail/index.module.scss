@@ -1,0 +1,34 @@
+@import '@/styles/utils';
+@import '@/styles/colors';
+
+.detail {
+  .header {
+    display: flex;
+    flex-direction: column;
+
+    .header__row {
+      padding: px2rem(8) px2rem(30);
+      border-bottom: 1px dashed #e8e8e8;
+      display: flex;
+      align-items: center;
+      line-height: px2rem(24);
+      font-size: px2rem(14);
+      color: $fontBlack;
+
+      .header__col {
+        width: 50%;
+
+        display: flex;
+        align-items: center;
+      }
+
+      .header__title {
+        width: px2rem(105);
+      }
+
+      .header__text {
+        color: #999;
+      }
+    }
+  }
+}

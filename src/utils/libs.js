@@ -1,3 +1,4 @@
+import _ from 'lodash';
 /**
  * 获取多维数组的某个元素
  * @param {*} arr 多维数组
@@ -5,6 +6,10 @@
  * 备注：会修改indexs的值，调用时传入indexs的副本
  */
 export const getElmOfArray = (arr, indexs) => {
+  if (_.isEmpty(arr) || _.isEmpty(indexs)) {
+    return 0;
+  }
+
   if (indexs.length == 1) {
     return arr[indexs[0]];
   } else {
@@ -23,8 +28,7 @@ export const getElmOfArray = (arr, indexs) => {
 export const getInfoOfSpecs = (specs, productSpecs, datas) => {
   let indexs = [];
   specs.forEach((s, index) => {
-    const productSpec = productSpecs[index];
-    const spec = productSpec.filter(ps => ps.id == s)[0];
+    const spec = productSpecs[index].filter(ps => ps.id == s)[0];
     indexs[spec.order] = spec.index;
   });
   return getElmOfArray(datas, indexs);

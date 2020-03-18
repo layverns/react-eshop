@@ -12,11 +12,6 @@ const api = {
   },
 };
 
-const homeApi = {
-  fetchAllCategories: () => axios.get('/categories/all'),
-  fetchCarousels: () => axios.get('/home/carousels'),
-};
-
 const authApi = {
   user: () => axios.get('/user'),
   login: (email, password) => axios.post('/users/login', { email, password }),
@@ -51,6 +46,7 @@ const productApi = {
   getTimeProducts: () => axios.get('/time_products', { params: { limit: 4 } }),
   getWelfareProducts: () => axios.get('/welfare_products', { params: { limit: 4 } }),
   getPresentProducts: () => axios.get('/present_products', { params: { limit: 4 } }),
+  getComments: id => axios.get(`/products/${id}/comments`),
   search: ({ keyword, limit, offset, sort, order, thirdCategoryId }) =>
     axios.get('product/search', { params: { keyword, limit, offset, sort, order, thirdCategoryId } }),
 };
@@ -83,4 +79,4 @@ const orderApi = {
 api.init();
 api.setToken(tokenStorage.load());
 
-export { api, authApi, homeApi, noticeApi, searchApi, categoryApi, carouselApi, productApi, cartApi, listApi, contactApi, orderApi };
+export { api, authApi, noticeApi, searchApi, categoryApi, carouselApi, productApi, cartApi, listApi, contactApi, orderApi };

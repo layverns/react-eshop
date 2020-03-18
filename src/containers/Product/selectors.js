@@ -6,8 +6,12 @@ const selectProduct = state => state.product || initialState;
 
 const makeSelectProduct = () => createSelector(selectProduct, product => product.product);
 
-const makeSelectIndexs = () => createSelector(selectProduct, product => product.indexs);
+const makeSelectComments = () => createSelector(selectProduct, product => product.comments);
+
+const makeSelectCommentCount = () => createSelector(selectProduct, product => product.commentCount);
+
+const makeSelectCommentAvgStars = () => createSelector(selectProduct, product => product.commentAvgStars);
 
 const makeSelectSpecs = () => createSelector(selectProduct, product => product.specs);
 
-export { makeSelectProduct, makeSelectIndexs, makeSelectSpecs };
+export { makeSelectProduct, makeSelectSpecs, makeSelectComments, makeSelectCommentCount, makeSelectCommentAvgStars };

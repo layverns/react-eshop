@@ -1,0 +1,26 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+@mixin arrow {
+  width: 10px;
+  height: 8px;
+  background-image: url('~@/assets/home/icon_normal.png');
+}
+
+.arrow {
+  display: flex;
+  flex-direction: column;
+  height: px2rem(14);
+
+  .arrow__up {
+    @include arrow;
+    background-position: -1px -6470px;
+  }
+
+  .arrow__down {
+    @include arrow;
+    background-position: 0px -6470px;
+    transform: rotate(180deg);
+    transform-origin: 50% 100%;
+  }
+}

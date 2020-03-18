@@ -64,7 +64,7 @@ function* fetchRecommendProducts() {
 
     yield put(setRecommendProducts(recommendProducts));
   } catch (err) {
-    console.error('获取新产品错误: ', err.response || err);
+    console.error('获取推荐产品错误: ', err.response || err);
   }
 }
 
@@ -79,7 +79,7 @@ function* fetchBestSellProducts() {
 
     yield put(setBestSellProducts(bestSellProducts));
   } catch (err) {
-    console.error('获取新产品错误: ', err.response || err);
+    console.error('获取热销产品错误: ', err.response || err);
   }
 }
 

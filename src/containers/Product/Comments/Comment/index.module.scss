@@ -1,0 +1,64 @@
+@import '@/styles/utils';
+@import '@/styles/colors';
+
+.comment {
+  display: flex;
+  padding: px2rem(30) 0;
+  border-bottom: 1px dashed #e8e8e8;
+
+  .user {
+    width: px2rem(120);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .user__img {
+      width: px2rem(50);
+      height: px2rem(50);
+    }
+    .user__name {
+      font-size: px2rem(12);
+      color: $fontBlack;
+    }
+  }
+  .detail {
+    display: flex;
+    flex-direction: column;
+    width: px2rem(603);
+
+    .star {
+    }
+    .specs {
+      margin-top: px2rem(12);
+      color: #999;
+      font-size: px2rem(12);
+      line-height: px2rem(12);
+    }
+    .text {
+      margin-top: px2rem(12);
+      line-height: px2rem(20);
+      font-size: px2rem(14);
+      color: #333;
+    }
+    .images {
+      margin-top: px2rem(2);
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .image {
+        width: px2rem(140);
+        height: px2rem(140);
+        margin-right: px2rem(10);
+        margin-top: px2rem(10);
+        border: 1px solid #ddd;
+      }
+    }
+    .date {
+      margin-top: px2rem(12);
+      font-size: px2rem(12);
+      line-height: px2rem(12);
+      color: #999;
+    }
+  }
+}

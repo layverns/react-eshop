@@ -1,0 +1,76 @@
+@import '@/styles/utils';
+@import '@/styles/colors';
+
+.comments {
+  border: 1px solid #e8e8e8;
+  .header {
+    display: flex;
+    margin-top: px2rem(27);
+    height: px2rem(110);
+
+    .score {
+      border-right: 1px solid #eaeaea;
+      width: px2rem(126);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: px2rem(4);
+
+      .score__title {
+        font-size: px2rem(14);
+        line-height: px2rem(14);
+        color: #666;
+        text-align: center;
+      }
+      .score__percent {
+        margin-top: px2rem(16);
+        font-size: px2rem(36);
+        line-height: px2rem(36);
+        color: #e36844;
+        text-align: center;
+      }
+      .score__star {
+        margin-top: px2rem(8);
+        margin-bottom: px2rem(10);
+      }
+    }
+    .keyword {
+      .keyword__title {
+        margin: 0 px2rem(20);
+        padding: 6px 0;
+        font-size: px2rem(14);
+      }
+    }
+  }
+  .filter {
+    border-top: 1px dashed #dedede;
+    border-bottom: 1px solid #eaeaea;
+    padding: px2rem(20) 0;
+    margin: px2rem(10) px2rem(23) 0 px2rem(30);
+    font-size: px2rem(14);
+    line-height: px2rem(14);
+    display: flex;
+    align-items: center;
+    font-size: $fontBlack;
+
+    .filter__title {
+      color: #999;
+      margin-right: px2rem(28);
+    }
+    .filter__option {
+      margin-right: px2rem(30);
+      display: flex;
+      cursor: pointer;
+      &:hover {
+        color: #b4a078;
+      }
+    }
+    .filter__option_active {
+      color: #b4a078;
+    }
+    .filter__arrow {
+      margin-left: px2rem(6);
+    }
+  }
+}
