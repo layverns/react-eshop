@@ -184,6 +184,7 @@
           font-size: px2rem(14);
           line-height: px2rem(40);
           border-right: 1px solid #e8e8e8;
+          cursor: pointer;
         }
         .tab_active {
           border-top: 3px solid #b4a078;
@@ -200,6 +201,14 @@
             left: 0;
           }
         }
+      }
+
+      .comments {
+      }
+      .pagination {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: px2rem(30);
       }
     }
   }

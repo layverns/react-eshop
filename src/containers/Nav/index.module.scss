@@ -63,7 +63,9 @@
         margin: 0;
 
         .link__item {
+          position: relative;
           margin-right: px2rem(10);
+
           &::after {
             content: '';
             display: inline-block;
@@ -75,6 +77,12 @@
 
           &:last-child::after {
             display: none;
+          }
+
+          &:hover {
+            a {
+              color: white;
+            }
           }
 
           .link__appIcon {
@@ -89,40 +97,47 @@
           a {
             color: #ccc;
           }
+
+          :global(.ant-dropdown) {
+            top: 0 !important;
+            left: 0 !important;
+          }
+        }
+
+        .menu {
+          position: absolute;
+          top: 36px;
+          right: 0;
+          background-color: #fff;
+          border: 1px solid #ddd;
+          padding: 3px 0;
+          box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+
+          .menu__item {
+            display: block;
+            margin: 0 13px;
+            color: #999;
+            text-align: center;
+            line-height: 38px;
+            border-bottom: 1px solid #ddd;
+            white-space: nowrap;
+            font-size: 12px;
+            text-decoration: none;
+            cursor: pointer;
+
+            .menu__link {
+              color: #999;
+            }
+            &:last-child {
+              border: none;
+            }
+
+            &:hover .menu__link {
+              color: $mainGold;
+            }
+          }
         }
       }
-    }
-  }
-}
-
-.menu {
-  position: absolute;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 3px 0;
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
-
-  .menu__item {
-    display: block;
-    margin: 0 13px;
-    color: #999;
-    text-align: center;
-    line-height: 38px;
-    border-bottom: 1px solid #ddd;
-    white-space: nowrap;
-    font-size: 12px;
-    text-decoration: none;
-    cursor: pointer;
-
-    .menu__link {
-      color: #999;
-    }
-    &:last-child {
-      border: none;
-    }
-
-    &:hover .menu__link {
-      color: $mainGold;
     }
   }
 }

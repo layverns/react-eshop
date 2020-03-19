@@ -1,4 +1,4 @@
-import { FETCH_PRODUCT, SET_PRODUCT, SET_SPECS, FETCH_COMMENTS, SET_COMMENTS, SET_COMMENT_COUNT, SET_COMMENT_AVG_STARS } from './constants';
+import { FETCH_PRODUCT, SET_PRODUCT, SET_SPECS, FETCH_COMMENTS, SET_COMMENTS, SET_COMMENT_COUNT, SET_COMMENT_PAGE, SET_COMMENT_AVG_STARS } from './constants';
 
 export function fetchProduct(id) {
   return {
@@ -9,11 +9,12 @@ export function fetchProduct(id) {
   };
 }
 
-export function fetchComments(id) {
+export function fetchComments(id, page) {
   return {
     type: FETCH_COMMENTS,
     payload: {
       id,
+      page,
     },
   };
 }
@@ -32,6 +33,15 @@ export function setCommentCount(commentCount) {
     type: SET_COMMENT_COUNT,
     payload: {
       commentCount,
+    },
+  };
+}
+
+export function setCommentPage(commentPage) {
+  return {
+    type: SET_COMMENT_PAGE,
+    payload: {
+      commentPage,
     },
   };
 }

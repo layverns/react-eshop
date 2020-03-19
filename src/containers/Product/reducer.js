@@ -1,12 +1,13 @@
 import produce from 'immer';
 
-import { SET_PRODUCT, SET_COMMENTS, SET_COMMENT_COUNT, SET_COMMENT_AVG_STARS, SET_SPECS } from './constants';
+import { SET_PRODUCT, SET_COMMENTS, SET_COMMENT_COUNT, SET_COMMENT_AVG_STARS, SET_SPECS, SET_COMMENT_PAGE } from './constants';
 
 export const initialState = {
   product: null,
   specs: [],
   comments: [],
   commentCount: 0,
+  commentPage: 1,
   commentAvgStars: 0,
 };
 
@@ -21,6 +22,9 @@ const reducer = (state = initialState, action) =>
         break;
       case SET_COMMENT_COUNT:
         draft.commentCount = action.payload.commentCount;
+        break;
+      case SET_COMMENT_PAGE:
+        draft.commentPage = action.payload.commentPage;
         break;
       case SET_COMMENT_AVG_STARS:
         draft.commentAvgStars = action.payload.commentAvgStars;

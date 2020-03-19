@@ -1,26 +1,62 @@
 @import '@/styles/utils.scss';
 @import '@/styles/colors.scss';
 
-@mixin arrow {
-  width: 10px;
-  height: 8px;
-  background-image: url('~@/assets/home/icon_normal.png');
-}
-
-.arrow {
+.pagination {
   display: flex;
-  flex-direction: column;
-  height: px2rem(14);
 
-  .arrow__up {
-    @include arrow;
-    background-position: -1px -6470px;
-  }
+  .content {
+    font-size: px2rem(12);
+    display: flex;
+    border: 1px solid #e6e6e6;
 
-  .arrow__down {
-    @include arrow;
-    background-position: 0px -6470px;
-    transform: rotate(180deg);
-    transform-origin: 50% 100%;
+    .prev {
+      cursor: pointer;
+      border-right: 1px solid #e6e6e6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: px2rem(82);
+      height: px2rem(40);
+
+      .prev__arrow {
+        background-image: url('~@/assets/arrow.png');
+        background-position: 0 -959px;
+        height: 13px;
+        width: 6px;
+        margin-right: px2rem(4);
+      }
+    }
+
+    .page {
+      width: px2rem(32);
+      height: px2rem(40);
+      border-right: 1px solid #e6e6e6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .page_active {
+      background-color: #b4a078;
+      border-color: #b4a078;
+      color: white;
+    }
+
+    .next {
+      cursor: pointer;
+      width: px2rem(82);
+      height: px2rem(40);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .next__arrow {
+        background-image: url('~@/assets/arrow.png');
+        background-position: 0 -1005px;
+        height: 13px;
+        width: 6px;
+        margin-left: px2rem(4);
+      }
+    }
   }
 }

@@ -46,7 +46,7 @@ const productApi = {
   getTimeProducts: () => axios.get('/time_products', { params: { limit: 4 } }),
   getWelfareProducts: () => axios.get('/welfare_products', { params: { limit: 4 } }),
   getPresentProducts: () => axios.get('/present_products', { params: { limit: 4 } }),
-  getComments: id => axios.get(`/products/${id}/comments`),
+  getComments: (id, offset, limit) => axios.get(`/products/${id}/comments`, { params: { offset, limit } }),
   search: ({ keyword, limit, offset, sort, order, thirdCategoryId }) =>
     axios.get('product/search', { params: { keyword, limit, offset, sort, order, thirdCategoryId } }),
 };

@@ -8,7 +8,8 @@ import { Breadcrumb, message } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { fetchProduct, setSpecs, fetchComments } from './actions';
-import { makeSelectProduct, makeSelectComments, makeSelectCommentCount, makeSelectSpecs, makeSelectCommentAvgStars } from './selectors';
+import { COMMENTS_PER_PAGE } from './constants';
+import { makeSelectProduct, makeSelectComments, makeSelectCommentCount, makeSelectCommentPage, makeSelectSpecs, makeSelectCommentAvgStars } from './selectors';
 import { makeSelectUser } from '@/containers/Login/selectors';
 import { showLogin } from '@/containers/Login/actions';
 import { addToCart } from '@/containers/Cart/actions';
@@ -24,6 +25,7 @@ import Info from './Info/index';
 import Detail from './Detail';
 
 import $style from './index.module.scss';
+import Pagination from '@/components/Pagination';
 
 class Product extends React.Component {
   constructor(props) {
@@ -32,6 +34,7 @@ class Product extends React.Component {
     this.state = {
       preview: '',
       quantity: 1,
+      curTab: 0,
     };
   }
 
@@ -41,7 +44,7 @@ class Product extends React.Component {
       return;
     }
     this.props.onFetchProduct(id);
-    this.props.onFetchComments(id);
+    this.props.onFetchComments(id, 1);
   }
 
   onSelectSpec = (order, index, id, image) => {
@@ -81,9 +84,18 @@ class Product extends React.Component {
     });
   };
 
+  onChangeCommentPage = page => {
+    console.log('onChangeCommentPage');
+    let id = _.get(this.props, 'match.params.id', null);
+    if (!id) {
+      return;
+    }
+    this.props.onFetchComments(id, page);
+  };
+
   render() {
-    const { product, specs, comments, commentCount, commentAvgStars } = this.props;
-    const { preview, quantity } = this.state;
+    const { product, specs, comments, commentCount, commentPage, commentAvgStars } = this.props;
+    const { preview, quantity, curTab } = this.state;
 
     if (_.isEmpty(product)) {
       return <Loading />;
@@ -175,13 +187,27 @@ class Product extends React.Component {
             <div className={$style.body}>
               <div className={$style.relevant}>
                 <ul className={$style.tabs}>
-                  <li className={classnames($style.tab, $style.tab_active)}>详情</li>
-                  <li className={$style.tab}>评价</li>
-                  <li className={$style.tab}>常见问题</li>
+                  <li className={classnames($style.tab, curTab == 0 && $style.tab_active)} onClick={() => this.setState({ curTab: 0 })}>
+                    详情
+                  </li>
+                  <li className={classnames($style.tab, curTab == 1 && $style.tab_active)} onClick={() => this.setState({ curTab: 1 })}>
+                    评价
+                  </li>
+                  <li className={classnames($style.tab, curTab == 2 && $style.tab_active)} onClick={() => this.setState({ curTab: 2 })}>
+                    常见问题
+                  </li>
                 </ul>
                 <div>
-                  {/* <Detail details={details} /> */}
-                  <Comments comments={comments} count={commentCount} avgStars={commentAvgStars} />
+                  {curTab == 0 && <Detail details={details} />}
+                  {curTab == 1 && <Comments className={$style.comments} comments={comments} count={commentCount} avgStars={commentAvgStars} />}
+                  {curTab == 1 && (
+                    <Pagination
+                      className={$style.pagination}
+                      page={commentPage}
+                      pageCount={Math.ceil(commentCount / COMMENTS_PER_PAGE)}
+                      onChangePage={this.onChangeCommentPage}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -198,13 +224,14 @@ const mapStateToProps = createStructuredSelector({
   specs: makeSelectSpecs(),
   comments: makeSelectComments(),
   commentCount: makeSelectCommentCount(),
+  commentPage: makeSelectCommentPage(),
   commentAvgStars: makeSelectCommentAvgStars(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
     onFetchProduct: id => dispatch(fetchProduct(id)),
-    onFetchComments: id => dispatch(fetchComments(id)),
+    onFetchComments: (id, page) => dispatch(fetchComments(id, page)),
     onSetSpecs: specs => dispatch(setSpecs(specs)),
     onShowLogin: () => dispatch(showLogin()),
     onAddToCart: product => dispatch(addToCart(product)),

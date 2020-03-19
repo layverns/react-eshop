@@ -1,0 +1,32 @@
+@import '@/styles/utils.scss';
+@import '@/styles/colors.scss';
+
+.user {
+  .header {
+    background: url('~@/assets/user/background.png') no-repeat;
+    padding-top: px2rem(40);
+    border: 1px solid #eaeaea;
+    font-size: px2rem(14);
+    width: px2rem(890);
+    height: px2rem(250);
+
+    .header__left {
+      width: 378px;
+      margin-top: px2rem(10);
+      padding-left: px2rem(60);
+
+      .info {
+        display: flex;
+
+        .info__img {
+          width: px2rem(76);
+          height: px2rem(76);
+        }
+        .info__name {
+          color: $fontBlack;
+          font-size: px2rem(14);
+        }
+      }
+    }
+  }
+}

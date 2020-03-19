@@ -4,9 +4,6 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "antd": "^4.0.0",
     "area-data": "^5.0.6",
     "axios": "^0.19.2",
@@ -17,6 +14,7 @@
     "history": "^4.10.1",
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
+    "normalize.css": "^8.0.1",
     "react": "^16.12.0",
     "react-app-rewired": "^2.1.5",
     "react-area-linkage": "^3.0.0",
@@ -52,5 +50,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@testing-library/react": "^10.0.1"
+  }
 }

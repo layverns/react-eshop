@@ -7,9 +7,9 @@ function Star({ className, stars }) {
   let starNodes = [];
   for (let i = 0; i < 5; i++) {
     if (i < stars) {
-      starNodes.push(<div className={$style.star__active}></div>);
+      starNodes.push(<div className={$style.star__active} key={i}></div>);
     } else {
-      starNodes.push(<div className={$style.star__empty}></div>);
+      starNodes.push(<div className={$style.star__empty} key={i}></div>);
     }
   }
 

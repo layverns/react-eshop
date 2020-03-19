@@ -17,39 +17,49 @@ import { showLogin, logout } from '@/containers/Login/actions';
 import Login from '@/containers/Login';
 import $style from './index.module.scss';
 
-class Nav extends React.Component {
+export class Nav extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       curNoticeIndex: 0,
     };
-  }
 
-  componentWillMount() {
-    this.props.onLoad();
+    this.interval = null;
+    this.userMenuRef = React.createRef();
+    this.companyMenuRef = React.createRef();
+    this.serviceMenuRef = React.createRef();
   }
 
   componentDidMount() {
-    setTimeout(() => {
+    this.props.onLoad();
+
+    this.interval = setInterval(() => {
       this.setState((prevState, props) => {
-        let index = prevState.curNoticeIndex + 1;
-        if (index >= props.notices.length) {
-          index = 0;
+        if (!_.isEmpty(props.notices)) {
+          let index = prevState.curNoticeIndex + 1;
+          if (index >= props.notices.length) {
+            index = 0;
+          }
+          return {
+            curNoticeIndex: index,
+          };
         }
-        return {
-          curNoticeIndex: index,
-        };
       });
     }, 10000);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   render() {
     const { notices, user, onShowLogin, onLogout } = this.props;
+    const { curNoticeIndex } = this.state;
 
     let noticeNode = null;
     if (!_.isEmpty(notices)) {
-      let notice = notices[this.state.curNoticeIndex];
+      let notice = notices[curNoticeIndex];
       noticeNode = <Link to={'/notices/' + notice.id}>{notice.title}</Link>;
     }
 
@@ -113,6 +123,7 @@ class Nav extends React.Component {
         </div>
       </div>
     );
+
     return (
       <nav className={$style.nav}>
         <div className={classnames($style.content, 'container')}>
@@ -120,7 +131,7 @@ class Nav extends React.Component {
             <img className={$style.notice__img} src={require('@/assets/home/speaker.gif')} />
             <ul className={$style.notice__list}>
               <SwitchTransition>
-                <CSSTransition key={this.state.curNoticeIndex} timeout={500} classNames="Header_notice__text">
+                <CSSTransition key={curNoticeIndex} timeout={500} classNames="Header_notice__text">
                   <li className={$style.notice__item}>{noticeNode}</li>
                 </CSSTransition>
               </SwitchTransition>
@@ -129,47 +140,51 @@ class Nav extends React.Component {
 
           <div className={$style.link}>
             <ul className={$style.link__list}>
-              {user ? (
-                <Dropdown overlay={userMenu} placement="bottomRight">
-                  <li className={$style.link__item}>
-                    <Link to="/user">
-                      {user.email} <DownOutlined />
-                    </Link>
-                  </li>
-                </Dropdown>
-              ) : (
+              {_.isEmpty(user) ? (
                 <li className={$style.link__item}>
                   <a onClick={onShowLogin}>登录/注册</a>
                 </li>
+              ) : (
+                <li className={$style.link__item} ref={this.userMenuRef}>
+                  <Dropdown overlay={userMenu} placement="bottomRight" getPopupContainer={() => this.userMenuRef.current}>
+                    <Link to="/user">
+                      {user.email} <DownOutlined />
+                    </Link>
+                  </Dropdown>
+                </li>
               )}
-              {user && (
+              {!_.isEmpty(user) && (
                 <li className={$style.link__item}>
                   <a>消息</a>
                 </li>
               )}
-              <li className={$style.link__item}>
-                <a>我的订单</a>
-              </li>
+              {!_.isEmpty(user) && (
+                <li className={$style.link__item}>
+                  <Link to="/order">我的订单</Link>
+                </li>
+              )}
               <li className={$style.link__item}>
                 <a>会员</a>
               </li>
               <li className={$style.link__item}>
                 <a>甄选家</a>
               </li>
-              <Dropdown overlay={companyMenu} placement="bottomRight">
-                <li className={$style.link__item}>
+
+              <li className={$style.link__item} ref={this.companyMenuRef}>
+                <Dropdown overlay={companyMenu} placement="bottomRight" getPopupContainer={() => this.companyMenuRef.current}>
                   <a>
                     企业采购 <DownOutlined />
                   </a>
-                </li>
-              </Dropdown>
-              <Dropdown overlay={serviceMenu} placement="bottomRight">
-                <li className={$style.link__item}>
+                </Dropdown>
+              </li>
+
+              <li className={$style.link__item} ref={this.serviceMenuRef}>
+                <Dropdown overlay={serviceMenu} placement="bottomRight" getPopupContainer={() => this.serviceMenuRef.current}>
                   <a>
                     客户服务 <DownOutlined />
                   </a>
-                </li>
-              </Dropdown>
+                </Dropdown>
+              </li>
               <li className={$style.link__item}>
                 <a>
                   <span className={$style.link__appIcon}></span>

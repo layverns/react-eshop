@@ -15,6 +15,7 @@ import List from '@/containers/List';
 import Cart from '@/containers/Cart';
 import Confirm from '@/containers/Confirm';
 import Order from '@/containers/Order';
+import User from '@/containers/User';
 
 class App extends React.Component {
   componentWillMount() {
@@ -26,6 +27,7 @@ class App extends React.Component {
       <div className={$style.app}>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/user" component={User} />
           <Route path="/notices/:id" component={Notice} />
           <Route path="/products/:id" component={Product} />
           <Route path="/lists/:categoryId" component={List} />

@@ -5,6 +5,9 @@
   display: flex;
   padding: px2rem(30) 0;
   border-bottom: 1px dashed #e8e8e8;
+  &:last-child {
+    border: 0;
+  }
 
   .user {
     width: px2rem(120);
