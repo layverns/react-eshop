@@ -32,6 +32,9 @@
         border-right: 2px solid #fff;
         cursor: pointer;
 
+        a {
+          color: $fontBlack;
+        }
         &:hover {
           color: $mainGold;
         }

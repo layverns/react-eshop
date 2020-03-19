@@ -5,7 +5,7 @@ import { FETCH_NOTICES } from './constants';
 import { setNotices } from './actions';
 import { noticeApi } from '@/api';
 
-export function* fetchNotices() {
+export function* getNotices() {
   try {
     const res = yield call(noticeApi.getNotices);
     const notices = _.get(res, 'data.notices', []);
@@ -17,5 +17,5 @@ export function* fetchNotices() {
 }
 
 export default function* saga() {
-  yield takeLatest(FETCH_NOTICES, fetchNotices);
+  yield takeLatest(FETCH_NOTICES, getNotices);
 }

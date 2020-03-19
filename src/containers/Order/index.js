@@ -64,11 +64,6 @@ class Order extends React.Component {
 
     let selectedOrders = orderArray[tabIndex];
 
-    let orderNodes = null;
-    if (!_.isEmpty(selectedOrders)) {
-      orderNodes = selectedOrders.map(o => <OrderItem className={$style.item} key={o.id} order={o} onClickPay={this.onClickPay} />);
-    }
-
     let tabs = ['全部订单', '待付款', '待发货', '已发货', '待评价'];
     let tabNodes = tabs.map((t, index) => (
       <li className={classnames($style.tab, tabIndex == index ? $style.tab_active : '')}>
@@ -83,7 +78,16 @@ class Order extends React.Component {
       <UserLayout selected="dingdanguanli">
         <div className={$style.order}>
           <ul className={$style.tabs}>{tabNodes}</ul>
-          <div className={$style.content}>{orderNodes}</div>
+          <div className={$style.content}>
+            {_.isEmpty(selectedOrders) ? (
+              <div className={$style.empty}>
+                <div className={$style.empty__img} > </div>
+                <div className={$style.empty__title}>你已经很久没有下单了!</div>
+              </div>
+            ) : (
+              selectedOrders.map(o => <OrderItem className={$style.item} key={o.id} order={o} onClickPay={this.onClickPay} />)
+            )}
+          </div>
         </div>
       </UserLayout>
     );

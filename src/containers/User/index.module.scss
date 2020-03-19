@@ -21,8 +21,10 @@
         .info__img {
           width: px2rem(76);
           height: px2rem(76);
+          border-radius: 50%;
         }
         .info__name {
+          margin-left: px2rem(40);
           color: $fontBlack;
           font-size: px2rem(14);
         }

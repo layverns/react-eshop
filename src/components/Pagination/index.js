@@ -66,12 +66,12 @@ function Pagination({ className, page = 5, pageCount = 10, onChangePage }) {
   return (
     <div className={classnames(className, $style.pagination)}>
       <div className={$style.content}>
-        <div className={$style.prev}>
+        <div className={$style.prev} onClick={() => onChangePage(page - 1 > 1 ? page - 1 : 1)}>
           <div className={$style.prev__arrow}></div>
           上一页
         </div>
         {pageNodes}
-        <div className={$style.next}>
+        <div className={$style.next} onClick={() => onChangePage(page + 1 > pageCount ? pageCount : page + 1)}>
           下一页
           <div className={$style.next__arrow}></div>
         </div>

@@ -46,7 +46,32 @@
       }
     }
   }
-  .item {
-    margin-top: px2rem(20);
+  .content {
+    width: px2rem(890);
+
+    .empty {
+      margin-top: px2rem(140);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .empty__img {
+        background-image: url('~@/assets/background.png');
+        background-position: 0 -2040px;
+        height: 180px;
+        width: 180px;
+      }
+
+      .empty__title {
+        margin-top: px2rem(10);
+        font-size: px2rem(16);
+        color: #999;
+      }
+    }
+
+    .item {
+      margin-top: px2rem(20);
+    }
   }
 }

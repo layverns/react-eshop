@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import $style from './index.module.scss';
 
@@ -8,41 +9,57 @@ function Sidebar({ selected, className }) {
     {
       id: 'gerenzhongxin',
       title: '个人中心',
+      to: '/user',
     },
     {
       id: 'xiaoxintongzhi',
       title: '消息通知',
+      to: '/user',
     },
     {
       id: 'zhanghaoxinxi',
       title: '账号信息',
+      to: '/user',
     },
     {
       id: 'dizhiguanli',
       title: '地址管理',
+      to: '/user',
     },
     {
       id: 'zhanghaoanquan',
       title: '账号安全',
+      to: '/user',
     },
     {
       id: 'wodejifen',
       title: '我的积分',
+      to: '/user',
     },
   ];
-  let zhangHaoList = zhangHaos.map(z => <li className={classnames($style.category__item, selected == z.id ? $style.category__item_active : '')}>{z.title}</li>);
+  let zhangHaoList = zhangHaos.map(z => (
+    <li className={classnames($style.category__item, selected == z.id ? $style.category__item_active : '')}>
+      <Link to={z.to}>{z.title}</Link>
+    </li>
+  ));
 
   let jiaoYis = [
     {
       id: 'dingdanguanli',
       title: '订单管理',
+      to: '/order',
     },
     {
       id: 'youhuiquan',
       title: '优惠券',
+      to: '/order',
     },
   ];
-  let jiaoYiList = jiaoYis.map(z => <li className={classnames($style.category__item, selected == z.id ? $style.category__item_active : '')}>{z.title}</li>);
+  let jiaoYiList = jiaoYis.map(z => (
+    <li className={classnames($style.category__item, selected == z.id ? $style.category__item_active : '')}>
+      <Link to={z.to}>{z.title}</Link>
+    </li>
+  ));
 
   let fuWus = [
     {
