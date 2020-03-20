@@ -8,10 +8,10 @@ import validator from 'validator';
 
 import { makeSelectError, makeSelectIsLogining, makeSelectIsShowLogin } from './selectors';
 import { login, hideLogin } from './actions';
-import EInput from '@/components/EInput';
+import Input from '@/components/Input';
 import $style from './index.module.scss';
 
-class Login extends React.Component {
+export class Login extends React.Component {
   constructor(props) {
     super(props);
     this.containerRef = React.createRef();
@@ -41,7 +41,7 @@ class Login extends React.Component {
   };
   onClearPassword = e => {
     this.setState({
-      email: '',
+      password: '',
     });
   };
 
@@ -73,44 +73,47 @@ class Login extends React.Component {
     return (
       <div className={$style.login} ref={this.containerRef}>
         <Modal visible={isShowLogin} footer={null} width="386px" getContainer={() => this.containerRef.current} onCancel={this.props.onHideLogin}>
-          <div className={$style.login__content}>
-            <div className={$style.login__header}>
-              <div className={$style.login__type}>手机号登陆</div>
-              <div className={$style.login__split}>&nbsp;</div>
-              <div className={classnames($style.login__type, $style.login__type_active)}>邮箱登陆</div>
+          <div className={$style.content}>
+            <div className={$style.header}>
+              <div className={$style.header__type}>手机号登陆</div>
+              <div className={$style.header__split}>&nbsp;</div>
+              <div className={classnames($style.header__type, $style.header__type_active)}>邮箱登陆</div>
             </div>
-            <div className={$style.login__bodyEmail}>
+            <div className={$style.body}>
               <form onSubmit={this.onSubmit}>
-                <EInput
-                  className={$style.login__email}
+                <Input
+                  className={$style.email}
                   value={this.state.email}
                   onChange={this.onChangeEmail}
                   onClear={this.onClearEmail}
                   error={this.state.emailError}
                   prefix={<img src={require('@/assets/login/user.png')} />}
+                  hasPostfix={true}
                   placeholder="邮箱账号"
                 />
-                <EInput
-                  className={$style.login__password}
+                <Input
+                  className={$style.password}
                   value={this.state.password}
+                  type="password"
                   onChange={this.onChangePassword}
                   onClear={this.onClearPassword}
                   error={this.state.passwordError}
                   prefix={<img src={require('@/assets/login/lock.png')} />}
+                  hasPostfix={true}
                   placeholder="密码"
                 />
                 {(this.state.error || error) && (
-                  <div className={$style.login__error}>
+                  <div className={$style.error}>
                     <img src={require('@/assets/login/error.png')} />
                     <span>{this.state.error || error}</span>
                   </div>
                 )}
-                <button disabled={isLogining} className={$style.login__submit} type="submit">
+                <button disabled={isLogining} className={$style.submit} type="submit">
                   登陆
                 </button>
               </form>
             </div>
-            <div className={$style.login__footer}>
+            <div className={$style.footer}>
               <div className={$style.social}>
                 <a className={classnames($style.social__icon, $style.social__weixin)}></a>
                 <a className={classnames($style.social__icon, $style.social__qq)}></a>

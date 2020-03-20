@@ -78,17 +78,17 @@
     }
   }
 
-  .header__content {
+  .content {
     background-color: #fff;
     z-index: 110;
     position: relative;
     height: px2rem(140);
-    .header__logo {
+    .logo {
       position: absolute;
       top: 24px;
       left: 0;
 
-      .header__logoImg {
+      .logo__img {
         display: inline-block;
         background-image: url('~@/assets/home/icon_x1.png');
         background-position: 0 -298px;
@@ -98,7 +98,7 @@
       }
     }
 
-    .header__smlogo {
+    .smlogo {
       display: none;
     }
 
@@ -236,7 +236,7 @@
       }
     }
 
-    .categoryBar {
+    .category {
       line-height: 1;
       font-weight: 700;
       position: absolute;
@@ -256,22 +256,22 @@
   top: 0;
   left: 0;
 
-  .header__content {
+  .content {
     border-bottom: 1px solid #e1e1e1;
     box-sizing: border-box;
     height: 50px !important;
-    .header__logo {
+    .logo {
       display: none !important;
     }
 
-    .header__smlogo {
+    .smlogo {
       display: block !important;
       position: absolute;
       top: 12px;
       left: 5px;
       height: 30px;
       width: 126px;
-      .header__smlogoImg {
+      .smlogo__img {
         position: absolute;
         display: inline-block !important;
         background-image: url('~@/assets/home/icon_x1.png');

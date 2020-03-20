@@ -8,9 +8,9 @@ import { LOGIN, LOGOUT } from './constants';
 import { loginSuccess, loginFail, setUser } from './actions';
 
 import { transferToUserCart } from '@/containers/Cart/actions';
+import Alert from '@/components/Alert';
 
 export function* login(action) {
-  console.log('login');
   try {
     const res = yield call(authApi.login, action.payload.email, action.payload.password);
 
@@ -22,17 +22,15 @@ export function* login(action) {
     api.setToken(token);
     tokenStorage.save(token);
 
-    yield put(transferToUserCart());
     yield put(loginSuccess(user));
+    yield put(transferToUserCart());
     yield put(push('/'));
   } catch (err) {
-    console.error('登陆错误: ', err.response || err);
     yield put(loginFail(_.get(err, 'response.data.message', null) || _.get(err, 'message', null)));
   }
 }
 
 export function* logout() {
-  console.log('logout');
   try {
     api.setToken(null);
     tokenStorage.save(null);
@@ -40,6 +38,8 @@ export function* logout() {
     yield put(setUser(null));
     yield put(push('/'));
   } catch (err) {
+    const message = _.get(err, 'response.data.message', null) || _.get(err, 'message', null);
+    Alert.info(message);
     console.error('登出错误: ', err.response || err);
   }
 }

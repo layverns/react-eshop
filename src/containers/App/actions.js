@@ -1,4 +1,4 @@
-import { LOAD_APP } from './constants';
+import { LOAD_APP, LOAD_CART } from './constants';
 
 export function loadApp() {
   return {

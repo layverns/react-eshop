@@ -11,16 +11,4 @@ describe('Nav Actions', () => {
       expect(fetchNotices()).toEqual(expectedResult);
     });
   });
-  describe('setNotices', () => {
-    it('返回正确的 type 和 payload', () => {
-      const notices = ['aaaa', 'bbbb'];
-      const expectedResult = {
-        type: SET_NOTICES,
-        payload: {
-          notices,
-        },
-      };
-      expect(setNotices(notices)).toEqual(expectedResult);
-    });
-  });
 });

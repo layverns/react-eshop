@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header 测试 snapshot 1`] = `
+<header
+  className="header"
+>
+  <div
+    className=""
+  >
+    <div
+      className="container content"
+    >
+      <a
+        className="logo"
+        href="/"
+        onClick={[Function]}
+      >
+        <span
+          className="logo__img"
+        />
+      </a>
+      <a
+        className="smlogo"
+        href="/"
+        onClick={[Function]}
+      >
+        <span
+          className="smlogo__img"
+        />
+      </a>
+      <a
+        className="cart ant-dropdown-trigger"
+        href="/cart"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <span
+          className="cart__icon"
+        />
+        <span
+          className="cart__title"
+        >
+          购物车
+        </span>
+        <span
+          className="cart__num"
+        >
+          0
+        </span>
+      </a>
+      <a
+        className="user"
+        href="/user"
+        onClick={[Function]}
+      >
+        <span
+          className="user__icon"
+        />
+      </a>
+      <div
+        className="search"
+      >
+        <div
+          className="search__main"
+        >
+          <div
+            className="search__wrap"
+          >
+            <div
+              className="search__hide"
+            >
+              &gt;&gt;
+            </div>
+            <div
+              className="search__prefix"
+            />
+            <input
+              className="search__input"
+              placeholder="搜索"
+              type="text"
+            />
+          </div>
+          <div
+            className="search__btn"
+          >
+            <div
+              className="search__icon"
+            />
+            <div
+              className="search__text"
+            >
+              搜索
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="loading"
+      >
+        <div
+          className="ant-spin ant-spin-spinning"
+        >
+          <span
+            aria-label="loading"
+            className="anticon anticon-loading ant-spin-dot"
+            role="img"
+            style={
+              Object {
+                "fontSize": 24,
+              }
+            }
+          >
+            <svg
+              aria-hidden="true"
+              className="anticon-spin"
+              data-icon="loading"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="0 0 1024 1024"
+              width="1em"
+            >
+              <path
+                d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+`;

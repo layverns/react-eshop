@@ -6,4 +6,4 @@ const selectNav = state => state.nav || initialState;
 
 const makeSelectNotices = () => createSelector(selectNav, nav => nav.notices);
 
-export { selectNav, makeSelectNotices };
+export { makeSelectNotices };

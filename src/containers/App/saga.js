@@ -1,4 +1,4 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import _ from 'lodash';
 
 import { LOAD_APP } from './constants';
@@ -11,20 +11,18 @@ export function* loadApp() {
   console.log('loadApp');
   try {
     let token = tokenStorage.load();
-    if (!token) {
-      return;
-    }
+
     api.init();
     api.setToken(token);
     const res = yield call(authApi.user);
 
     const user = _.get(res, 'data.user', null);
-    if (!user) throw new Error('登陆信息失效！');
 
-    token = user.token;
-
-    api.setToken(token);
-    tokenStorage.save(token);
+    if (!_.isEmpty(user)) {
+      token = user.token;
+      api.setToken(token);
+      tokenStorage.save(token);
+    }
 
     yield put(setUser(user));
     yield put(loadCarts());
@@ -33,6 +31,7 @@ export function* loadApp() {
     api.setToken(null);
     tokenStorage.save(null);
     yield put(setUser(null));
+    yield put(loadCarts());
   }
 }
 

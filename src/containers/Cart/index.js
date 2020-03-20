@@ -3,13 +3,13 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Link } from 'react-router-dom';
+import { push } from 'connected-react-router';
 
-import {} from './selectors';
+import { showLogin } from '@/containers/Login/actions';
+import { makeSelectUser } from '@/containers/Login/selectors';
 import { makeSelectCarts, makeSelectIsCheckAll, makeSelectIsCheckOne } from './selectors';
 import { delFromCart, changeCartQuantity, checkCart } from '@/containers/Cart/actions';
 import { checkAll, unCheckAll } from './actions';
-
 import Loading from '@/components/Loading';
 import Footer from '@/components/Footer';
 import Checkbox from '@/components/Checkbox';
@@ -38,6 +38,14 @@ class Cart extends React.Component {
   onChangeQuantity = (product, quantity) => {
     product.quantity = quantity;
     this.props.onChangeCartQuantity(product);
+  };
+
+  onClickBuy = () => {
+    if (_.isEmpty(this.props.user)) {
+      this.props.onShowLogin();
+    } else {
+      this.props.onClickBuy();
+    }
   };
 
   render() {
@@ -92,9 +100,13 @@ class Cart extends React.Component {
                 <div>应付总额：</div>
                 <div className={$style.footer__price}>¥{sumPrice}</div>
               </div>
-              <Link className={classnames($style.footer__order, isCheckOne ? '' : $style.footer__order_disabled)} to="/confirm" disabled={!isCheckOne}>
+              <div
+                className={classnames($style.footer__order, isCheckOne ? '' : $style.footer__order_disabled)}
+                disabled={!isCheckOne}
+                onClick={this.onClickBuy}
+              >
                 下单
-              </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -108,6 +120,7 @@ const mapStateToProps = createStructuredSelector({
   carts: makeSelectCarts(),
   isCheckAll: makeSelectIsCheckAll(),
   isCheckOne: makeSelectIsCheckOne(),
+  user: makeSelectUser(),
 });
 
 export function mapDispatchToProps(dispatch) {
@@ -117,6 +130,8 @@ export function mapDispatchToProps(dispatch) {
     onChangeCartQuantity: product => dispatch(changeCartQuantity(product)),
     onCheckAll: () => dispatch(checkAll()),
     onUnCheckAll: () => dispatch(unCheckAll()),
+    onClickBuy: () => dispatch(push('/confirm')),
+    onShowLogin: () => dispatch(showLogin()),
   };
 }
 

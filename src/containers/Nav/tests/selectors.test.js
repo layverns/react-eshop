@@ -1,16 +1,4 @@
-import { selectNav, makeSelectNotices } from '../selectors';
-
-describe('selectNav', () => {
-  it('应该获取 nav state', () => {
-    const navState = {
-      notices: [],
-    };
-    const mockedState = {
-      nav: navState,
-    };
-    expect(selectNav(mockedState)).toEqual(navState);
-  });
-});
+import { makeSelectNotices } from '../selectors';
 
 describe('makeSelectNotices', () => {
   const usernameSelector = makeSelectNotices();

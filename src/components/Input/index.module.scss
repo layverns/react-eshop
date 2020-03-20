@@ -1,11 +1,38 @@
 @import '@/styles/utils.scss';
-@import '@/styles/colors.scss';
 
-.input {
-  font-size: px2rem(14);
-  line-height: px2rem(28);
-  border: 1px solid #ddd;
-  padding-left: px2rem(9);
-  color: $fontBlack;
-  border: 1px solid #ddd;
+.eInput_error {
+  border: 1px solid #d4282d !important;
+}
+
+.eInput {
+  border: 1px solid #e8e8e8;
+  line-height: px2rem(36);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+
+  .prefix {
+    text-align: center;
+    padding: 0 px2rem(7);
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #c5cddb;
+  }
+
+  .input {
+    padding: 0;
+    padding-left: px2rem(8);
+    width: 100%;
+    box-sizing: border-box;
+    font-size: px2rem(14);
+    line-height: px2rem(32);
+    font-weight: normal;
+    border: 0;
+  }
+
+  .postfix {
+    display: flex;
+    align-items: center;
+    padding: 0 px2rem(10);
+  }
 }

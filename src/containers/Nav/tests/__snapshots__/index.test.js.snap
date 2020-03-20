@@ -2,68 +2,70 @@
 
 exports[`<Nav /> snapshot 1`] = `
 <nav
-  class="nav"
+  className="nav"
 >
   <div
-    class="content container"
+    className="content container"
   >
     <div
-      class="notice"
+      className="notice"
     >
       <img
-        class="notice__img"
+        className="notice__img"
         src="speaker.gif"
       />
       <ul
-        class="notice__list"
+        className="notice__list"
       >
         <li
-          class="notice__item"
+          className="notice__item"
         />
       </ul>
     </div>
     <div
-      class="link"
+      className="link"
     >
       <ul
-        class="link__list"
+        className="link__list"
       >
         <li
-          class="link__item"
+          className="link__item"
         >
           <a>
             登录/注册
           </a>
         </li>
         <li
-          class="link__item"
+          className="link__item"
         >
           <a>
             会员
           </a>
         </li>
         <li
-          class="link__item"
+          className="link__item"
         >
           <a>
             甄选家
           </a>
         </li>
         <li
-          class="link__item"
+          className="link__item"
         >
           <a
-            class="ant-dropdown-trigger"
+            className="ant-dropdown-trigger"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             企业采购 
             <span
               aria-label="down"
-              class="anticon anticon-down"
+              className="anticon anticon-down"
               role="img"
             >
               <svg
                 aria-hidden="true"
-                class=""
+                className=""
                 data-icon="down"
                 fill="currentColor"
                 focusable="false"
@@ -79,20 +81,22 @@ exports[`<Nav /> snapshot 1`] = `
           </a>
         </li>
         <li
-          class="link__item"
+          className="link__item"
         >
           <a
-            class="ant-dropdown-trigger"
+            className="ant-dropdown-trigger"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
           >
             客户服务 
             <span
               aria-label="down"
-              class="anticon anticon-down"
+              className="anticon anticon-down"
               role="img"
             >
               <svg
                 aria-hidden="true"
-                class=""
+                className=""
                 data-icon="down"
                 fill="currentColor"
                 focusable="false"
@@ -108,11 +112,11 @@ exports[`<Nav /> snapshot 1`] = `
           </a>
         </li>
         <li
-          class="link__item"
+          className="link__item"
         >
           <a>
             <span
-              class="link__appIcon"
+              className="link__appIcon"
             />
             APP
           </a>
@@ -121,7 +125,7 @@ exports[`<Nav /> snapshot 1`] = `
     </div>
   </div>
   <div
-    class="login"
+    className="login"
   />
 </nav>
 `;

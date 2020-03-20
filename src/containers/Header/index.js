@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
@@ -16,7 +16,7 @@ import CartItem from './CartItem';
 
 import $style from './index.module.scss';
 
-class Header extends React.Component {
+export class Header extends React.Component {
   constructor(props) {
     super(props);
 
@@ -120,12 +120,12 @@ class Header extends React.Component {
     return (
       <header className={classnames($style.header)} ref={this.headerRef}>
         <div className={this.state.isFixedStyle ? $style.header_fixed : ''}>
-          <div className={classnames('container', $style.header__content)}>
-            <Link className={$style.header__logo} to="/">
-              <span className={$style.header__logoImg}></span>
+          <div className={classnames('container', $style.content)}>
+            <Link className={$style.logo} to="/">
+              <span className={$style.logo__img}></span>
             </Link>
-            <Link className={$style.header__smlogo} to="/">
-              <span className={$style.header__smlogoImg}></span>
+            <Link className={$style.smlogo} to="/">
+              <span className={$style.smlogo__img}></span>
             </Link>
             <Dropdown overlay={cartOverlay} overlayClassName={$style.cart__overlay} getPopupContainer={() => this.headerRef.current} trigger={['hover']}>
               <Link className={$style.cart} to="/cart">
@@ -134,9 +134,9 @@ class Header extends React.Component {
                 <span className={$style.cart__num}>{cartQuantity}</span>
               </Link>
             </Dropdown>
-            <a className={$style.user}>
+            <Link className={$style.user} to="/user">
               <span className={$style.user__icon} />
-            </a>
+            </Link>
             <div className={$style.search}>
               <div className={$style.search__main}>
                 <div className={$style.search__wrap}>
@@ -159,7 +159,7 @@ class Header extends React.Component {
                 </div>
               )}
             </div>
-            <CategoryBar className={$style.categoryBar} isFixedStyle={this.state.isFixedStyle} categories={categories} />
+            <CategoryBar className={$style.category} isFixedStyle={this.state.isFixedStyle} categories={categories} />
           </div>
         </div>
       </header>
@@ -173,7 +173,7 @@ const mapStateToProps = createStructuredSelector({
   carts: makeSelectCarts(),
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   onLoad: () => {
     dispatch(fetchHotWords());
     dispatch(fetchCategories());

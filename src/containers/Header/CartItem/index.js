@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 
 import Loading from '@/components/Loading';
-import { getElmOfArray } from '@/utils/libs';
+import { getInfoOfSpecs } from '@/utils/libs';
 
 import $style from './index.module.scss';
 
@@ -13,17 +13,23 @@ function CartItem({ className, product, onClickDel }) {
     return <Loading />;
   }
 
-  const { id, title, images, specs, productSpecs, quantity, productInfo } = product;
-  const { prices } = productInfo;
+  const {
+    id,
+    title,
+    images,
+    specs,
+    productSpecs,
+    quantity,
+    productInfo: { prices },
+  } = product;
+
   let specNodes = null;
-  let indexs = [];
   specNodes = specs.map((s, index) => {
     const productSpec = productSpecs[index];
     const spec = productSpec.filter(ps => ps.id == s)[0];
-    indexs[spec.order] = spec.index;
     return <div className={$style.spec}>{spec.title}</div>;
   });
-  let price = getElmOfArray(prices, indexs.slice(0, indexs.length));
+  let price = getInfoOfSpecs(specs, productSpecs, prices);
 
   return (
     <div className={classnames($style.item, className)}>

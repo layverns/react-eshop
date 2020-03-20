@@ -15,14 +15,14 @@
     padding: 0;
   }
 
-  .login__content {
-    .login__header {
+  .content {
+    .header {
       padding-top: px2rem(32);
       display: flex;
       align-items: center;
       justify-content: center;
 
-      .login__type {
+      .header__type {
         cursor: pointer;
         color: #999;
         font-size: px2rem(18);
@@ -34,11 +34,11 @@
         }
       }
 
-      .login__type_active {
+      .header__type_active {
         color: #333;
       }
 
-      .login__split {
+      .header__split {
         width: px2rem(1);
         height: px2rem(20);
         background: #ddd;
@@ -46,7 +46,7 @@
       }
     }
 
-    .login__error {
+    .error {
       display: flex;
       align-items: center;
       margin-top: px2rem(12);
@@ -64,17 +64,24 @@
       }
     }
 
-    .login__bodyEmail {
+    .body {
       width: px2rem(300);
       margin: px2rem(32) auto;
       padding: 0;
       padding-top: px2rem(10);
 
-      .login__password {
+      .email {
+        width: px2rem(298);
+        height: px2rem(36);
+      }
+
+      .password {
+        width: px2rem(298);
+        height: px2rem(36);
         margin-top: px2rem(15);
       }
 
-      .login__submit {
+      .submit {
         margin-top: px2rem(40);
         width: 100%;
         height: px2rem(48);
@@ -88,7 +95,7 @@
       }
     }
 
-    .login__footer {
+    .footer {
       height: px2rem(60);
       background: #f5f3ef;
       overflow: hidden;
