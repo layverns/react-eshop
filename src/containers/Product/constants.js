@@ -16,4 +16,6 @@ export const SET_PRODUCT = PREFIX + 'SET_PRODUCT';
 
 export const SET_SPECS = PREFIX + 'SET_SPECS';
 
+export const CLEAR_STATE = PREFIX + 'CLEAR_STATE';
+
 export const COMMENTS_PER_PAGE = 10;

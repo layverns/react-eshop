@@ -6,11 +6,16 @@ import { createStructuredSelector } from 'reselect';
 
 import { makeSelectUser } from '@/containers/Login/selectors';
 import UserLayout from '@/components/UserLayout';
+import Loading from '@/components/Loading';
 import $style from './index.module.scss';
 
-class User extends React.Component {
+export class User extends React.Component {
   render() {
     const { user } = this.props;
+
+    if (_.isEmpty(user)) {
+      return <Loading />;
+    }
 
     return (
       <UserLayout selected="gerenzhongxin">

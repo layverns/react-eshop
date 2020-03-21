@@ -8,10 +8,8 @@ import { carouselApi, categoryApi, productApi } from '@/api';
 import { makeSelectProducts, makeSelectThirdCategories } from './selectors';
 
 export function* fetchCarousels(action) {
-  console.log('fetchCarousels');
   try {
     const res = yield call(carouselApi.getCarousels, action.payload.categoryId);
-
     const carousels = _.get(res, 'data.carousels', []);
 
     yield put(setCarousels(carousels));
@@ -21,7 +19,6 @@ export function* fetchCarousels(action) {
 }
 
 export function* fetchProducts(action) {
-  console.log('fetchProducts');
   try {
     const res = yield call(categoryApi.getCategory, action.payload.categoryId);
     const category = _.get(res, 'data.category', {});
@@ -29,18 +26,11 @@ export function* fetchProducts(action) {
 
     let thirdCategories = _.get(res, 'data.thirdCategories', []);
 
+    let allThirdCategories = yield select(makeSelectThirdCategories());
+    let allProducts = yield select(makeSelectProducts());
     //对每个三级分类的产品列表缓存10分钟
     for (let i = 0; i < thirdCategories.length; i++) {
-      let allThirdCategories = yield select(makeSelectThirdCategories());
       let tc = _.find(allThirdCategories, atc => atc.id == thirdCategories[i].id);
-      console.log('find tc: ', tc);
-      _.isEmpty(tc) ||
-        console.log(
-          'moment : ',
-          moment()
-            .subtract(10, 'minutes')
-            .isAfter(moment(tc.updateTime))
-        );
       if (
         _.isEmpty(tc) ||
         moment()
@@ -50,16 +40,20 @@ export function* fetchProducts(action) {
         tc = thirdCategories[i];
 
         const res = yield call(productApi.getProducts, { thirdCategoryId: tc.id });
-        let allProducts = yield select(makeSelectProducts());
         const products = _.get(res, 'data.products', []);
-        allProducts = [...allProducts, ...products];
-        yield put(setProducts(allProducts));
+
+        products.forEach(p => {
+          _.remove(allProducts, ap => ap.id === p.id);
+          allProducts.push(p);
+        });
 
         tc.updateTime = moment();
-        allThirdCategories = [...allThirdCategories, tc];
-        yield put(setThirdCategories(allThirdCategories));
+        _.remove(allThirdCategories, atc => atc.id === tc.id);
+        allThirdCategories.push(tc);
       }
     }
+    yield put(setProducts(allProducts.slice(0, allProducts.length)));
+    yield put(setThirdCategories(allThirdCategories.slice(0, allThirdCategories.length)));
   } catch (err) {
     console.error('获取列表数据错误: ', err.response || err);
   }

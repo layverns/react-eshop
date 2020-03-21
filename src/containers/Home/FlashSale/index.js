@@ -46,10 +46,10 @@ class FlashSale extends React.Component {
       <Panel title="限时购" more="更多抢购">
         <div className={$style.body}>
           <div className={$style.left}>
-            <a className={$style.left__link}></a>
-            <div className={$style.left__title}>14点场</div>
-            <div className={$style.left__line}></div>
-            <div className={$style.left__subtitle}>距离结束还剩</div>
+            <a className={$style.link}></a>
+            <div className={$style.title}>14点场</div>
+            <div className={$style.line}></div>
+            <div className={$style.subtitle}>距离结束还剩</div>
             <div className={$style.timer}>
               <div className={$style.timer__time}>{moment(time).hour()}</div>
               <div className={$style.timer__colon}>:</div>
@@ -57,7 +57,7 @@ class FlashSale extends React.Component {
               <div className={$style.timer__colon}>:</div>
               <div className={$style.timer__time}>{moment(time).second()}</div>
             </div>
-            <button className={$style.left__all}>查看全部 ></button>
+            <button className={$style.all}>查看全部 ></button>
           </div>
           <div className={$style.right}>
             <div className={$style.right__row}>

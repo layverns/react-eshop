@@ -154,7 +154,6 @@ export function* unCheckAll(action) {
 }
 export function* delFromCart(action) {
   try {
-    console.log('delFromCart');
     let user = yield select(makeSelectUser());
     const { product } = action.payload;
     let carts = [];
@@ -167,7 +166,9 @@ export function* delFromCart(action) {
       cartStorage.save(carts);
     } else {
       const { id, specs } = product;
-      yield call(cartApi.delFromCart, { id, specs });
+      console.log('saga delFromCart id: ', id);
+      console.log('saga delFromCart specs: ', specs);
+      yield call(cartApi.delFromCart, { productId: id, specs });
       const res = yield call(cartApi.getCarts);
       carts = _.get(res, 'data.carts', []);
     }

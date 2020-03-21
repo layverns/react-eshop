@@ -15,15 +15,13 @@ function ThirdCategory({ icon, title }) {
 function SubCategory({ subcategory }) {
   let image = 'https://yanxuan.nosdn.127.net/6eeaa813566307004ff88f1013bf08fe.png';
 
-  let thirdCategoryNodes = null;
-  if (subcategory && !_.isEmpty(subcategory.thirdCategories)) {
-    thirdCategoryNodes = subcategory.thirdCategories.map(thirdCat => <ThirdCategory key={thirdCat.id} icon={thirdCat.image || image} title={thirdCat.title} />);
-  }
-
   return (
     <div className={$style.subcategory}>
       <div className={$style.title}>{subcategory.title}</div>
-      <div className={$style.body}>{thirdCategoryNodes}</div>
+      <div className={$style.body}>
+        {!_.isEmpty(subcategory) &&
+          subcategory.thirdCategories.map(thirdCat => <ThirdCategory key={thirdCat.id} icon={thirdCat.image || image} title={thirdCat.title} />)}
+      </div>
     </div>
   );
 }

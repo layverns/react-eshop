@@ -11,9 +11,10 @@ import cartSaga from '@/containers/Cart/saga';
 import contactSaga from '@/containers/Confirm/Contact/saga';
 import confirmSaga from '@/containers/Confirm/saga';
 import orderSaga from '@/containers/Order/saga';
+import searchSaga from '@/containers/Search/saga';
 
 export default function* rootSaga() {
-  const sagas = [appSaga, authSaga, homeSaga, navSaga, headerSaga, productSaga, listSaga, cartSaga, contactSaga, confirmSaga, orderSaga];
+  const sagas = [appSaga, authSaga, homeSaga, navSaga, headerSaga, productSaga, listSaga, cartSaga, contactSaga, confirmSaga, orderSaga, searchSaga];
 
   yield all(
     sagas.map(saga =>

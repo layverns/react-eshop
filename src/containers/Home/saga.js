@@ -1,4 +1,5 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
+import moment from 'moment';
 import _ from 'lodash';
 
 import {
@@ -21,31 +22,24 @@ import {
   FETCH_PRESENT_PRODUCTS,
   FETCH_CATEGORY_LIST,
 } from './constants';
+import { makeSelectCategoryList } from './selectors';
 import { carouselApi, productApi, categoryApi } from '@/api';
 
 function* fetchCarousels() {
-  console.log('fetchCarousels');
   try {
     const res = yield call(carouselApi.getHomeCarousels);
     const carousels = _.get(res, 'data.carousels', []);
-    if (_.isEmpty(carousels)) {
-      return;
-    }
 
     yield put(setCarousels(carousels));
   } catch (err) {
-    console.error('get carousels fail: ', err.response || err);
+    console.error('获取轮播图错误: ', err.response || err);
   }
 }
 
 function* fetchNewProducts() {
   try {
-    console.log('fetchNewProducts');
     const res = yield call(productApi.getNewProducts);
     const newProducts = _.get(res, 'data.newProducts', []);
-    if (_.isEmpty(newProducts)) {
-      return;
-    }
 
     yield put(setNewProducts(newProducts));
   } catch (err) {
@@ -55,12 +49,8 @@ function* fetchNewProducts() {
 
 function* fetchRecommendProducts() {
   try {
-    console.log('fetchRecommendProducts');
     const res = yield call(productApi.getRecommendProducts);
     const recommendProducts = _.get(res, 'data.recommendProducts', []);
-    if (_.isEmpty(recommendProducts)) {
-      return;
-    }
 
     yield put(setRecommendProducts(recommendProducts));
   } catch (err) {
@@ -70,12 +60,8 @@ function* fetchRecommendProducts() {
 
 function* fetchBestSellProducts() {
   try {
-    console.log('fetchBestSellProducts');
     const res = yield call(productApi.getBestSellProducts);
     const bestSellProducts = _.get(res, 'data.bestSellProducts', []);
-    if (_.isEmpty(bestSellProducts)) {
-      return;
-    }
 
     yield put(setBestSellProducts(bestSellProducts));
   } catch (err) {
@@ -85,12 +71,8 @@ function* fetchBestSellProducts() {
 
 function* fetchTimeProducts() {
   try {
-    console.log('fetchTimeProducts');
     const res = yield call(productApi.getTimeProducts);
     const timeProducts = _.get(res, 'data.timeProducts', []);
-    if (_.isEmpty(timeProducts)) {
-      return;
-    }
 
     yield put(setTimeProducts(timeProducts));
   } catch (err) {
@@ -100,12 +82,8 @@ function* fetchTimeProducts() {
 
 function* fetchWelfareProducts() {
   try {
-    console.log('fetchWelfareProducts');
     const res = yield call(productApi.getWelfareProducts);
     const welfareProducts = _.get(res, 'data.welfareProducts', []);
-    if (_.isEmpty(welfareProducts)) {
-      return;
-    }
 
     yield put(setWelfareProducts(welfareProducts));
   } catch (err) {
@@ -115,12 +93,8 @@ function* fetchWelfareProducts() {
 
 function* fetchPresentProducts() {
   try {
-    console.log('fetchPresentProducts');
     const res = yield call(productApi.getPresentProducts);
     const presentProducts = _.get(res, 'data.presentProducts', []);
-    if (_.isEmpty(presentProducts)) {
-      return;
-    }
 
     yield put(setPresentProducts(presentProducts));
   } catch (err) {
@@ -130,16 +104,21 @@ function* fetchPresentProducts() {
 
 function* fetchCategoryList() {
   try {
-    console.log('fetchCategoryList');
-    const res = yield call(categoryApi.getAllCarousels);
-    const categoryList = _.get(res, 'data.categoryList', []);
-    if (_.isEmpty(categoryList)) {
-      return;
-    }
+    let categoryList = yield select(makeSelectCategoryList());
 
-    yield put(setCategoryList(categoryList));
+    if (
+      _.isEmpty(categoryList) ||
+      moment()
+        .subtract(10, 'minutes')
+        .isAfter(moment(categoryList.updateTime))
+    ) {
+      const res = yield call(categoryApi.getCategoryList);
+      categoryList = _.get(res, 'data.categoryList', []);
+      categoryList.updateTime = moment();
+      yield put(setCategoryList(categoryList));
+    }
   } catch (err) {
-    console.error('获取分类轮播图错误: ', err.response || err);
+    console.error('获取分类列表错误: ', err.response || err);
   }
 }
 

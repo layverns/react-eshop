@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
 import { Breadcrumb } from 'antd';
@@ -8,7 +8,7 @@ import $style from './index.module.scss';
 import { noticeApi } from '@/api';
 import Header from '@/containers/Header';
 import Nav from '@/containers/Nav';
-class Notice extends React.Component {
+export class Notice extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,9 +24,6 @@ class Notice extends React.Component {
       }
       let res = await noticeApi.getNotice(id);
       const notice = _.get(res, 'data.notice', null);
-      if (_.isEmpty(notice)) {
-        return;
-      }
       this.setState({
         notice,
       });

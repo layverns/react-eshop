@@ -38,7 +38,7 @@ function Sidebar({ selected, className }) {
     },
   ];
   let zhangHaoList = zhangHaos.map(z => (
-    <li className={classnames($style.category__item, selected == z.id ? $style.category__item_active : '')}>
+    <li className={classnames($style.category__item, selected == z.id ? $style.category__item_active : '')} key={z.id}>
       <Link to={z.to}>{z.title}</Link>
     </li>
   ));
@@ -56,7 +56,7 @@ function Sidebar({ selected, className }) {
     },
   ];
   let jiaoYiList = jiaoYis.map(z => (
-    <li className={classnames($style.category__item, selected == z.id ? $style.category__item_active : '')}>
+    <li className={classnames($style.category__item, selected == z.id ? $style.category__item_active : '')} key={z.id}>
       <Link to={z.to}>{z.title}</Link>
     </li>
   ));
@@ -71,7 +71,11 @@ function Sidebar({ selected, className }) {
       title: '帮助中心',
     },
   ];
-  let fuWuList = fuWus.map(z => <li className={classnames($style.category__item, selected == z.id ? $style.category__item_active : '')}>{z.title}</li>);
+  let fuWuList = fuWus.map(z => (
+    <li className={classnames($style.category__item, selected == z.id ? $style.category__item_active : '')} key={z.id}>
+      {z.title}
+    </li>
+  ));
 
   return (
     <div className={classnames($style.sidebar, className)}>

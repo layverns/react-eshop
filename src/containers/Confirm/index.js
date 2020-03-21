@@ -82,7 +82,7 @@ class Confirm extends React.Component {
               <div className={$style.body}>
                 <div className={$style.cart}>
                   {checkedCarts.map(p => {
-                    let id = p.id + ' ' + p.specs.join(' ');
+                    let id = p.id  + p.specs.join('');
                     return (
                       <CartItem
                         className={$style.cart__item}

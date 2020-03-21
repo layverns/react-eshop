@@ -20,12 +20,12 @@
     }
   }
 
-  .categorybar__content {
+  .content {
     position: relative;
     display: flex;
     align-items: center;
 
-    .categorybar__list {
+    .list {
       width: 100%;
       display: flex;
       align-items: center;
@@ -34,7 +34,7 @@
       margin: 0;
       padding: 0;
 
-      .categorybar__item {
+      .list__item {
         color: black;
         font-size: px2rem(14);
         position: relative;
@@ -56,7 +56,7 @@
         }
       }
 
-      .categorybar__item_active::after {
+      .list__item_active::after {
         position: absolute;
         bottom: 0;
         left: 0;
@@ -71,13 +71,13 @@
 
 .categorybar_fixed {
   :global(.categorybar__overlay) {
-    left: px2rem(-136) !important;
+    left: px2rem(0) !important;
     top: px2rem(39) !important;
   }
 
-  .categorybar__content {
-    .categorybar__list {
-      .categorybar__item {
+  .content {
+    .list {
+      .list__item {
         margin-top: 7px;
         padding-bottom: px2rem(18) !important;
 

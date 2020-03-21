@@ -1,4 +1,14 @@
-import { FETCH_PRODUCT, SET_PRODUCT, SET_SPECS, FETCH_COMMENTS, SET_COMMENTS, SET_COMMENT_COUNT, SET_COMMENT_PAGE, SET_COMMENT_AVG_STARS } from './constants';
+import {
+  FETCH_PRODUCT,
+  SET_PRODUCT,
+  SET_SPECS,
+  FETCH_COMMENTS,
+  SET_COMMENTS,
+  SET_COMMENT_COUNT,
+  SET_COMMENT_PAGE,
+  SET_COMMENT_AVG_STARS,
+  CLEAR_STATE,
+} from './constants';
 
 export function fetchProduct(id) {
   return {
@@ -70,5 +80,11 @@ export function setSpecs(specs) {
     payload: {
       specs,
     },
+  };
+}
+
+export function clearState() {
+  return {
+    type: CLEAR_STATE,
   };
 }

@@ -41,8 +41,10 @@
       }
 
       .category__item_active {
-        color: $mainGold !important;
         border-left: 2px solid $mainGold !important;
+        a {
+          color: $mainGold !important;
+        }
       }
     }
   }

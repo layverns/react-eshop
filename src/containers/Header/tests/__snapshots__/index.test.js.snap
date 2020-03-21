@@ -77,8 +77,10 @@ exports[`Header 测试 snapshot 1`] = `
             />
             <input
               className="search__input"
+              onChange={[Function]}
               placeholder="搜索"
               type="text"
+              value=""
             />
           </div>
           <div
@@ -89,6 +91,7 @@ exports[`Header 测试 snapshot 1`] = `
             />
             <div
               className="search__text"
+              onClick={[Function]}
             >
               搜索
             </div>

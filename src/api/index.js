@@ -28,7 +28,7 @@ const searchApi = {
 
 const categoryApi = {
   getCategories: () => axios.get('/categories'),
-  getAllCarousels: id => axios.get(`/categories/carousels`),
+  getCategoryList: id => axios.get(`/category/list`),
   getCategory: id => axios.get(`/categories/${id}`),
 };
 
@@ -47,15 +47,14 @@ const productApi = {
   getWelfareProducts: () => axios.get('/welfare_products', { params: { limit: 4 } }),
   getPresentProducts: () => axios.get('/present_products', { params: { limit: 4 } }),
   getComments: (id, offset, limit) => axios.get(`/products/${id}/comments`, { params: { offset, limit } }),
-  search: ({ keyword, limit, offset, sort, order, thirdCategoryId }) =>
-    axios.get('product/search', { params: { keyword, limit, offset, sort, order, thirdCategoryId } }),
+  search: ({ keyword, limit, offset, sort, order, categoryId }) => axios.get('product/search', { params: { keyword, limit, offset, sort, order, categoryId } }),
 };
 
 const cartApi = {
-  addToCart: product => axios.post(`/carts`, { ...product }),
-  delFromCart: product => axios.delete(`/carts`, { ...product }),
-  changeCartQuantity: product => axios.put(`/carts`, { ...product }),
-  checkCart: product => axios.put(`/cart/check`, { ...product }),
+  addToCart: ({ productId, specs, quantity }) => axios.post(`/carts`, { productId, specs, quantity }),
+  delFromCart: ({ productId, specs }) => axios.put(`/cart/del`, { productId, specs }),
+  changeCartQuantity: ({ productId, specs, quantity }) => axios.put(`/carts`, { productId, specs, quantity }),
+  checkCart: ({ productId, specs }) => axios.put(`/cart/check`, { productId, specs }),
   getCarts: () => axios.get(`/carts`),
   checkAll: () => axios.put(`/cart/check_all`),
   unCheckAll: () => axios.put(`/cart/uncheck_all`),

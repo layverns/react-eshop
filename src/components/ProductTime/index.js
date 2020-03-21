@@ -33,7 +33,7 @@ const ProductTime = ({ className, product }) => {
         <div className={$style.price}>
           <span className={$style.price__title}>限时价</span>
           <span className={$style.price__now}>¥{product.price}</span>
-          <span className={$style.price__old}>¥{product.oldPrice}</span>
+          {product.oldPrice > 0 && <span className={$style.price__old}>¥{product.oldPrice}</span>}
         </div>
         <Link className={$style.buy} to={'/products/' + product.id}>
           立即抢购

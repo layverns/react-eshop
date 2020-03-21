@@ -2,14 +2,14 @@ import { createSelector } from 'reselect';
 
 import { initialState } from './reducer';
 
-const selectList = state => state.list || initialState;
+const selectSearch = state => state.search || initialState;
 
-const makeSelectProducts = () => createSelector(selectList, list => list.products);
-const makeSelectThirdCategoryId = () => createSelector(selectList, list => list.thirdCategoryId);
-const makeSelectSort = () => createSelector(selectList, list => list.sort);
-const makeSelectOrder = () => createSelector(selectList, list => list.order);
-const makeSelectLimit = () => createSelector(selectList, list => list.limit);
-const makeSelectOffset = () => createSelector(selectList, list => list.offset);
-const makeSelectCount = () => createSelector(selectList, list => list.count);
+const makeSelectProducts = () => createSelector(selectSearch, search => search.products);
 
-export { makeSelectProducts, makeSelectThirdCategoryId, makeSelectSort, makeSelectOrder, makeSelectLimit, makeSelectOffset, makeSelectCount };
+const makeSelectProductCount = () => createSelector(selectSearch, search => search.productCount);
+
+const makeSelectCategories = () => createSelector(selectSearch, search => search.categories);
+
+const makeSelectKeyword = () => createSelector(selectSearch, search => search.keyword);
+
+export { makeSelectProducts, makeSelectProductCount, makeSelectCategories, makeSelectKeyword };

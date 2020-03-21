@@ -25,7 +25,7 @@ const ProductBargain = ({ className, product }) => {
           <span className={$style.price__title}>限时价 ¥</span>
           <span className={$style.price__now}>{product.price}</span>
         </div>
-        <div className={$style.oldprice}>¥{product.oldPrice}</div>
+        {product.oldPrice > 0 && <div className={$style.oldprice}>¥{product.oldPrice}</div>}
         <Link className={$style.buy} to={'/products/' + product.id}>
           立即抢购
         </Link>

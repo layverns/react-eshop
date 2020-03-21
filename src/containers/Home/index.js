@@ -38,13 +38,17 @@ import Category from './Category';
 
 import $style from './index.module.scss';
 
-class Home extends React.Component {
+export class Home extends React.Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
     this.props.onLoad();
+  }
+
+  componentWillUnmount() {
+    this.setState = () => {};
   }
 
   render() {
@@ -58,7 +62,7 @@ class Home extends React.Component {
         <Recommend recommends={recommendProducts} bestSells={bestSellProducts} />
         <FlashSale timeProducts={timeProducts} />
         <Welfare welfareProducts={welfareProducts} presentProducts={presentProducts} />
-        {_.isEmpty(categoryList) ? null : categoryList.map(cs => <Category carousel={cs} />)}
+        {_.isEmpty(categoryList) ? null : categoryList.map(c => <Category key={c.id} category={c} />)}
         <Footer />
       </div>
     );

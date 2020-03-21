@@ -11,17 +11,22 @@ import $style from './index.module.scss';
 
 function CategoryBar({ className, categories, isFixedStyle }) {
   let categoryRef = useRef();
+
+  if (_.isEmpty(categories)) {
+    return <Loading />;
+  }
+
   let catNodes = categories.map((cat, i) => {
     let overlay = (
       <div>
-        {cat.subcategories.map(subCat => (
-          <SubCategory key={subCat.id} subcategory={subCat} />
+        {cat.subcategories.map(sc => (
+          <SubCategory key={sc.id} subcategory={sc} />
         ))}
       </div>
     );
 
     return (
-      <li key={cat.id} className={$style.categorybar__item}>
+      <li key={cat.id} className={$style.list__item}>
         <Link to={`/lists/${cat.id}`}>
           <Dropdown key={cat.id} overlay={overlay} overlayClassName="categorybar__overlay" getPopupContainer={() => categoryRef.current} trigger={['hover']}>
             <span>{cat.title}</span>
@@ -31,15 +36,11 @@ function CategoryBar({ className, categories, isFixedStyle }) {
     );
   });
 
-  if (_.isEmpty(categories)) {
-    return <Loading />;
-  }
-
   return (
     <div className={classnames($style.categorybar, className, isFixedStyle ? $style.categorybar_fixed : '')} ref={categoryRef}>
-      <div className={classnames($style.categorybar__content)}>
-        <ul className={$style.categorybar__list}>
-          <li className={classnames($style.categorybar__item, $style.categorybar__item_active)}>首页</li>
+      <div className={classnames($style.content)}>
+        <ul className={$style.list}>
+          <li className={classnames($style.list__item, $style.list__item_active)}>首页</li>
           {catNodes}
         </ul>
       </div>

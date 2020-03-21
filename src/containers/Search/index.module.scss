@@ -1,7 +1,7 @@
 @import '@/styles/utils.scss';
 @import '@/styles/colors.scss';
 
-.list {
+.search {
   width: 100%;
   background-color: #f5f5f5;
 
@@ -21,8 +21,8 @@
     }
 
     .panel {
-      margin-top: px2rem(30);
       padding: 0 px2rem(40);
+      padding-bottom: px2rem(40);
       background-color: #fff;
       margin-bottom: px2rem(80);
 
@@ -62,35 +62,38 @@
               &:hover {
                 color: $mainGold;
               }
-
-              .filter__icon {
-                display: flex;
-                flex-direction: column;
-                margin-left: px2rem(4);
-                height: px2rem(14);
-
-                .filter__up {
-                  background-image: url('~@/assets/home/icon_normal.png');
-                  background-position: -1px -6470px;
-                  width: 10px;
-                  height: 8px;
-                }
-
-                .filter__down {
-                  background-image: url('~@/assets/home/icon_normal.png');
-                  background-position: 0px -6470px;
-                  width: 10px;
-                  height: 8px;
-                  transform: rotate(180deg);
-                  transform-origin: 50% 100%;
-                }
-              }
             }
 
             .filter__item_active {
               color: $mainGold !important;
             }
           }
+        }
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+      }
+
+      .empty {
+        margin-top: px2rem(40);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .empty__img {
+          background-image: url('~@/assets/background.png');
+          background-position: 0 -1860;
+          height: 180px;
+          width: 180px;
+        }
+
+        .empty__title {
+          margin-top: px2rem(10);
+          font-size: px2rem(16);
+          color: #999;
         }
       }
     }

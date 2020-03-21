@@ -10,59 +10,44 @@ import Panel from '../../../components/Panel';
 class Recommend extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      products: [],
+      tabIndex: 0,
     };
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.recommends.length !== state.products.length) {
-      return {
-        products: props.recommends,
-      };
-    }
-    return null;
-  }
-
-  changePage = page => {
-    const { recommends, bestSells } = this.props;
-
-    if (page == 0) {
-      this.setState({
-        products: recommends,
-      });
-    } else {
-      this.setState({
-        products: bestSells,
-      });
-    }
+  changeTab = index => {
+    console.log('changeTab: ', index);
+    this.setState({
+      tabIndex: index,
+    });
   };
 
   render() {
-    const { products } = this.state;
+    const { recommends, bestSells } = this.props;
+    const { tabIndex } = this.state;
 
-    let first = null;
-    if (!_.isEmpty(products)) {
-      first = products[0];
+    if (_.isEmpty(recommends) || _.isEmpty(recommends)) {
+      return <Loading />;
     }
+
+    let products = tabIndex == 0 ? recommends : bestSells;
+
+    let first = products[0];
 
     let tabs = [
       {
         title: '编辑推荐',
-        callback: this.changePage,
+        callback: this.changeTab,
       },
       {
         title: ' 热销总榜',
-        callback: this.changePage,
+        callback: this.changeTab,
       },
     ];
 
     let firstRowProducts = products.slice(1, 4);
     let secondRowProducts = products.slice(4, 7);
-
-    if (_.isEmpty(products)) {
-      return <Loading />;
-    }
 
     return (
       <Panel tabs={tabs} title="人气推荐" more="更多推荐" bgtype="gold">

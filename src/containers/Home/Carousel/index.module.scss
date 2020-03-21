@@ -17,6 +17,21 @@
   line-height: px2rem(50);
 }
 
+:global(.Home_Carousel__img-enter) {
+  opacity: 0;
+}
+:global(.Home_Carousel__img-enter-active) {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+}
+:global(.Home_Carousel__img-exit) {
+  opacity: 1;
+}
+:global(.Home_Carousel__img-exit-active) {
+  opacity: 0;
+  transition: opacity 200ms ease-in;
+}
+
 .carousel {
   position: relative;
   width: 100%;
@@ -33,6 +48,7 @@
 
     .image {
       display: block;
+      cursor: pointer;
     }
   }
 
@@ -84,9 +100,9 @@
         .overlay__dot {
           position: relative;
           display: inline-block;
-          width: 8px;
-          height: 8px;
-          margin: 0 8px 10px;
+          width: px2rem(8);
+          height: px2rem(8);
+          margin: 0 px2rem(8) px2rem(10);
           padding: 0;
           cursor: pointer;
 
@@ -94,9 +110,9 @@
             font-size: 0;
             line-height: 0;
             display: block;
-            width: 8px;
-            height: 8px;
-            border-radius: 500px;
+            width: px2rem(8);
+            height: px2rem(8);
+            border-radius: px2rem(500);
             cursor: pointer;
             color: transparent;
             border: 1px solid #cecece;
@@ -108,7 +124,7 @@
           button.active {
             box-shadow: 0 0 0 4px #dfcead;
             background: #a7936e;
-            border-radius: 500px;
+            border-radius: px2rem(500);
             border: none;
           }
         }

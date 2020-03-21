@@ -7,14 +7,24 @@ export const initialState = {
   category: {},
   /**
    * 缓存网站所有的三级分类
-   * {
+   * thirdCategories: [{
    *  id,
    *  title,
-   *  category,
-   *  updateTime
-   * }
+   *  categoryId,
+   *  updateTime 计算缓存时间
+   *  ...
+   * }]
    */
   thirdCategories: [],
+  /**
+   * 缓存所有产品
+   * products: [{
+   *   id,
+   *   thirdCategoryId,
+   *   title,
+   *   ...
+   * }]
+   */
   products: [],
 };
 

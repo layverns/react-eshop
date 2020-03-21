@@ -29,7 +29,7 @@ class List extends React.Component {
       thridCategoryId: null,
       region: null,
       sort: null,
-      order: 1,
+      order: 'asc',
     };
   }
 
@@ -41,43 +41,34 @@ class List extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    let categoryId = _.get(this.props, 'match.params.categoryId', null);
+    const { category } = this.props;
+
+    if (!_.isEmpty(category) && categoryId != category.id) {
+      this.props.onFetchCarousels(categoryId);
+      this.props.onFetchProducts(categoryId);
+    }
+  }
+
   render() {
     const { carousels, category, thirdCategories, products } = this.props;
     const { thridCategoryId, region, sort, order } = this.state;
 
-    let thirdCategoryNode = <Loading />;
-    if (!_.isEmpty(thirdCategories)) {
-      thirdCategoryNode = (
-        <div className={$style.filter__items}>
-          <div
-            className={classnames($style.filter__item, thridCategoryId == null ? $style.filter__item_active : '')}
-            key={0}
-            onClick={() => this.setState({ thridCategoryId: null })}
-          >
-            全部
-          </div>
-          {thirdCategories.map(tc => (
-            <div
-              className={classnames($style.filter__item, thridCategoryId == tc.id ? $style.filter__item_active : '')}
-              key={tc.id}
-              onClick={() => this.setState({ thridCategoryId: tc.id })}
-            >
-              {tc.title}
-            </div>
-          ))}
-        </div>
-      );
+    if (_.isEmpty(products)) {
+      return <Loading />;
     }
+    let filtedThirdCategories = thirdCategories.filter(tc => tc.categoryId == category.id);
 
-    let listNode = <Loading />;
-    if (!thridCategoryId && !_.isEmpty(thirdCategories) && !_.isEmpty(products)) {
+    let listNode = null;
+    if (_.isNull(thridCategoryId) && !_.isEmpty(thirdCategories) && !_.isEmpty(products)) {
       //全部分类
       if (sort == null) {
-        listNode = thirdCategories.map(tc => (
-          <ProductList className={$style.products} key={tc.id} products={products.filter(p => p.thirdCategory === tc.id)} title={tc.title} />
+        listNode = filtedThirdCategories.map(tc => (
+          <ProductList className={$style.products} key={tc.id} products={products.filter(p => p.thirdCategoryId === tc.id)} title={tc.title} />
         ));
       } else {
-        let filtedProducts = products.slice(0, products.length);
+        let filtedProducts = products.filter(p => _.findIndex(filtedThirdCategories, tc => p.thirdCategoryId === tc.id) > 0);
         filtedProducts.sort((a, b) => {
           if (sort == 'price') {
             return order == 'asc' ? a.price - b.price : b.price - a.price;
@@ -87,8 +78,17 @@ class List extends React.Component {
         });
         listNode = <ProductList className={$style.products} products={filtedProducts} />;
       }
-    } else if (thridCategoryId && !_.isEmpty(products)) {
-      listNode = <ProductList className={$style.products} products={products.filter(p => p.thirdCategory === thridCategoryId)} />;
+    } else if (!_.isNull(thridCategoryId) && !_.isEmpty(products)) {
+      //选择单个分类
+      let filtedProducts = products.filter(p => p.thirdCategoryId === thridCategoryId);
+      filtedProducts.sort((a, b) => {
+        if (sort == 'price') {
+          return order == 'asc' ? a.price - b.price : b.price - a.price;
+        } else if (sort == 'time') {
+          return order == 'asc' ? moment(a.createdAt).isAfter(b.createdAt) : moment(b.createdAt).isAfter(a.createdAt);
+        }
+      });
+      listNode = <ProductList className={$style.products} products={filtedProducts} />;
     }
 
     let regions = [
@@ -100,15 +100,6 @@ class List extends React.Component {
       { id: 'ouzhou', title: '欧洲' },
       { id: 'meizhou', title: '美洲' },
     ];
-    let regionNode = regions.map(r => (
-      <div
-        key={r.id}
-        className={classnames($style.filter__item, region == r.id ? $style.filter__item_active : '')}
-        onClick={() => this.setState({ region: r.id })}
-      >
-        {r.title}
-      </div>
-    ));
 
     return (
       <div className={$style.list}>
@@ -131,11 +122,40 @@ class List extends React.Component {
             <div className={$style.filter}>
               <div className={$style.filter__row}>
                 <div className={$style.filter__title}>分类：</div>
-                {thirdCategoryNode}
+                {!_.isEmpty(filtedThirdCategories) && (
+                  <div className={$style.filter__items}>
+                    <div
+                      className={classnames($style.filter__item, thridCategoryId == null ? $style.filter__item_active : '')}
+                      key={0}
+                      onClick={() => this.setState({ thridCategoryId: null })}
+                    >
+                      全部
+                    </div>
+                    {filtedThirdCategories.map(tc => (
+                      <div
+                        className={classnames($style.filter__item, thridCategoryId == tc.id ? $style.filter__item_active : '')}
+                        key={tc.id}
+                        onClick={() => this.setState({ thridCategoryId: tc.id })}
+                      >
+                        {tc.title}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
               <div className={$style.filter__row}>
                 <div className={$style.filter__title}>配送地区：</div>
-                <div className={$style.filter__items}>{regionNode}</div>
+                <div className={$style.filter__items}>
+                  {regions.map(r => (
+                    <div
+                      key={r.id}
+                      className={classnames($style.filter__item, region == r.id ? $style.filter__item_active : '')}
+                      onClick={() => this.setState({ region: r.id })}
+                    >
+                      {r.title}
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className={$style.filter__row}>
                 <div className={$style.filter__title}>排序：</div>

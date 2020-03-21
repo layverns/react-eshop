@@ -66,7 +66,7 @@ class Order extends React.Component {
 
     let tabs = ['全部订单', '待付款', '待发货', '已发货', '待评价'];
     let tabNodes = tabs.map((t, index) => (
-      <li className={classnames($style.tab, tabIndex == index ? $style.tab_active : '')}>
+      <li className={classnames($style.tab, tabIndex == index ? $style.tab_active : '')} key={t}>
         <a className={$style.tab__link} onClick={() => this.setState({ tabIndex: index })}>
           {t}
           {orderArray[index].length > 0 && <span className={$style.tab__num}>{orderArray[index].length}</span>}
@@ -81,7 +81,7 @@ class Order extends React.Component {
           <div className={$style.content}>
             {_.isEmpty(selectedOrders) ? (
               <div className={$style.empty}>
-                <div className={$style.empty__img} > </div>
+                <div className={$style.empty__img}> </div>
                 <div className={$style.empty__title}>你已经很久没有下单了!</div>
               </div>
             ) : (

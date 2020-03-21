@@ -77,7 +77,7 @@ class Cart extends React.Component {
           </div>
           <div className={$style.cart}>
             {carts.map(p => {
-              let id = p.id + ' ' + p.specs.join(' ');
+              let id = p.id + p.specs.join('');
               return (
                 <CartItem
                   className={$style.cart__item}

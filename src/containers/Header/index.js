@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
+import { push } from 'connected-react-router';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -8,10 +9,12 @@ import { Link } from 'react-router-dom';
 import { Dropdown } from 'antd';
 
 import { fetchCategories, fetchHotWords } from './actions';
+import { setKeyword } from '@/containers/Search/actions';
 import { delFromCart } from '@/containers/Cart/actions';
 import { makeSelectHotWords, makeSelectCategories } from './selectors';
 import { makeSelectCarts } from '@/containers/Cart/selectors';
 import CategoryBar from '@/containers/Header/CategoryBar';
+import Alert from '@/components/Alert';
 import CartItem from './CartItem';
 
 import $style from './index.module.scss';
@@ -23,6 +26,7 @@ export class Header extends React.Component {
     this.state = {
       curHotWordIndex: 0,
       isFixedStyle: false,
+      searchInput: '',
     };
 
     this.headerRef = React.createRef();
@@ -53,6 +57,7 @@ export class Header extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.interval);
+    this.setState = () => {};
   }
 
   handleScroll = evt => {
@@ -69,12 +74,21 @@ export class Header extends React.Component {
   };
 
   onClickDelCart = product => {
+    
     this.props.onDelFromCart(product);
   };
 
+  onClickSearch = () => {
+    const { searchInput } = this.state;
+    if (!searchInput) {
+      return Alert.info('请输入搜索内容！');
+    }
+    this.props.onSearch(searchInput);
+  };
+
   render() {
-    const { curHotWordIndex } = this.state;
-    const { hotWords, categories, carts } = this.props;
+    const { curHotWordIndex, searchInput } = this.state;
+    const { hotWords, categories, carts, keyword } = this.props;
 
     let hotWordsNode = null;
     let placeholder = '搜索';
@@ -102,17 +116,20 @@ export class Header extends React.Component {
     let cartOverlay = (
       <div>
         <div className={$style.cart__content}>
-          {carts.map(p => {
-            let id = p.id + ' ' + p.specs.join(' ');
-            return <CartItem className={$style.cart__item} key={id} product={p} onClickDel={this.onClickDelCart} />;
-          })}
+          {!_.isEmpty(carts) &&
+            carts.map(p => {
+              let id = p.id + p.specs.join('');
+              return <CartItem className={$style.cart__item} key={id} product={p} onClickDel={this.onClickDelCart} />;
+            })}
         </div>
         <div className={$style.cart__footer}>
           <div className={$style.price}>
             <div className={$style.price__title}>商品合计：</div>
             <div className={$style.price__sum}>¥{cartSum}</div>
           </div>
-          <div className={$style.checkout}>去购物车结算</div>
+          <Link className={$style.checkout} to="/cart">
+            去购物车结算
+          </Link>
         </div>
       </div>
     );
@@ -142,11 +159,19 @@ export class Header extends React.Component {
                 <div className={$style.search__wrap}>
                   <div className={$style.search__hide}>>></div>
                   <div className={$style.search__prefix}></div>
-                  <input type="text" className={$style.search__input} placeholder={placeholder} />
+                  <input
+                    type="text"
+                    className={$style.search__input}
+                    placeholder={placeholder}
+                    value={searchInput}
+                    onChange={e => this.setState({ searchInput: e.target.value })}
+                  />
                 </div>
                 <div className={$style.search__btn}>
                   <div className={$style.search__icon}></div>
-                  <div className={$style.search__text}>搜索</div>
+                  <div className={$style.search__text} onClick={this.onClickSearch}>
+                    搜索
+                  </div>
                 </div>
               </div>
               {hotWordsNode && (
@@ -180,6 +205,10 @@ export const mapDispatchToProps = dispatch => ({
   },
   onDelFromCart: prodcut => {
     dispatch(delFromCart(prodcut));
+  },
+  onSearch: keyword => {
+    dispatch(setKeyword(keyword));
+    dispatch(push(`/search`));
   },
 });
 

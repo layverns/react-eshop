@@ -45,11 +45,11 @@ class Carousel extends Component {
   startTimer = () => {
     this.timer = setInterval(() => {
       this.next();
-    }, 3000);
+    }, 4000);
   };
 
   stopTimer = index => {
-    if (!this.timer) {
+    if (!_.isNull(this.timer)) {
       clearInterval(this.timer);
       this.timer = null;
       this.setState({
@@ -75,7 +75,7 @@ class Carousel extends Component {
     return (
       <div className={$style.carousel}>
         <SwitchTransition>
-          <CSSTransition key={this.state.curIndex} timeout={100} classNames="ECarousel__img">
+          <CSSTransition key={this.state.curIndex} timeout={100} classNames="Home_Carousel__img">
             <a className={$style.link}>
               <img className={$style.image} src={carousels[this.state.curIndex].image} />
             </a>

@@ -51,6 +51,7 @@ export class Nav extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.interval);
+    this.setState = () => {};
   }
 
   render() {

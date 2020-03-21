@@ -13,6 +13,7 @@ import listReducer from './containers/List/reducer';
 import cartReducer from './containers/Cart/reducer';
 import contactReducer from './containers/Confirm/Contact/reducer';
 import orderReducer from './containers/Order/reducer';
+import searchReducer from './containers/Search/reducer';
 
 export default function createReducer() {
   const rootReducer = combineReducers({
@@ -27,6 +28,7 @@ export default function createReducer() {
     cart: cartReducer,
     contact: contactReducer,
     order: orderReducer,
+    search: searchReducer,
   });
 
   return rootReducer;

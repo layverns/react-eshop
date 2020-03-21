@@ -1,3 +1,13 @@
 const PREFIX = 'SEARCH/';
 
 export const SEARCH = PREFIX + 'SEARCH';
+
+export const SET_PRODUCTS = PREFIX + 'SET_PRODUCTS';
+
+export const SET_PRODUCT_COUNT = PREFIX + 'SET_PRODUCT_COUNT';
+
+export const SET_CATEGORIES = PREFIX + 'SET_CATEGORIES';
+
+export const SET_KEYWORD = PREFIX + 'SET_KEYWORD';
+
+export const PRODUCTS_PER_PAGE = 40;

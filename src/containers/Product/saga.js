@@ -5,7 +5,6 @@ import { setProduct, setSpecs, setComments, setCommentCount, setCommentPage, set
 import { productApi } from '@/api';
 
 function* getProduct(action) {
-  console.log('getProduct');
   try {
     const res = yield call(productApi.getProduct, action.payload.id);
     const product = _.get(res, 'data.product', null);
@@ -23,7 +22,6 @@ function* getProduct(action) {
 }
 
 function* getComments(action) {
-  console.log('getComments: ', action.payload.page);
   try {
     let page = action.payload.page;
     const res = yield call(productApi.getComments, action.payload.id, (page - 1) * COMMENTS_PER_PAGE, COMMENTS_PER_PAGE);
@@ -33,7 +31,6 @@ function* getComments(action) {
 
     yield put(setComments(comments));
     yield put(setCommentCount(commentCount));
-    console.log('set page:', page);
     yield put(setCommentPage(page));
     yield put(setCommentAvgStars(commentAvgStars));
   } catch (err) {

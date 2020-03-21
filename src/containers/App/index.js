@@ -16,6 +16,7 @@ import Cart from '@/containers/Cart';
 import Confirm from '@/containers/Confirm';
 import Order from '@/containers/Order';
 import User from '@/containers/User';
+import Search from '@/containers/Search';
 
 class App extends React.Component {
   componentWillMount() {
@@ -34,6 +35,7 @@ class App extends React.Component {
           <Route path="/cart/" component={Cart} />
           <Route path="/confirm/" component={Confirm} />
           <Route path="/order/" component={Order} />
+          <Route path="/search" component={Search} />
         </Switch>
       </div>
     );

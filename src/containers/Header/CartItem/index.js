@@ -27,7 +27,11 @@ function CartItem({ className, product, onClickDel }) {
   specNodes = specs.map((s, index) => {
     const productSpec = productSpecs[index];
     const spec = productSpec.filter(ps => ps.id == s)[0];
-    return <div className={$style.spec}>{spec.title}</div>;
+    return (
+      <div className={$style.spec} key={s}>
+        {spec.title}
+      </div>
+    );
   });
   let price = getInfoOfSpecs(specs, productSpecs, prices);
 

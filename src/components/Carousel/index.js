@@ -68,14 +68,14 @@ class Carousel extends Component {
   }
 
   render() {
-    let { carousels, autoHide } = this.props;
+    let { className, carousels, autoHide = true } = this.props;
 
     if (_.isEmpty(carousels)) {
       return <Loading />;
     }
 
     return (
-      <div className={$style.carousel}>
+      <div className={classnames($style.carousel, className)}>
         <SwitchTransition>
           <CSSTransition key={this.state.curIndex} timeout={100} classNames="Category__img">
             <a className={$style.link}>

@@ -128,11 +128,11 @@ export function fetchCategoryList() {
   };
 }
 
-export function setCategoryList(list) {
+export function setCategoryList(categoryList) {
   return {
     type: SET_CATEGORY_LIST,
     payload: {
-      list,
+      categoryList,
     },
   };
 }

@@ -14,7 +14,7 @@
     width: 224px;
     padding-top: 60px;
     box-sizing: border-box;
-    .left__link {
+    .link {
       z-index: 100;
       position: absolute;
       top: 0;
@@ -23,7 +23,7 @@
       right: 0;
     }
 
-    .left__title {
+    .title {
       font-size: 28px;
       line-height: 36px;
       margin-bottom: 11px;
@@ -31,14 +31,14 @@
       text-align: center;
     }
 
-    .left__line {
+    .line {
       width: 20px;
       height: 2px;
       margin: 0 auto 18px;
       background: #61594b;
     }
 
-    .left__subtitle {
+    .subtitle {
       margin-bottom: 18px;
       font-size: 18px;
       color: #615548;
@@ -65,7 +65,7 @@
         margin: 0 2px;
       }
     }
-    .left__all {
+    .all {
       display: block;
       width: 110px;
       height: 30px;
