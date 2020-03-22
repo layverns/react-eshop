@@ -74,7 +74,6 @@ export class Header extends React.Component {
   };
 
   onClickDelCart = product => {
-    
     this.props.onDelFromCart(product);
   };
 
@@ -88,7 +87,7 @@ export class Header extends React.Component {
 
   render() {
     const { curHotWordIndex, searchInput } = this.state;
-    const { hotWords, categories, carts, keyword } = this.props;
+    const { hotWords, categories, carts } = this.props;
 
     let hotWordsNode = null;
     let placeholder = '搜索';
@@ -96,10 +95,10 @@ export class Header extends React.Component {
       placeholder = hotWords[0].keyword;
       let hotWordList = hotWords.slice(curHotWordIndex, Math.min(curHotWordIndex + 4, hotWords.length));
       hotWordsNode = (
-        <ul className={$style.search__list}>
+        <ul className={$style.hotword__list}>
           {hotWordList.map(hw => (
-            <li key={hw.id}>
-              <a>{hw.keyword}</a>
+            <li className={$style.hotword__item} key={hw.id}>
+              <span className={$style.hotword__link}>{hw.keyword}</span>
             </li>
           ))}
         </ul>
@@ -175,9 +174,9 @@ export class Header extends React.Component {
                 </div>
               </div>
               {hotWordsNode && (
-                <div className={$style.search__hotWord}>
+                <div className={$style.hotword}>
                   <SwitchTransition>
-                    <CSSTransition key={curHotWordIndex} timeout={500} classNames="Header_hotWord__text">
+                    <CSSTransition key={curHotWordIndex} timeout={500} classNames="Header_hotword__text">
                       {hotWordsNode}
                     </CSSTransition>
                   </SwitchTransition>

@@ -1,12 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
-import { Link } from 'react-router-dom';
 
 import Loading from '@/components/Loading';
-import Checkbox from '@/components/Checkbox';
-import Count from '@/components/Count';
-import { getElmOfArray } from '@/utils/libs';
+import { getInfoOfSpecs } from '@/utils/libs';
 import $style from './index.module.scss';
 
 function CartItem({ className, product }) {
@@ -14,27 +11,33 @@ function CartItem({ className, product }) {
     return <Loading />;
   }
 
-  const { title, images, specs, productSpecs, quantity, productInfo } = product;
-  const { prices } = productInfo;
+  const {
+    title,
+    images,
+    specs,
+    productSpecs,
+    quantity,
+    productInfo: { prices },
+  } = product;
+
   let specNodes = null;
-  let indexs = [];
   specNodes = specs.map((s, index) => {
     const productSpec = productSpecs[index];
-    const spec = productSpec.filter(ps => ps.id == s)[0];
-    indexs[spec.order] = spec.index;
+    const spec = productSpec.filter(ps => ps.id === s)[0];
     return (
       <div className={$style.spec} key={s}>
         {spec.title}
       </div>
     );
   });
-  let price = getElmOfArray(prices, indexs.slice(0, indexs.length));
 
-  let totalPrice = price * quantity;
+  let price = getInfoOfSpecs(specs, productSpecs, prices);
+
+  let totalPrice = Math.round(price * quantity * 100) / 100;
 
   return (
     <div className={classnames(className, $style.item)}>
-      <img className={$style.image} src={images[0]} />
+      <img className={$style.image} src={images[0]} alt="product" />
       <div className={$style.body}>
         <div className={$style.title}>{title}</div>
         <div className={$style.specs}>{specNodes}</div>

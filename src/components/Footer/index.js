@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import _ from 'lodash';
 
 import Intro from './Intro';
 import Link from './Link';

@@ -90,7 +90,6 @@ class Product extends React.Component {
   };
 
   onChangeCommentPage = page => {
-    console.log('onChangeCommentPage');
     let id = _.get(this.props, 'match.params.id', null);
     if (!id) {
       return;
@@ -134,11 +133,11 @@ class Product extends React.Component {
           <div className={$style.header}>
             {!_.isEmpty(product.images) && (
               <div className={$style.preview}>
-                <img className={$style.preview__img} src={preview || product.images[0]} />
+                <img className={$style.preview__img} src={preview || product.images[0]} alt="preview " />
                 <ul className={$style.preview__list}>
                   {product.images.map(img => (
                     <li className={$style.preview__item} key={img} onMouseOver={() => this.setState({ preview: img })}>
-                      <img className={$style.preview__icon} src={img} />
+                      <img className={$style.preview__icon} src={img} alt="icon " />
                     </li>
                   ))}
                 </ul>
@@ -185,20 +184,20 @@ class Product extends React.Component {
           <div className={$style.body}>
             <div className={$style.relevant}>
               <ul className={$style.tabs}>
-                <li className={classnames($style.tab, curTab == 0 && $style.tab_active)} key={0} onClick={() => this.setState({ curTab: 0 })}>
+                <li className={classnames($style.tab, curTab === 0 && $style.tab_active)} key={0} onClick={() => this.setState({ curTab: 0 })}>
                   详情
                 </li>
-                <li className={classnames($style.tab, curTab == 1 && $style.tab_active)} key={1} onClick={() => this.setState({ curTab: 1 })}>
+                <li className={classnames($style.tab, curTab === 1 && $style.tab_active)} key={1} onClick={() => this.setState({ curTab: 1 })}>
                   评价
                 </li>
-                <li className={classnames($style.tab, curTab == 2 && $style.tab_active)} key={2} onClick={() => this.setState({ curTab: 2 })}>
+                <li className={classnames($style.tab, curTab === 2 && $style.tab_active)} key={2} onClick={() => this.setState({ curTab: 2 })}>
                   常见问题
                 </li>
               </ul>
               <div>
-                {curTab == 0 && <Detail details={details} />}
-                {curTab == 1 && <Comments className={$style.comments} comments={comments} count={commentCount} avgStars={commentAvgStars} />}
-                {curTab == 1 && (
+                {curTab === 0 && <Detail details={details} />}
+                {curTab === 1 && <Comments className={$style.comments} comments={comments} count={commentCount} avgStars={commentAvgStars} />}
+                {curTab === 1 && (
                   <Pagination
                     className={$style.pagination}
                     page={commentPage}

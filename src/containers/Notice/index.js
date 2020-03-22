@@ -7,6 +7,7 @@ import $style from './index.module.scss';
 
 import { noticeApi } from '@/api';
 import Header from '@/containers/Header';
+import Footer from '@/components/Footer';
 import Nav from '@/containers/Nav';
 export class Notice extends React.Component {
   constructor(props) {
@@ -59,6 +60,7 @@ export class Notice extends React.Component {
             </div>
           )}
         </div>
+        <Footer />
       </div>
     );
   }

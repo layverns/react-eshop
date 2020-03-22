@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Link } from 'react-router-dom';
 import 'react-area-linkage/dist/index.css';
 import { pca, pcaa } from 'area-data';
 import { AreaSelect } from 'react-area-linkage';
@@ -152,7 +151,7 @@ class Contact extends React.Component {
 
   onClickSelection = id => {
     const { contacts } = this.props;
-    let index = contacts.findIndex(c => c.id == id);
+    let index = contacts.findIndex(c => c.id === id);
     if (index >= 0) {
       this.props.onSetContact(contacts[index]);
     }
@@ -169,7 +168,7 @@ class Contact extends React.Component {
       contact = this.props.contact;
     }
 
-    if (_.isEmpty(contact) && isEdit == false) {
+    if (_.isEmpty(contact) && isEdit === false) {
       return <Loading />;
     }
 
@@ -187,7 +186,7 @@ class Contact extends React.Component {
           <div className={$style.change__body}>
             {!_.isEmpty(contacts) &&
               contacts.map(c => (
-                <Selection className={$style.change__selection} active={contact.id == c.id} key={c.id} contact={c} onClick={this.onClickSelection} />
+                <Selection className={$style.change__selection} active={contact.id === c.id} key={c.id} contact={c} onClick={this.onClickSelection} />
               ))}
           </div>
           <div className={$style.change__footer}>

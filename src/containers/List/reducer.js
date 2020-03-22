@@ -43,6 +43,8 @@ const reducer = (state = initialState, action) =>
       case SET_PRODUCTS:
         draft.products = action.payload.products;
         break;
+      default:
+        break;
     }
   });
 

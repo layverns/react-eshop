@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import _ from 'lodash';
 
 import $style from './index.module.scss';
 
@@ -41,7 +40,7 @@ function Intro() {
           <div className={$style.intro__title}>扫码下载严选APP</div>
           <div className={$style.intro__content}>
             <div className={$style.qr}>
-              <img className={$style.qr__image} src={require('@/assets/home/qr.png')} />
+              <img className={$style.qr__image} src={require('@/assets/home/qr.png')} alt="qrcode" />
               <div className={$style.qr__title}>下载领大额新人红包</div>
             </div>
           </div>

@@ -97,13 +97,13 @@ export class Nav extends React.Component {
     let companyMenu = (
       <div className={$style.menu}>
         <div className={$style.menu__item}>
-          <a className={$style.menu__link}>企业购</a>
+          <div className={$style.menu__link}>企业购</div>
         </div>
         <div className={$style.menu__item}>
-          <a className={$style.menu__link}>礼品卡</a>
+          <div className={$style.menu__link}>礼品卡</div>
         </div>
         <div className={$style.menu__item}>
-          <a className={$style.menu__link}>联系我们</a>
+          <div className={$style.menu__link}>联系我们</div>
         </div>
       </div>
     );
@@ -111,16 +111,16 @@ export class Nav extends React.Component {
     let serviceMenu = (
       <div className={$style.menu}>
         <div className={$style.menu__item}>
-          <a className={$style.menu__link}>在线客服</a>
+          <div className={$style.menu__link}>在线客服</div>
         </div>
         <div className={$style.menu__item}>
-          <a className={$style.menu__link}>帮助中心</a>
+          <div className={$style.menu__link}>帮助中心</div>
         </div>
         <div className={$style.menu__item}>
-          <a className={$style.menu__link}>商务合作</a>
+          <div className={$style.menu__link}>商务合作</div>
         </div>
         <div className={$style.menu__item}>
-          <a className={$style.menu__link}>开放平台</a>
+          <div className={$style.menu__link}>开放平台</div>
         </div>
       </div>
     );
@@ -129,7 +129,7 @@ export class Nav extends React.Component {
       <nav className={$style.nav}>
         <div className={classnames($style.content, 'container')}>
           <div className={classnames($style.notice)}>
-            <img className={$style.notice__img} src={require('@/assets/home/speaker.gif')} />
+            <img className={$style.notice__img} src={require('@/assets/home/speaker.gif')} alt="speaker" />
             <ul className={$style.notice__list}>
               <SwitchTransition>
                 <CSSTransition key={curNoticeIndex} timeout={500} classNames="Header_notice__text">
@@ -143,12 +143,14 @@ export class Nav extends React.Component {
             <ul className={$style.link__list}>
               {_.isEmpty(user) ? (
                 <li className={$style.link__item}>
-                  <a onClick={onShowLogin}>登录/注册</a>
+                  <div onClick={onShowLogin} className={$style.link__link}>
+                    登录/注册
+                  </div>
                 </li>
               ) : (
                 <li className={$style.link__item} ref={this.userMenuRef}>
                   <Dropdown overlay={userMenu} placement="bottomRight" getPopupContainer={() => this.userMenuRef.current}>
-                    <Link to="/user">
+                    <Link to="/user" className={$style.link__link}>
                       {user.email} <DownOutlined />
                     </Link>
                   </Dropdown>
@@ -156,41 +158,43 @@ export class Nav extends React.Component {
               )}
               {!_.isEmpty(user) && (
                 <li className={$style.link__item}>
-                  <a>消息</a>
+                  <div className={$style.link__link}>消息</div>
                 </li>
               )}
               {!_.isEmpty(user) && (
                 <li className={$style.link__item}>
-                  <Link to="/order">我的订单</Link>
+                  <Link className={$style.link__link} to="/orders">
+                    我的订单
+                  </Link>
                 </li>
               )}
               <li className={$style.link__item}>
-                <a>会员</a>
+                <div className={$style.link__link}>会员</div>
               </li>
               <li className={$style.link__item}>
-                <a>甄选家</a>
+                <div className={$style.link__link}>甄选家</div>
               </li>
 
               <li className={$style.link__item} ref={this.companyMenuRef}>
                 <Dropdown overlay={companyMenu} placement="bottomRight" getPopupContainer={() => this.companyMenuRef.current}>
-                  <a>
+                  <div className={$style.link__link}>
                     企业采购 <DownOutlined />
-                  </a>
+                  </div>
                 </Dropdown>
               </li>
 
               <li className={$style.link__item} ref={this.serviceMenuRef}>
                 <Dropdown overlay={serviceMenu} placement="bottomRight" getPopupContainer={() => this.serviceMenuRef.current}>
-                  <a>
+                  <div className={$style.link__link}>
                     客户服务 <DownOutlined />
-                  </a>
+                  </div>
                 </Dropdown>
               </li>
               <li className={$style.link__item}>
-                <a>
+                <div className={$style.link__link}>
                   <span className={$style.link__appIcon}></span>
                   APP
-                </a>
+                </div>
               </li>
             </ul>
           </div>

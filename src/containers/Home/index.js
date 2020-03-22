@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import _ from 'lodash';
 
-import classnames from 'classnames';
-
 import {
   fetchCarousels,
   fetchNewProducts,
@@ -36,13 +34,7 @@ import FlashSale from './FlashSale';
 import Welfare from './Welfare';
 import Category from './Category';
 
-import $style from './index.module.scss';
-
 export class Home extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.onLoad();
   }

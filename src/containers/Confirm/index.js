@@ -3,9 +3,7 @@ import classnames from 'classnames';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Link } from 'react-router-dom';
 
-import {} from '@/containers/App/selectors';
 import { makeOrder } from './actions';
 import { makeSelectCheckedCarts } from '@/containers/Cart/selectors';
 import { makeSelectContact } from './Contact/selectors';
@@ -23,7 +21,7 @@ import { getInfoOfSpecs } from '@/utils/libs';
 
 import $style from './index.module.scss';
 
-class Confirm extends React.Component {
+export class Confirm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -40,27 +38,30 @@ class Confirm extends React.Component {
       return Alert.info('购物车没有商品!');
     }
 
-    console.log('onClickPay: ', contact);
-    console.log('checkedCarts: ', checkedCarts);
-    console.log('onMakeOrder: ', onMakeOrder);
     onMakeOrder();
   };
 
   render() {
     const { checkedCarts } = this.props;
 
-    let sumPrice = checkedCarts.reduce((total, c) => {
-      const {
-        specs,
-        productSpecs,
-        productInfo: { prices },
-      } = c;
-      let price = getInfoOfSpecs(specs, productSpecs, prices);
-      return total + price * c.quantity;
-    }, 0);
+    let sumPrice = 0;
+    let finalPrice = 0;
     let transportFee = 0;
     let discounts = 0;
-    let finalPrice = sumPrice - transportFee - discounts;
+    if (!_.isEmpty(checkedCarts)) {
+      sumPrice = checkedCarts.reduce((total, c) => {
+        const {
+          specs,
+          productSpecs,
+          productInfo: { prices },
+        } = c;
+        let price = getInfoOfSpecs(specs, productSpecs, prices);
+        return total + price * c.quantity;
+      }, 0);
+      sumPrice = Math.round(sumPrice * 100) / 100;
+
+      finalPrice = sumPrice - transportFee - discounts;
+    }
 
     return (
       <div className={$style.confirm}>
@@ -82,7 +83,7 @@ class Confirm extends React.Component {
               <div className={$style.body}>
                 <div className={$style.cart}>
                   {checkedCarts.map(p => {
-                    let id = p.id  + p.specs.join('');
+                    let id = p.id + p.specs.join('');
                     return (
                       <CartItem
                         className={$style.cart__item}

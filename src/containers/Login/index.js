@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import _ from 'lodash';
 import { Modal } from 'antd';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -87,7 +86,7 @@ export class Login extends React.Component {
                   onChange={this.onChangeEmail}
                   onClear={this.onClearEmail}
                   error={this.state.emailError}
-                  prefix={<img src={require('@/assets/login/user.png')} />}
+                  prefix={<img src={require('@/assets/login/user.png')} alt="user" />}
                   hasPostfix={true}
                   placeholder="邮箱账号"
                 />
@@ -98,13 +97,13 @@ export class Login extends React.Component {
                   onChange={this.onChangePassword}
                   onClear={this.onClearPassword}
                   error={this.state.passwordError}
-                  prefix={<img src={require('@/assets/login/lock.png')} />}
+                  prefix={<img src={require('@/assets/login/lock.png')} alt="lock" />}
                   hasPostfix={true}
                   placeholder="密码"
                 />
                 {(this.state.error || error) && (
                   <div className={$style.error}>
-                    <img src={require('@/assets/login/error.png')} />
+                    <img src={require('@/assets/login/error.png')} alt="error" />
                     <span>{this.state.error || error}</span>
                   </div>
                 )}
@@ -115,10 +114,10 @@ export class Login extends React.Component {
             </div>
             <div className={$style.footer}>
               <div className={$style.social}>
-                <a className={classnames($style.social__icon, $style.social__weixin)}></a>
-                <a className={classnames($style.social__icon, $style.social__qq)}></a>
-                <a className={classnames($style.social__icon, $style.social__weibo)}></a>
-                <a className={classnames($style.social__icon, $style.social__wangyi)}></a>
+                <span className={classnames($style.social__icon, $style.social__weixin)}></span>
+                <span className={classnames($style.social__icon, $style.social__qq)}></span>
+                <span className={classnames($style.social__icon, $style.social__weibo)}></span>
+                <span className={classnames($style.social__icon, $style.social__wangyi)}></span>
               </div>
               <div className={$style.help}>
                 <span className={$style.register}>邮箱注册</span>

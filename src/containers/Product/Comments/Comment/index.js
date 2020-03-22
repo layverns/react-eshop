@@ -14,7 +14,7 @@ class Comments extends React.Component {
     return (
       <div className={classnames(className, $style.comment)}>
         <div className={$style.user}>
-          <img className={$style.user__img} src={user.image} />
+          <img className={$style.user__img} src={user.image} alt="user" />
           <div className={$style.user__name}>{user.username}</div>
         </div>
         <div className={$style.detail}>
@@ -26,7 +26,7 @@ class Comments extends React.Component {
           ) : (
             <div className={$style.images}>
               {images.map(i => (
-                <img className={$style.image} key={i} src={i} />
+                <img className={$style.image} key={i} src={i} alt="detail" />
               ))}
             </div>
           )}

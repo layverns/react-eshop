@@ -27,7 +27,7 @@ function Selection({ className, onClick, contact, active }) {
         <div className={$style.title}>收货地址:</div>
         <div className={$style.text}>{pca[86][province] + pcaa[province][city] + pcaa[city][district] + address}</div>
       </div>
-      {isDefault == 1 && <div className={$style.default}>默认地址</div>}
+      {isDefault === 1 && <div className={$style.default}>默认地址</div>}
       <div className={$style.icon}></div>
     </div>
   );

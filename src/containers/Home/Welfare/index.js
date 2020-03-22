@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-import moment from 'moment';
 
 import $style from './index.module.scss';
 
@@ -11,10 +10,6 @@ import Loading from '@/components/Loading';
 import Panel from '../../../components/Panel';
 
 class Welfare extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { welfareProducts, presentProducts } = this.props;
 
@@ -22,7 +17,7 @@ class Welfare extends React.Component {
       <Panel title="福利社" more="查看全部福利" bgtype="gold">
         <div className={$style.body}>
           <div className={$style.left}>
-            <img className={$style.left__image} src={require('@/assets/home/welfare.jpg')} />
+            <img className={$style.left__image} src={require('@/assets/home/welfare.jpg')} alt="backgroud" />
           </div>
           {_.isEmpty(welfareProducts) ? (
             <Loading />

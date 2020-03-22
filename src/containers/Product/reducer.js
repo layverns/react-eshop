@@ -39,6 +39,8 @@ const reducer = (state = initialState, action) =>
         draft.commentCount = 0;
         draft.commentPage = 1;
         break;
+      default:
+        break;
     }
   });
 

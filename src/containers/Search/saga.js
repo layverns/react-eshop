@@ -1,13 +1,11 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import _ from 'lodash';
-import moment from 'moment';
 
 import { SEARCH, PRODUCTS_PER_PAGE } from './constants';
 import { setProducts, setProductCount, setCategories } from './actions';
 import { productApi } from '@/api';
 
 export function* search(action) {
-  console.log('search');
   try {
     const { keyword, categoryId, sort, order, page } = action.payload;
 

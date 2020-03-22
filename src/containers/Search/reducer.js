@@ -24,6 +24,8 @@ const reducer = (state = initialState, action) =>
       case SET_KEYWORD:
         draft.keyword = action.payload.keyword;
         break;
+      default:
+        break;
     }
   });
 

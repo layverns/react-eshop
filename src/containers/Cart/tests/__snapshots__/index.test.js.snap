@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`User 测试 snapshot 1`] = `
+exports[`Cart 测试 snapshot 1`] = `
 <div
-  className="layout"
+  className="cart"
 >
   <nav
     className="nav"
@@ -278,190 +278,182 @@ exports[`User 测试 snapshot 1`] = `
     className="container content"
   >
     <div
-      className="breadcrumb ant-breadcrumb"
-    >
-      <span>
-        <span
-          className="ant-breadcrumb-link"
-        >
-          <a
-            className="breadcrumb__link"
-            href="/"
-            onClick={[Function]}
-          >
-            首页
-          </a>
-        </span>
-        <span
-          className="ant-breadcrumb-separator"
-        >
-          &gt;
-        </span>
-      </span>
-    </div>
-    <div
-      className="body"
+      className="header"
     >
       <div
-        className="sidebar sidebar"
+        className="header__checkbox checkbox checkbox_none"
+        onClick={[Function]}
+        type="checkbox"
+      />
+      <div
+        className="header__all"
+      >
+        全选
+      </div>
+      <div
+        className="header__info"
+      >
+        商品信息
+      </div>
+      <div
+        className="header__price"
+      >
+        单价
+      </div>
+      <div
+        className="header__quantity"
+      >
+        数量
+      </div>
+      <div
+        className="header__sum"
+      >
+        小计
+      </div>
+      <div
+        className="header__option"
+      >
+        操作
+      </div>
+    </div>
+    <div
+      className="cart"
+    >
+      <div
+        className="cart__item item"
       >
         <div
-          className="category"
+          className="checkbox checkbox checkbox_checked"
+          onClick={[Function]}
+          type="checkbox"
+        />
+        <a
+          href="/products/1"
+          onClick={[Function]}
         >
+          <img
+            alt="product"
+            className="image"
+            src="a"
+          />
+        </a>
+        <div
+          className="body"
+        >
+          <a
+            className="title"
+            href="/products/1"
+            onClick={[Function]}
+          />
           <div
-            className="category__title"
+            className="specs"
           >
-            账号管理
+            <div
+              className="spec"
+            >
+              规格1
+            </div>
           </div>
-          <ul
-            className="category__list"
-          >
-            <li
-              className="category__item category__item_active"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                个人中心
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                消息通知
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                账号信息
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                地址管理
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                账号安全
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                我的积分
-              </a>
-            </li>
-          </ul>
         </div>
         <div
-          className="category"
+          className="price"
         >
-          <div
-            className="category__title"
-          >
-            交易管理
-          </div>
-          <ul
-            className="category__list"
-          >
-            <li
-              className="category__item"
-            >
-              <a
-                href="/orders"
-                onClick={[Function]}
-              >
-                订单管理
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/orders"
-                onClick={[Function]}
-              >
-                优惠券
-              </a>
-            </li>
-          </ul>
+          ¥
+          179
         </div>
         <div
-          className="category"
+          className="quantity count"
         >
-          <div
-            className="category__title"
+          <span
+            className="minus"
+            onClick={[Function]}
+            style={
+              Object {
+                "height": "26px",
+                "width": "26px",
+              }
+            }
           >
-            服务中心
-          </div>
-          <ul
-            className="category__list"
+            -
+          </span>
+          <input
+            className="input"
+            onChange={[Function]}
+            style={
+              Object {
+                "height": "26px",
+                "width": "58px",
+              }
+            }
+            type="text"
+            value={1}
+          />
+          <span
+            className="plus"
+            onClick={[Function]}
+            style={
+              Object {
+                "height": "26px",
+                "width": "26px",
+              }
+            }
           >
-            <li
-              className="category__item"
-            >
-              售后记录
-            </li>
-            <li
-              className="category__item"
-            >
-              帮助中心
-            </li>
-          </ul>
+            +
+          </span>
+        </div>
+        <div
+          className="totalPrice"
+        >
+          ¥
+          179
+        </div>
+        <div
+          className="del"
+          onClick={[Function]}
+        >
+          删除
+        </div>
+      </div>
+    </div>
+    <div
+      className="footer"
+    >
+      <div
+        className="footer__left"
+      >
+        <div
+          className="footer__checkbox checkbox checkbox_none"
+          onClick={[Function]}
+          type="checkbox"
+        />
+        <div
+          className="footer__all"
+        >
+          全选
         </div>
       </div>
       <div
-        className="user"
+        className="footer__right"
       >
         <div
-          className="header"
+          className="footer__sum"
         >
-          <div
-            className="header__left"
-          >
-            <div
-              className="info"
-            >
-              <img
-                alt="avatar"
-                className="info__img"
-                src="a"
-              />
-              <div
-                className="info__name"
-              >
-                apple
-              </div>
-            </div>
+          <div>
+            应付总额：
           </div>
           <div
-            className="header__right"
-          />
+            className="footer__price"
+          >
+            ¥
+            179
+          </div>
+        </div>
+        <div
+          className="footer__order footer__order_disabled"
+          disabled={true}
+          onClick={[Function]}
+        >
+          下单
         </div>
       </div>
     </div>

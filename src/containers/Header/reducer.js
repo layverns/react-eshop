@@ -16,6 +16,8 @@ const reducer = (state = initialState, action) =>
       case SET_CATEGORIES:
         draft.categories = action.payload.categories;
         break;
+      default:
+        break;
     }
   });
 

@@ -8,7 +8,6 @@ import { tokenStorage } from '@/utils/localStorage';
 import { authApi, api } from '@/api';
 
 export function* loadApp() {
-  console.log('loadApp');
   try {
     let token = tokenStorage.load();
 

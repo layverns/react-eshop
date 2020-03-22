@@ -76,9 +76,9 @@ class Carousel extends Component {
       <div className={$style.carousel}>
         <SwitchTransition>
           <CSSTransition key={this.state.curIndex} timeout={100} classNames="Home_Carousel__img">
-            <a className={$style.link}>
-              <img className={$style.image} src={carousels[this.state.curIndex].image} />
-            </a>
+            <span className={$style.link}>
+              <img className={$style.image} src={carousels[this.state.curIndex].image} alt="carousel" />
+            </span>
           </CSSTransition>
         </SwitchTransition>
 
@@ -94,7 +94,7 @@ class Carousel extends Component {
               {carousels.map((c, index) => (
                 <li key={c.id} className={$style.overlay__dot}>
                   <button
-                    className={this.state.curIndex == index ? $style.active : ''}
+                    className={this.state.curIndex === index ? $style.active : ''}
                     onMouseOver={() => this.stopTimer(index)}
                     onMouseLeave={() => this.startTimer()}
                   ></button>

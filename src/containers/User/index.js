@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -23,7 +22,7 @@ export class User extends React.Component {
           <div className={$style.header}>
             <div className={$style.header__left}>
               <div className={$style.info}>
-                <img className={$style.info__img} src={(user && user.image) || require('@/assets/user/avatar.png')} />
+                <img className={$style.info__img} src={(user && user.image) || require('@/assets/user/avatar.png')} alt="avatar" />
                 <div className={$style.info__name}>{user && user.username}</div>
               </div>
             </div>

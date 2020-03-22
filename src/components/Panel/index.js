@@ -9,21 +9,21 @@ function Panel({ children, title, subtitle, more, bgtype = 'white', tabs }) {
   let tabNodes = null;
   if (!_.isEmpty(tabs)) {
     tabNodes = tabs.map((t, index) => (
-      <a
+      <div
         key={t.title}
-        className={classnames($style.tab, page == index ? $style.tab_active : '')}
+        className={classnames($style.tab, page === index ? $style.tab_active : '')}
         onClick={() => {
           setPage(index);
           t.callback(index);
         }}
       >
         {t.title}
-      </a>
+      </div>
     ));
   }
 
   return (
-    <div className={classnames($style.panel, bgtype == 'white' ? $style.panel_white : $style.panel_gold)}>
+    <div className={classnames($style.panel, bgtype === 'white' ? $style.panel_white : $style.panel_gold)}>
       <div className={classnames($style.content, 'container')}>
         <div className={$style.header}>
           <div className={$style.header__left}>

@@ -12,6 +12,8 @@ const reducer = (state = initialState, action) =>
       case SET_ORDERS:
         draft.orders = action.payload.orders;
         break;
+      default:
+        break;
     }
   });
 

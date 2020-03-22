@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import classnames from 'classnames';
-import _ from 'lodash';
 import { Modal } from 'antd';
 
 import $style from './index.module.scss';

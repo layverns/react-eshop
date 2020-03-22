@@ -11,6 +11,7 @@ exports[`<Nav /> snapshot 1`] = `
       className="notice"
     >
       <img
+        alt="speaker"
         className="notice__img"
         src="speaker.gif"
       />
@@ -31,29 +32,35 @@ exports[`<Nav /> snapshot 1`] = `
         <li
           className="link__item"
         >
-          <a>
+          <div
+            className="link__link"
+          >
             登录/注册
-          </a>
+          </div>
         </li>
         <li
           className="link__item"
         >
-          <a>
+          <div
+            className="link__link"
+          >
             会员
-          </a>
+          </div>
         </li>
         <li
           className="link__item"
         >
-          <a>
+          <div
+            className="link__link"
+          >
             甄选家
-          </a>
+          </div>
         </li>
         <li
           className="link__item"
         >
-          <a
-            className="ant-dropdown-trigger"
+          <div
+            className="link__link ant-dropdown-trigger"
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
@@ -78,13 +85,13 @@ exports[`<Nav /> snapshot 1`] = `
                 />
               </svg>
             </span>
-          </a>
+          </div>
         </li>
         <li
           className="link__item"
         >
-          <a
-            className="ant-dropdown-trigger"
+          <div
+            className="link__link ant-dropdown-trigger"
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
@@ -109,17 +116,19 @@ exports[`<Nav /> snapshot 1`] = `
                 />
               </svg>
             </span>
-          </a>
+          </div>
         </li>
         <li
           className="link__item"
         >
-          <a>
+          <div
+            className="link__link"
+          >
             <span
               className="link__appIcon"
             />
             APP
-          </a>
+          </div>
         </li>
       </ul>
     </div>

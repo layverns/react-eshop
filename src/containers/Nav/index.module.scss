@@ -80,7 +80,7 @@
           }
 
           &:hover {
-            a {
+            .link__link {
               color: white;
             }
           }
@@ -94,8 +94,9 @@
             margin-right: px2rem(6);
           }
 
-          a {
+          .link__link {
             color: #ccc;
+            display: inline-block;
           }
 
           :global(.ant-dropdown) {

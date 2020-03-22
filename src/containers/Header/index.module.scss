@@ -1,17 +1,17 @@
 @import '@/styles/utils.scss';
 @import '@/styles/colors.scss';
 
-:global(.Header_hotWord__text-enter) {
+:global(.Header_hotword__text-enter) {
   transform: translateY(30px);
 }
-:global(.Header_hotWord__text-enter-active) {
+:global(.Header_hotword__text-enter-active) {
   transform: translateY(0);
   transition: transform 500ms ease-in;
 }
-:global(.Header_hotWord__text-exit) {
+:global(.Header_hotword__text-exit) {
   transform: translateY(0);
 }
-:global(.Header_hotWord__text-exit-active) {
+:global(.Header_hotword__text-exit-active) {
   transform: translateY(-30px);
   transition: transform 500ms ease-in;
 }
@@ -201,16 +201,16 @@
         }
       }
 
-      .search__hotWord {
+      .hotword {
         margin-top: px2rem(8);
         margin-left: px2rem(12);
         width: px2rem(444);
         overflow: hidden;
-        .search__list {
+        .hotword__list {
           list-style: none;
           display: flex;
           align-items: center;
-          li {
+          .hotword__item {
             font-size: px2rem(12);
             line-height: px2rem(12);
             margin-left: px2rem(10);
@@ -228,7 +228,7 @@
               display: none;
             }
 
-            a {
+            .hotword__link {
               color: $mainGold;
               font-size: px2rem(12);
             }
@@ -359,7 +359,7 @@
           }
         }
       }
-      .search__hotWord {
+      .hotword {
         display: none !important;
       }
     }

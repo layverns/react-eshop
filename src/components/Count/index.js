@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import _ from 'lodash';
 import $style from './index.module.scss';
 
 function Count({ className, value, onChange, btnWidth = '36px', inputWidth = '60px', height = '30px' }) {

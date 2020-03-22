@@ -20,7 +20,7 @@ import { getInfoOfSpecs } from '@/utils/libs';
 
 import $style from './index.module.scss';
 
-class Cart extends React.Component {
+export class Cart extends React.Component {
   constructor(props) {
     super(props);
 
@@ -41,6 +41,10 @@ class Cart extends React.Component {
   };
 
   onClickBuy = () => {
+    if (!this.props.isCheckOne) {
+      return;
+    }
+
     if (_.isEmpty(this.props.user)) {
       this.props.onShowLogin();
     } else {
@@ -51,15 +55,20 @@ class Cart extends React.Component {
   render() {
     const { carts, isCheckAll, onCheckAll, onUnCheckAll, isCheckOne } = this.props;
 
-    const sumPrice = carts.reduce((total, c) => {
-      const {
-        specs,
-        productSpecs,
-        productInfo: { prices },
-      } = c;
-      let price = getInfoOfSpecs(specs, productSpecs, prices);
-      return total + price * c.quantity;
-    }, 0);
+    let sumPrice = 0;
+    if (!_.isEmpty(carts)) {
+      sumPrice = carts.reduce((total, c) => {
+        const {
+          specs,
+          productSpecs,
+          productInfo: { prices },
+        } = c;
+        let price = getInfoOfSpecs(specs, productSpecs, prices);
+        return total + price * c.quantity;
+      }, 0);
+
+      sumPrice = Math.round(sumPrice * 100) / 100;
+    }
 
     return (
       <div className={$style.cart}>
@@ -76,19 +85,23 @@ class Cart extends React.Component {
             <div className={$style.header__option}>操作</div>
           </div>
           <div className={$style.cart}>
-            {carts.map(p => {
-              let id = p.id + p.specs.join('');
-              return (
-                <CartItem
-                  className={$style.cart__item}
-                  key={id}
-                  product={p}
-                  onDelete={this.onDelete}
-                  onCheck={this.onCheck}
-                  onChangeQuantity={this.onChangeQuantity}
-                />
-              );
-            })}
+            {_.isEmpty(carts) ? (
+              <Loading />
+            ) : (
+              carts.map(p => {
+                let id = p.id + p.specs.join('');
+                return (
+                  <CartItem
+                    className={$style.cart__item}
+                    key={id}
+                    product={p}
+                    onDelete={this.onDelete}
+                    onCheck={this.onCheck}
+                    onChangeQuantity={this.onChangeQuantity}
+                  />
+                );
+              })
+            )}
           </div>
           <div className={$style.footer}>
             <div className={$style.footer__left}>

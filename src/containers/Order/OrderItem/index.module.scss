@@ -45,6 +45,7 @@
       border-right: 1px solid #e8e8e8;
       display: flex;
       align-items: center;
+      padding: px2rem(20) 0;
 
       &:last-child {
         border: 0;
@@ -67,6 +68,9 @@
       .status {
         width: px2rem(130);
         text-align: center;
+      }
+      .status_red {
+        color: red;
       }
       .price {
         width: px2rem(139);

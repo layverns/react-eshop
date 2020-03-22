@@ -15,8 +15,8 @@ const ProductFlip = forwardRef(({ className, product }, ref) => {
   return (
     <div ref={ref} className={classnames($style.product, className)}>
       <Link className={$style.header} to={'/products/' + product.id}>
-        <img className={$style.img} src={product.images[0]} />
-        <img className={$style.altImg} src={product.images[1]} />
+        <img className={$style.img} src={product.images[0]} alt="product" />
+        <img className={$style.altImg} src={product.images[1]} alt="flip product" />
       </Link>
       <div className={$style.content}>
         <div className={$style.tags}>

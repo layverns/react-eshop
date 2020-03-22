@@ -1,4 +1,4 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import _ from 'lodash';
 import { push } from 'connected-react-router';
 
@@ -8,10 +8,8 @@ import Alert from '@/components/Alert';
 
 export function* makeOrder() {
   try {
-    console.log('makeOrder');
-
     yield call(orderApi.makeOrder);
-    yield put(push('/'));
+    yield put(push('/orders'));
   } catch (err) {
     let message = _.get(err, 'response.data.message', null) || _.get(err, 'message', null);
     Alert.info(message);

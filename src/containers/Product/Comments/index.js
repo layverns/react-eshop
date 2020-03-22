@@ -10,7 +10,7 @@ import $style from './index.module.scss';
 
 class Comments extends React.Component {
   render() {
-    const { className, count, avgStars, comments } = this.props;
+    const { className, avgStars, comments } = this.props;
 
     return (
       <div className={classnames(className, $style.comments)}>

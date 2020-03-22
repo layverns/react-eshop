@@ -1,6 +1,5 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import _ from 'lodash';
-import moment from 'moment';
 
 import { cartApi } from '@/api';
 import { cartStorage } from '@/utils/localStorage';
@@ -11,14 +10,13 @@ import { setCarts, setIsCheckAll, setIsCheckOne } from './actions';
 
 export function* addToCart(action) {
   try {
-    console.log('addToCart');
     let user = yield select(makeSelectUser());
     const { product } = action.payload;
     product.isChecked = true;
     let carts = [];
     if (_.isEmpty(user)) {
       carts = cartStorage.load() || [];
-      let index = _.findIndex(carts, c => c && c.id == product.id && _.isEqual(c.specs, product.specs));
+      let index = _.findIndex(carts, c => c && c.id === product.id && _.isEqual(c.specs, product.specs));
       if (index < 0) {
         let quantity = product.quantity;
         if (quantity > 99) quantity = 99;
@@ -48,20 +46,17 @@ export function* addToCart(action) {
 
 export function* changeCartQuantity(action) {
   try {
-    console.log('changeCartQuantity');
     let user = yield select(makeSelectUser());
     const { product } = action.payload;
     let carts = [];
     if (_.isEmpty(user)) {
       carts = cartStorage.load() || [];
-      let index = _.findIndex(carts, c => c && c.id == product.id && _.isEqual(c.specs, product.specs));
-      console.log(' index: ', index);
+      let index = _.findIndex(carts, c => c && c.id === product.id && _.isEqual(c.specs, product.specs));
       if (index >= 0) {
         let quantity = product.quantity;
         if (quantity > 99) quantity = 99;
         if (quantity < 1) quantity = 1;
         carts[index].quantity = quantity;
-        console.log(' carts[index]: ', carts[index]);
       }
       cartStorage.save(carts);
     } else {
@@ -81,13 +76,12 @@ export function* changeCartQuantity(action) {
 
 export function* checkCart(action) {
   try {
-    console.log('checkCart');
     let user = yield select(makeSelectUser());
     const { product } = action.payload;
     let carts = [];
     if (_.isEmpty(user)) {
       carts = cartStorage.load() || [];
-      let index = _.findIndex(carts, c => c && c.id == product.id && _.isEqual(c.specs, product.specs));
+      let index = _.findIndex(carts, c => c && c.id === product.id && _.isEqual(c.specs, product.specs));
       if (index >= 0) {
         carts[index].isChecked = !carts[index].isChecked;
       }
@@ -109,7 +103,6 @@ export function* checkCart(action) {
 
 export function* checkAll(action) {
   try {
-    console.log('checkAll');
     let user = yield select(makeSelectUser());
     let carts = [];
     if (_.isEmpty(user)) {
@@ -132,7 +125,6 @@ export function* checkAll(action) {
 
 export function* unCheckAll(action) {
   try {
-    console.log('unCheckAll');
     let user = yield select(makeSelectUser());
     let carts = [];
     if (_.isEmpty(user)) {
@@ -159,15 +151,13 @@ export function* delFromCart(action) {
     let carts = [];
     if (_.isEmpty(user)) {
       carts = cartStorage.load() || [];
-      let index = _.findIndex(carts, c => c && c.id == product.id && _.isEqual(c.specs, product.specs));
+      let index = _.findIndex(carts, c => c && c.id === product.id && _.isEqual(c.specs, product.specs));
       if (index >= 0) {
         carts.splice(index, 1);
       }
       cartStorage.save(carts);
     } else {
       const { id, specs } = product;
-      console.log('saga delFromCart id: ', id);
-      console.log('saga delFromCart specs: ', specs);
       yield call(cartApi.delFromCart, { productId: id, specs });
       const res = yield call(cartApi.getCarts);
       carts = _.get(res, 'data.carts', []);
@@ -183,7 +173,6 @@ export function* delFromCart(action) {
 
 export function* transferToUserCart() {
   try {
-    console.log('transferToUserCart');
     let user = yield select(makeSelectUser());
     let carts = yield select(makeSelectCarts());
     if (_.isEmpty(user) || _.isEmpty(carts)) {
@@ -208,10 +197,8 @@ export function* transferToUserCart() {
 
 export function* loadCarts() {
   try {
-    console.log('loadCarts');
     let user = yield select(makeSelectUser());
     let carts = [];
-    console.log('user: ', user);
     if (_.isEmpty(user)) {
       carts = cartStorage.load() || [];
     } else {

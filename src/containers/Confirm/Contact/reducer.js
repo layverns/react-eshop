@@ -24,6 +24,8 @@ const reducer = (state = initialState, action) =>
       case SET_IS_EDIT:
         draft.isEdit = action.payload.isEdit;
         break;
+      default:
+        break;
     }
   });
 

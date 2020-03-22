@@ -1,7 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
-import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
@@ -60,7 +59,7 @@ class Search extends React.Component {
   };
 
   onChangeSort = (sort, order) => {
-    order = order == 'asc' ? 'desc' : 'asc';
+    order = order === 'asc' ? 'desc' : 'asc';
 
     this.setState(
       {
@@ -112,7 +111,7 @@ class Search extends React.Component {
                 {!_.isEmpty(categories) && (
                   <div className={$style.filter__items}>
                     <div
-                      className={classnames($style.filter__item, categoryId == null ? $style.filter__item_active : '')}
+                      className={classnames($style.filter__item, categoryId === null ? $style.filter__item_active : '')}
                       key={0}
                       onClick={() => this.onChangeCategory(null)}
                     >
@@ -120,7 +119,7 @@ class Search extends React.Component {
                     </div>
                     {categories.map(c => (
                       <div
-                        className={classnames($style.filter__item, categoryId == c.id ? $style.filter__item_active : '')}
+                        className={classnames($style.filter__item, categoryId === c.id ? $style.filter__item_active : '')}
                         key={c.id}
                         onClick={() => this.onChangeCategory(c.id)}
                       >
@@ -133,20 +132,25 @@ class Search extends React.Component {
               <div className={$style.filter__row}>
                 <div className={$style.filter__title}>排序：</div>
                 <div className={$style.filter__items}>
-                  <div className={classnames($style.filter__item, sort == null ? $style.filter__item_active : '')}>默认</div>
                   <div
-                    className={classnames($style.filter__item, sort == 'price' ? $style.filter__item_active : '')}
+                    className={classnames($style.filter__item, sort === null ? $style.filter__item_active : '')}
+                    onClick={() => this.onChangeSort(null, order)}
+                  >
+                    默认
+                  </div>
+                  <div
+                    className={classnames($style.filter__item, sort === 'price' ? $style.filter__item_active : '')}
                     onClick={() => this.onChangeSort('price', order)}
                   >
                     价格
-                    {sort == 'price' && <Arrow order={order} />}
+                    {sort === 'price' && <Arrow order={order} />}
                   </div>
                   <div
-                    className={classnames($style.filter__item, sort == 'createdAt' ? $style.filter__item_active : '')}
+                    className={classnames($style.filter__item, sort === 'createdAt' ? $style.filter__item_active : '')}
                     onClick={() => this.onChangeSort('createdAt', order)}
                   >
                     上架时间
-                    {sort == 'createdAt' && <Arrow order={order} />}
+                    {sort === 'createdAt' && <Arrow order={order} />}
                   </div>
                 </div>
               </div>

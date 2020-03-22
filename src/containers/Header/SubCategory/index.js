@@ -5,10 +5,10 @@ import $style from './index.module.scss';
 
 function ThirdCategory({ icon, title }) {
   return (
-    <a className={$style.thirdCategory}>
-      <img className={$style.thirdCategory__image} src={icon} />
+    <span className={$style.thirdCategory}>
+      <img className={$style.thirdCategory__image} src={icon} alt="icon" />
       <span className={$style.thirdCategory__title}>{title}</span>
-    </a>
+    </span>
   );
 }
 

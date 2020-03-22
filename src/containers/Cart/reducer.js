@@ -20,6 +20,8 @@ const reducer = (state = initialState, action) =>
       case SET_IS_CHECK_ONE:
         draft.isCheckOne = action.payload.isCheckOne;
         break;
+      default:
+        break;
     }
   });
 

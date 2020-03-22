@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
@@ -19,7 +19,7 @@ function CartItem({ className, product, onDelete, onCheck, onChangeQuantity }) {
 
   let specNodes = specs.map((s, index) => {
     const productSpec = productSpecs[index];
-    const spec = productSpec.filter(ps => ps.id == s)[0];
+    const spec = productSpec.filter(ps => ps.id === s)[0];
     return (
       <div className={$style.spec} key={s}>
         {spec.title}
@@ -29,13 +29,13 @@ function CartItem({ className, product, onDelete, onCheck, onChangeQuantity }) {
 
   let price = getInfoOfSpecs(specs, productSpecs, prices);
 
-  let totalPrice = price * quantity;
+  let totalPrice = Math.round(price * quantity * 100) / 100;
 
   return (
     <div className={classnames(className, $style.item)}>
       <Checkbox className={$style.checkbox} isChecked={isChecked} onCheck={() => onCheck(product)} />
       <Link to={`/products/${id}`}>
-        <img className={$style.image} src={images[0]} />
+        <img className={$style.image} src={images[0]} alt="product" />
       </Link>
       <div className={$style.body}>
         <Link className={$style.title} to={`/products/${id}`}>

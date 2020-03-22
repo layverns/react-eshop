@@ -7,7 +7,6 @@ import { orderApi } from '@/api';
 import Alert from '@/components/Alert';
 
 export function* payOrder(action) {
-  console.log('payOrder');
   try {
     yield call(orderApi.payOrder, action.payload.orderId);
     yield put(fetchOrders());
@@ -18,7 +17,6 @@ export function* payOrder(action) {
   }
 }
 export function* getOrders() {
-  console.log('getOrders');
   try {
     const res = yield call(orderApi.getOrders);
     const orders = _.get(res, 'data.orders', null);

@@ -26,7 +26,7 @@ function CartItem({ className, product, onClickDel }) {
   let specNodes = null;
   specNodes = specs.map((s, index) => {
     const productSpec = productSpecs[index];
-    const spec = productSpec.filter(ps => ps.id == s)[0];
+    const spec = productSpec.filter(ps => ps.id === s)[0];
     return (
       <div className={$style.spec} key={s}>
         {spec.title}
@@ -38,7 +38,7 @@ function CartItem({ className, product, onClickDel }) {
   return (
     <div className={classnames($style.item, className)}>
       <Link to={`/products/${id}`}>
-        <img className={$style.image} src={images[0]} />
+        <img className={$style.image} src={images[0]} alt="product" />
       </Link>
       <div className={$style.body}>
         <Link to={`/products/${id}`}>

@@ -1,8 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import _ from 'lodash';
 
 import $style from './index.module.scss';
 
@@ -19,7 +18,7 @@ import User from '@/containers/User';
 import Search from '@/containers/Search';
 
 class App extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.onLoad();
   }
 
@@ -34,7 +33,7 @@ class App extends React.Component {
           <Route path="/lists/:categoryId" component={List} />
           <Route path="/cart/" component={Cart} />
           <Route path="/confirm/" component={Confirm} />
-          <Route path="/order/" component={Order} />
+          <Route path="/orders/" component={Order} />
           <Route path="/search" component={Search} />
         </Switch>
       </div>

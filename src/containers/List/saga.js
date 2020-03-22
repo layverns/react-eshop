@@ -30,7 +30,7 @@ export function* fetchProducts(action) {
     let allProducts = yield select(makeSelectProducts());
     //对每个三级分类的产品列表缓存10分钟
     for (let i = 0; i < thirdCategories.length; i++) {
-      let tc = _.find(allThirdCategories, atc => atc.id == thirdCategories[i].id);
+      let tc = _.find(allThirdCategories, atc => atc.id === thirdCategories[i].id);
       if (
         _.isEmpty(tc) ||
         moment()

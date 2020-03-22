@@ -7,7 +7,7 @@ function Pagination({ className, page = 5, pageCount = 10, onChangePage }) {
   let showCount = 0;
   let pageNodes = [];
   pageNodes.push(
-    <div className={classnames($style.page, page == 1 ? $style.page_active : '')} key={1} onClick={() => onChangePage(1)}>
+    <div className={classnames($style.page, page === 1 ? $style.page_active : '')} key={1} onClick={() => onChangePage(1)}>
       1
     </div>
   );

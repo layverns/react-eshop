@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import classnames from 'classnames';
+import React from 'react';
 import _ from 'lodash';
 import $style from './index.module.scss';
 
@@ -17,7 +16,6 @@ class Recommend extends React.Component {
   }
 
   changeTab = index => {
-    console.log('changeTab: ', index);
     this.setState({
       tabIndex: index,
     });
@@ -31,7 +29,7 @@ class Recommend extends React.Component {
       return <Loading />;
     }
 
-    let products = tabIndex == 0 ? recommends : bestSells;
+    let products = tabIndex === 0 ? recommends : bestSells;
 
     let first = products[0];
 

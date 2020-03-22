@@ -12,6 +12,7 @@ exports[`Header 测试 snapshot 1`] = `
         className="notice"
       >
         <img
+          alt="speaker"
           className="notice__img"
           src="speaker.gif"
         />
@@ -32,31 +33,36 @@ exports[`Header 测试 snapshot 1`] = `
           <li
             className="link__item"
           >
-            <a
+            <div
+              className="link__link"
               onClick={[Function]}
             >
               登录/注册
-            </a>
+            </div>
           </li>
           <li
             className="link__item"
           >
-            <a>
+            <div
+              className="link__link"
+            >
               会员
-            </a>
+            </div>
           </li>
           <li
             className="link__item"
           >
-            <a>
+            <div
+              className="link__link"
+            >
               甄选家
-            </a>
+            </div>
           </li>
           <li
             className="link__item"
           >
-            <a
-              className="ant-dropdown-trigger"
+            <div
+              className="link__link ant-dropdown-trigger"
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
@@ -81,13 +87,13 @@ exports[`Header 测试 snapshot 1`] = `
                   />
                 </svg>
               </span>
-            </a>
+            </div>
           </li>
           <li
             className="link__item"
           >
-            <a
-              className="ant-dropdown-trigger"
+            <div
+              className="link__link ant-dropdown-trigger"
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
@@ -112,17 +118,19 @@ exports[`Header 测试 snapshot 1`] = `
                   />
                 </svg>
               </span>
-            </a>
+            </div>
           </li>
           <li
             className="link__item"
           >
-            <a>
+            <div
+              className="link__link"
+            >
               <span
                 className="link__appIcon"
               />
               APP
-            </a>
+            </div>
           </li>
         </ul>
       </div>
@@ -432,6 +440,7 @@ exports[`Header 测试 snapshot 1`] = `
           className="left"
         >
           <img
+            alt="backgroud"
             className="left__image"
             src="welfare.jpg"
           />
@@ -604,6 +613,7 @@ exports[`Header 测试 snapshot 1`] = `
               className="qr"
             >
               <img
+                alt="qrcode"
                 className="qr__image"
                 src="qr.png"
               />

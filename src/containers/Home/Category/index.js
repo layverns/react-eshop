@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import Loading from '@/components/Loading';
 import ProductFlip from '@/components/ProductFlip';
@@ -25,7 +24,7 @@ class Category extends React.Component {
         <div className={classnames($style.content, 'container')}>
           <div className={$style.header}>
             <div className={$style.header__left}>
-              <Link className={$style.title} to={`/list/${id}`}>
+              <Link className={$style.title} to={`/lists/${id}`}>
                 {title}
               </Link>
             </div>
@@ -35,12 +34,12 @@ class Category extends React.Component {
                   ? null
                   : thirdCategories.map(tc => (
                       <li className={$style.header__item} key={tc.id}>
-                        <a>{tc.title}</a>
+                        <span>{tc.title}</span>
                         <span>/</span>
                       </li>
                     ))}
               </ul>
-              <Link className={$style.header__more} to={`/list/${id}`}>
+              <Link className={$style.header__more} to={`/lists/${id}`}>
                 查看更多 >
               </Link>
             </div>

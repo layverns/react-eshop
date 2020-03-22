@@ -15,7 +15,7 @@ const ProductPresent = ({ className, product }) => {
   return (
     <div className={classnames(className, $style.product)}>
       <Link className={$style.header} to={'/products/' + product.id}>
-        <img className={$style.header__image} src={product.images[0]} />
+        <img className={$style.header__image} src={product.images[0]} alt="product" />
       </Link>
       <div className={$style.content}>
         <Link className={$style.title} to={'/products/' + product.id}>

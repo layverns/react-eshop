@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`User 测试 snapshot 1`] = `
+exports[`Confirm 测试 snapshot 1`] = `
 <div
-  className="layout"
+  className="confirm"
 >
   <nav
     className="nav"
@@ -278,190 +278,232 @@ exports[`User 测试 snapshot 1`] = `
     className="container content"
   >
     <div
-      className="breadcrumb ant-breadcrumb"
-    >
-      <span>
-        <span
-          className="ant-breadcrumb-link"
-        >
-          <a
-            className="breadcrumb__link"
-            href="/"
-            onClick={[Function]}
-          >
-            首页
-          </a>
-        </span>
-        <span
-          className="ant-breadcrumb-separator"
-        >
-          &gt;
-        </span>
-      </span>
-    </div>
-    <div
-      className="body"
+      className="loading"
     >
       <div
-        className="sidebar sidebar"
+        className="ant-spin ant-spin-spinning"
+      >
+        <span
+          aria-label="loading"
+          className="anticon anticon-loading ant-spin-dot"
+          role="img"
+          style={
+            Object {
+              "fontSize": 24,
+            }
+          }
+        >
+          <svg
+            aria-hidden="true"
+            className="anticon-spin"
+            data-icon="loading"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="0 0 1024 1024"
+            width="1em"
+          >
+            <path
+              d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div
+      className="order"
+    >
+      <div
+        className="header"
       >
         <div
-          className="category"
+          className="header__product"
         >
-          <div
-            className="category__title"
-          >
-            账号管理
-          </div>
-          <ul
-            className="category__list"
-          >
-            <li
-              className="category__item category__item_active"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                个人中心
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                消息通知
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                账号信息
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                地址管理
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                账号安全
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/user"
-                onClick={[Function]}
-              >
-                我的积分
-              </a>
-            </li>
-          </ul>
+          商品信息
         </div>
         <div
-          className="category"
+          className="header__price"
         >
-          <div
-            className="category__title"
-          >
-            交易管理
-          </div>
-          <ul
-            className="category__list"
-          >
-            <li
-              className="category__item"
-            >
-              <a
-                href="/orders"
-                onClick={[Function]}
-              >
-                订单管理
-              </a>
-            </li>
-            <li
-              className="category__item"
-            >
-              <a
-                href="/orders"
-                onClick={[Function]}
-              >
-                优惠券
-              </a>
-            </li>
-          </ul>
+          单价
         </div>
         <div
-          className="category"
+          className="header__quantity"
         >
-          <div
-            className="category__title"
-          >
-            服务中心
-          </div>
-          <ul
-            className="category__list"
-          >
-            <li
-              className="category__item"
-            >
-              售后记录
-            </li>
-            <li
-              className="category__item"
-            >
-              帮助中心
-            </li>
-          </ul>
+          数量
+        </div>
+        <div
+          className="header__sum"
+        >
+          小计
+        </div>
+        <div
+          className="header__final"
+        >
+          实付
         </div>
       </div>
       <div
-        className="user"
+        className="body"
       >
         <div
-          className="header"
+          className="cart"
         >
           <div
-            className="header__left"
+            className="cart__item item"
           >
+            <img
+              alt="product"
+              className="image"
+              src="a"
+            />
             <div
-              className="info"
+              className="body"
             >
-              <img
-                alt="avatar"
-                className="info__img"
-                src="a"
+              <div
+                className="title"
               />
               <div
-                className="info__name"
+                className="specs"
               >
-                apple
+                <div
+                  className="spec"
+                >
+                  规格1
+                </div>
               </div>
+            </div>
+            <div
+              className="price"
+            >
+              ¥
+              179
+            </div>
+            <div
+              className="quantity"
+            >
+              1
+            </div>
+            <div
+              className="totalPrice"
+            >
+              ¥
+              179
+            </div>
+            <div
+              className="final"
+            >
+              ¥
+              179
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="footer"
+    >
+      <div
+        className="footer__row"
+      >
+        <div
+          className="invoice"
+        >
+          <div
+            className="invoice__title"
+          >
+            发票信息：
+          </div>
+          <div
+            className="invoice__content"
+          >
+            <div
+              className="invoice__check checkbox checkbox_none"
+              type="checkbox"
+            />
+            <span
+              className="invoice__text"
+            >
+              我要开发票
+            </span>
+          </div>
+        </div>
+        <div
+          className="info"
+        >
+          <div
+            className="info__row"
+          >
+            <div
+              className="info__title"
+            >
+              商品合计 :
+            </div>
+            <div
+              className="info__text"
+            >
+              ¥
+              179
             </div>
           </div>
           <div
-            className="header__right"
-          />
+            className="info__row"
+          >
+            <div
+              className="info__title"
+            >
+              运费 :
+            </div>
+            <div
+              className="info__text"
+            >
+              ¥
+              0
+            </div>
+          </div>
+          <div
+            className="info__row"
+          >
+            <div
+              className="info__title"
+            >
+              活动优惠 :
+            </div>
+            <div
+              className="info__text"
+            >
+              ¥
+              0
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="footer__row"
+      >
+        <div
+          className="control"
+        >
+          <div
+            className="sum"
+          >
+            <div
+              className="sum__title"
+            >
+              应付总额 :
+            </div>
+            <div
+              className="sum__text"
+            >
+              $
+              179
+            </div>
+          </div>
+          <div
+            className="buy button"
+            onClick={[Function]}
+          >
+            去付款
+          </div>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ export const getElmOfArray = (arr, indexs) => {
     return 0;
   }
 
-  if (indexs.length == 1) {
+  if (indexs.length === 1) {
     return arr[indexs[0]];
   } else {
     arr = arr[indexs[0]];
@@ -27,11 +27,8 @@ export const getElmOfArray = (arr, indexs) => {
  */
 export const getInfoOfSpecs = (specs, productSpecs, datas) => {
   let indexs = [];
-  console.log('specs: ', specs);
-  console.log('productSpecs: ', productSpecs);
-  console.log('datas: ', datas);
   specs.forEach((s, index) => {
-    const spec = productSpecs[index].filter(ps => ps.id == s)[0];
+    const spec = productSpecs[index].filter(ps => ps.id === s)[0];
     indexs[spec.order] = spec.index;
   });
   return getElmOfArray(datas, indexs);

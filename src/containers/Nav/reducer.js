@@ -12,6 +12,8 @@ const reducer = (state = initialState, action) =>
       case SET_NOTICES:
         draft.notices = action.payload.notices;
         break;
+      default:
+        break;
     }
   });
 

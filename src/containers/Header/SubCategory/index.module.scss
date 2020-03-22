@@ -28,6 +28,7 @@
       color: $fontBlack;
       display: flex;
       align-items: center;
+      cursor: pointer;
 
       &:hover {
         color: $mainGold;

@@ -14,6 +14,7 @@ exports[`Notice 测试 snapshot 1`] = `
         className="notice"
       >
         <img
+          alt="speaker"
           className="notice__img"
           src="speaker.gif"
         />
@@ -34,31 +35,36 @@ exports[`Notice 测试 snapshot 1`] = `
           <li
             className="link__item"
           >
-            <a
+            <div
+              className="link__link"
               onClick={[Function]}
             >
               登录/注册
-            </a>
+            </div>
           </li>
           <li
             className="link__item"
           >
-            <a>
+            <div
+              className="link__link"
+            >
               会员
-            </a>
+            </div>
           </li>
           <li
             className="link__item"
           >
-            <a>
+            <div
+              className="link__link"
+            >
               甄选家
-            </a>
+            </div>
           </li>
           <li
             className="link__item"
           >
-            <a
-              className="ant-dropdown-trigger"
+            <div
+              className="link__link ant-dropdown-trigger"
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
@@ -83,13 +89,13 @@ exports[`Notice 测试 snapshot 1`] = `
                   />
                 </svg>
               </span>
-            </a>
+            </div>
           </li>
           <li
             className="link__item"
           >
-            <a
-              className="ant-dropdown-trigger"
+            <div
+              className="link__link ant-dropdown-trigger"
               onMouseEnter={[Function]}
               onMouseLeave={[Function]}
             >
@@ -114,17 +120,19 @@ exports[`Notice 测试 snapshot 1`] = `
                   />
                 </svg>
               </span>
-            </a>
+            </div>
           </li>
           <li
             className="link__item"
           >
-            <a>
+            <div
+              className="link__link"
+            >
               <span
                 className="link__appIcon"
               />
               APP
-            </a>
+            </div>
           </li>
         </ul>
       </div>
@@ -302,6 +310,292 @@ exports[`Notice 测试 snapshot 1`] = `
           &gt;
         </span>
       </span>
+    </div>
+  </div>
+  <div
+    className="footer"
+  >
+    <div
+      className="intro"
+    >
+      <div
+        className="container content"
+      >
+        <div
+          className="intro__col"
+        >
+          <div
+            className="intro__title"
+          >
+            客户服务
+          </div>
+          <div
+            className="intro__content"
+          >
+            <div
+              className="buttons"
+            >
+              <div
+                className="button"
+              >
+                <div
+                  className="button__service"
+                />
+                <div
+                  className="button__title"
+                >
+                  在线客服
+                </div>
+              </div>
+              <div
+                className="button"
+              >
+                <div
+                  className="button__feedback"
+                />
+                <div
+                  className="button__title"
+                >
+                  用户反馈
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="intro__col"
+        >
+          <div
+            className="intro__title"
+          >
+            何为严选
+          </div>
+          <div
+            className="intro__content"
+          >
+            <div
+              className="text"
+            >
+              网易原创生活类电商品牌，秉承网易一贯的严谨态度，我们深入世界各地，从源头全程严格把控商品生产环节，力求帮消费者甄选到优质的商品
+            </div>
+            <div
+              className="follow"
+            >
+              <div>
+                关注我们 :
+              </div>
+              <div
+                className="follow__qq"
+              />
+              <div
+                className="follow__weixin"
+              />
+              <div
+                className="follow__weibo"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="intro__col"
+        >
+          <div
+            className="intro__title"
+          >
+            扫码下载严选APP
+          </div>
+          <div
+            className="intro__content"
+          >
+            <div
+              className="qr"
+            >
+              <img
+                alt="qrcode"
+                className="qr__image"
+                src="qr.png"
+              />
+              <div
+                className="qr__title"
+              >
+                下载领大额新人红包
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="link"
+    >
+      <div
+        className="container content"
+      >
+        <div
+          className="ensure"
+        >
+          <div
+            className="ensure__item"
+          >
+            <div
+              className="ensure__yi"
+            />
+            <div
+              className="ensure__title"
+            >
+              网易自营电商
+            </div>
+          </div>
+          <div
+            className="ensure__item"
+          >
+            <div
+              className="ensure__tui"
+            />
+            <div
+              className="ensure__title"
+            >
+              30天无忧退换货
+            </div>
+          </div>
+          <div
+            className="ensure__item"
+          >
+            <div
+              className="ensure__bao"
+            />
+            <div
+              className="ensure__title"
+            >
+              满88元免邮费
+            </div>
+          </div>
+          <div
+            className="ensure__item"
+          >
+            <div
+              className="ensure__ping"
+            />
+            <div
+              className="ensure__title"
+            >
+              品质保证
+            </div>
+          </div>
+        </div>
+        <ul
+          className="list"
+        >
+          <li
+            className="list__item"
+          >
+            关于我们
+          </li>
+          <li
+            className="list__item"
+          >
+            帮助中心
+          </li>
+          <li
+            className="list__item"
+          >
+            售后服务
+          </li>
+          <li
+            className="list__item"
+          >
+            配送与验收
+          </li>
+          <li
+            className="list__item"
+          >
+            商务合作
+          </li>
+          <li
+            className="list__item"
+          >
+            企业采购
+          </li>
+          <li
+            className="list__item"
+          >
+            开放平台
+          </li>
+          <li
+            className="list__item"
+          >
+            搜索推荐
+          </li>
+          <li
+            className="list__item"
+          >
+            友情链接
+          </li>
+          <li
+            className="list__item"
+          >
+            廉正举报
+          </li>
+        </ul>
+        <ul
+          className="certs"
+        >
+          <li
+            className="certs__item"
+          >
+            食品经营许可证：JY13301080111719
+          </li>
+          <li
+            className="certs__item"
+          >
+            出版物经营许可证：新出发滨字第0132号
+          </li>
+          <li
+            className="certs__item"
+          >
+            妙得ICP证号：ICP 证浙B2-20160106
+          </li>
+          <li
+            className="certs__item"
+          >
+            浙杭食药监械经营备20171029号
+          </li>
+          <li
+            className="certs__item"
+          >
+            营业执照
+          </li>
+          <li
+            className="certs__item"
+          >
+            网易公司版权所有 © 1997-2020
+          </li>
+        </ul>
+        <ul
+          className="certs"
+        >
+          <li
+            className="certs__item"
+          >
+            无线电发射设备销售备案：42201919712647
+          </li>
+          <li
+            className="certs__item"
+          >
+            (浙杭）网械企备字[2019]第00119号
+          </li>
+          <li
+            className="certs__item"
+          >
+            （粤）网械平台备字（2019）第00004号
+          </li>
+          <li
+            className="certs__item"
+          >
+            单用途商业预付卡备案证：330100AAC0024
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

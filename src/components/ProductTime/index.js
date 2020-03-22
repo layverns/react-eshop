@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ const ProductTime = ({ className, product }) => {
   return (
     <div className={classnames(className, $style.product)}>
       <Link className={$style.header} to={'/products/' + product.id}>
-        <img className={$style.image} src={product.images[0]} />
+        <img className={$style.image} src={product.images[0]} alt="product" />
       </Link>
       <div className={$style.content}>
         <Link className={$style.title} to={'/products/' + product.id}>
