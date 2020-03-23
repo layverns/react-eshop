@@ -29,13 +29,13 @@ class Category extends React.Component {
               </Link>
             </div>
             <div className={$style.header__right}>
-              <ul className={$style.header__list}>
+              <ul className={$style.list}>
                 {_.isEmpty(thirdCategories)
                   ? null
                   : thirdCategories.map(tc => (
-                      <li className={$style.header__item} key={tc.id}>
-                        <span>{tc.title}</span>
-                        <span>/</span>
+                      <li className={$style.list__item} key={tc.id}>
+                        <span className={$style.list__title}>{tc.title}</span>
+                        <span className={$style.list__split}>/</span>
                       </li>
                     ))}
               </ul>

@@ -1,19 +1,23 @@
-基于 react 的仿[网易严选](https://you.163.com/)桌面端网页应用/
+### 项目介绍
 
-## 项目介绍
+基于 react 的仿[网易严选](https://you.163.com/)桌面端网页应用。已完成首页、产品列表页、产品详情页、购物车、订单管理、搜索等功能。项目已上线服务器
 
-仿[网易严选](https://you.163.com/)桌面端网页应用。已完成首页、产品列表页、产品详情页、购物车、订单管理、搜索等功能。项目已上线服务器
+后台接口基于 eggjs，mysql 搭建的 restful api， 项目地址: [https://github.com/layverns/eshop-server](https://github.com/layverns/eshop-server)
 
 ### 项目演示
 
-在线地址：[http://localhost:3000](http://localhost:3000)
+在线地址：[http://39.100.112.172:8080/](http://39.100.112.172:8080/)
+
 测试用户：
+
 用户邮箱：apple@demo.com 密码：123456x
+
 用户邮箱：jack@demo.com 密码：123456x
+
 用户邮箱：tom@demo.com 密码：123456x
 
 演示动画：
-<img src="http://static.runoob.com/images/runoob-logo.png">
+<img src="http://39.100.112.172/public/preview.gif">
 
 ### 相关技术
 

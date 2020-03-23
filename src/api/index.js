@@ -1,11 +1,16 @@
 import axios from 'axios';
 import { tokenStorage } from '@/utils/localStorage';
 
-const API_ROOT = 'http://127.0.0.1:7001/api';
+const API_ROOT_LOCAL = 'http://127.0.0.1:7001/api';
+const API_ROOT = 'http://39.100.112.172/api';
 
 const api = {
   init() {
-    axios.defaults.baseURL = API_ROOT;
+    if (process.env.NODE_ENV === 'development') {
+      axios.defaults.baseURL = API_ROOT_LOCAL;
+    } else {
+      axios.defaults.baseURL = API_ROOT;
+    }
   },
   setToken(token) {
     axios.defaults.headers.common.Authorization = 'bearer ' + token;
