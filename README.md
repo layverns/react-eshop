@@ -23,6 +23,8 @@
 
 本项目所用到的技术主要有：react, redux, react-router-dom, redux-saga, sass, css-module
 
+开发使用的nodejs版本：v12.16.1
+
 ### 开发环境
 
 进入项目目录执行：
